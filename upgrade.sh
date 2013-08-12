@@ -1,4 +1,4 @@
-echo "I am checking out revision $1"
+echo "I am checking out revision $1" > upgrade.output
 
 
 #git pull
