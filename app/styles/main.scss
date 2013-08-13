@@ -306,21 +306,36 @@ $HEADER_TOTAL_HEIGHT:$HEADER_PADDING + $HEADER_HEIGHT;
     a.icon.facebook {
       background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/facebook-light.png?1364490981) no-repeat;
     }
+    a.icon.facebook:hover {
+      background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/facebook.png?1364490981) no-repeat;
+    }
 
     a.icon.twitter {
       background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/twitter-light.png?1364490981) no-repeat;
+    }
+    a.icon.twitter:hover {
+      background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/twitter.png?1364490981) no-repeat;
     }
 
     a.icon.youtube {
       background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/youtube-light.png?1364490981) no-repeat;
     }
+    a.icon.youtube:hover {
+      background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/youtube.png?1364490981) no-repeat;
+    }
 
     a.icon.linkedin {
       background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/linkedin-light.png?1364490981) no-repeat;
     }
+    a.icon.linkedin:hover {
+      background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/linkedin.png?1364490981) no-repeat;
+    }
 
     a.icon.email {
       background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/email-light.png?1364490981) no-repeat;
+    }
+    a.icon.email:hover {
+      background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/email.png?1364490981) no-repeat;
     }
 
     a.icon.last {
