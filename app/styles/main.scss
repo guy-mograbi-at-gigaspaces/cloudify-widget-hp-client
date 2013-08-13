@@ -4,11 +4,12 @@ $HP_SPRITE: "https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_base/ima
 
 /* Put your CSS here */
 html, body {
-  margin: 20px;
+  //margin: 20px;
 }
 
 #container.container{
-  width:1040px;
+  //width:1040px;
+  width: 100%;
 }
 
 html,body,div{
@@ -170,4 +171,154 @@ $HEADER_TOTAL_HEIGHT:$HEADER_PADDING + $HEADER_HEIGHT;
 
 #main-content{
   margin-top:$HEADER_TOTAL_HEIGHT;
+  width:1040px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#footer-container {
+  cursor: auto;
+  position: relative;
+  height: 270px;
+  overflow: hidden;
+  padding: 20px 0 0;
+  font-family: Arial,Helvetica,sans-serif;
+  color: #ccc;
+  background: transparent url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_base/images/page-footer-background.png?1352827785) repeat;
+
+  nav {
+    margin: 0 auto;
+    overflow: hidden;
+    width: 960px;
+  }
+
+  dl {
+    float: left;
+    margin: 0 10px;
+    width: 140px;
+    text-shadow: #000 0 1px 1px;
+  }
+
+  dd {
+    font-size: 12px;
+    line-height: 1.75;
+    color: #ccc;
+    margin-left: 0px;
+  }
+
+  dt {
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 10px;
+    color: #fff;
+
+    a {
+      color: #fff;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: #ccc;
+  }
+
+  a:visited {
+    color: #0096d6;
+  }
+
+  #content-info {
+    font-size: 10px;
+    margin-top: 20px;
+
+    .container {
+      zoom: 1;
+      text-shadow: none;
+      width: 960px;
+
+      .grid_1 {
+        width: 580px;
+        display: inline;
+        float: left;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+      .grid_2 {
+        width: 340px;
+      }
+
+      .align-right {
+        text-align: right !important;
+        float: right;
+      }
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      list-style-image: none;
+      list-style-type: none;
+      display: inline;
+      margin: 0;
+      padding-right: 0;
+    }
+  }
+
+  .homepage-social {
+    height: 32px;
+    line-height: 32px;
+    width: 224px;
+    margin-right: auto;
+    margin-left: auto;
+
+    a.icon {
+      height: 0;
+      padding-top: 32px;
+      overflow: hidden;
+      width: 32px;
+      display: block;
+      float: left;
+      margin-right: 16px;
+    }
+
+    a.icon.facebook {
+      background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/facebook-light.png?1364490981) no-repeat;
+    }
+
+    a.icon.twitter {
+      background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/twitter-light.png?1364490981) no-repeat;
+    }
+
+    a.icon.youtube {
+      background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/youtube-light.png?1364490981) no-repeat;
+    }
+
+    a.icon.linkedin {
+      background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/linkedin-light.png?1364490981) no-repeat;
+    }
+
+    a.icon.email {
+      background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/email-light.png?1364490981) no-repeat;
+    }
+
+    a.icon.last {
+      margin-right: 0;
+    }
+  }
+
+  .openstack-text-container {
+    width: 940px;
+    text-align: left;
+    text-shadow: none;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 30px;
+  }
+
+  p.homepage-openstack {
+    font-size: 10px;
+  }
 }
