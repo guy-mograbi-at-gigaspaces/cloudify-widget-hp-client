@@ -222,6 +222,14 @@ $HEADER_TOTAL_HEIGHT:$HEADER_PADDING + $HEADER_HEIGHT;
     a {
       color: #fff;
     }
+
+    a:visited {
+      color: #fff;
+    }
+
+    a:hover {
+      color: #0096d6;
+    }
   }
 
   a {
@@ -230,10 +238,6 @@ $HEADER_TOTAL_HEIGHT:$HEADER_PADDING + $HEADER_HEIGHT;
   }
 
   a:hover {
-    color: #0096d6;
-  }
-
-  a:visited {
     color: #0096d6;
   }
 
