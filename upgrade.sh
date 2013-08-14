@@ -1,7 +1,7 @@
 echo "I am checking out revision $1" > upgrade.output
 
 echo "pulling from git"
-git pull
+git pull origin master
 
 echo "checking out $1"
 git checkout $1
