@@ -5,3 +5,5 @@ dist
 *.iml
 .idea
 app/bower_components
+*.sh
+Gruntfile.js

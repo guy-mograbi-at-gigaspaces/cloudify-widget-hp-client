@@ -332,7 +332,7 @@ module.exports = function (grunt) {
     'concurrent:dist',
     'concat',
     'copy',
-    'cdnify',
+    // 'cdnify',
     'ngmin',
     'cssmin',
     'uglify',
@@ -346,50 +346,3 @@ module.exports = function (grunt) {
     'build'
   ]);
 };
-
-
-var sys = require('sys')
-
-sys.puts(process.argv)
-
-var exec = require('child_process').exec;
-var spawn = require('child_process').spawn;
-
-function puts(error, stdout, stderr) {
-    sys.puts(stdout)
-}
-
-exec("git rev-parse HEAD", { "cwd": "c:\\bs\\buildagent\\workspace\\root\\ui\\cloudify-widget-hp-client\\cloudify-widget-hp-client"},
-
-    function upgradeToHash(error, stdout, stderr) {
-        // write a temporary upgrade script file
-        var fs = require('fs');
-        fs.writeFile("upgrade_script.sh", "echo run upgrate [" + stdout + "]", function (err) {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log("The file was saved!");
-
-                var my_stream = spawn("putty.exe", ["-i", "C:\\Users\\ca\\ui\\builds\\cloudify-widget-hp-client\\continuous-deployment\\staging.ppk", "devwidget.gsdev.info", "-m" , "upgrade_scipt.sh"], {"cwd": "c:\\"});
-
-
-                    my_stream.stdout.on('data', function (data) {
-                        file.write(data);
-                    });
-                // add an 'end' event listener to close the writeable stream
-                my_stream.stdout.on('end', function (data) {
-                    file.end();
-                    console.log(file_name + ' downloaded to ' + DOWNLOAD_DIR);
-                });
-                // when the spawn child process exits, check if there were any errors and close the writeable stream
-                my_stream.on('exit', function (code) {
-                    if (code != 0) {
-                        console.log('Failed: ' + code);
-                    }
-                });
-
-
-            }
-
-        });
-    });
