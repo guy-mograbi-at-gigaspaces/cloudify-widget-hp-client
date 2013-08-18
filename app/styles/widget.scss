@@ -24,10 +24,6 @@ $HP_SPRITE: "https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_base/ima
   width: 100%;
 }
 
-html, body, div{
-  height:100%;
-}
-
 iframe{
   overflow: visible;
   border:none; width:2024px;
@@ -187,6 +183,8 @@ $HEADER_TOTAL_HEIGHT:$HEADER_PADDING + $HEADER_HEIGHT;
   width:1040px;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 40px;
+  margin-top: 40px;
 }
 
 #footer-container {
@@ -378,7 +376,6 @@ $HEADER_TOTAL_HEIGHT:$HEADER_PADDING + $HEADER_HEIGHT;
 
 
 #widgetContainer {
-  margin-top: 100px;
   margin-right: auto;
   margin-left: auto;
   width: 630px;

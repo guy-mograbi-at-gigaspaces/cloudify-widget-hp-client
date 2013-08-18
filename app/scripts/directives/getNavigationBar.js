@@ -4,9 +4,11 @@ angular.module('cloudifyWidgetHpClientApp')
   .directive('getNavigationBar', function () {
     return {
         template: '<div class="banner container">' +
-            '<div class="logo span2">' +
-                'HP Logo' +
-            '</div>' +
+            '<a href="#/">' +
+                '<div class="logo span2">' +
+                    'HP Logo' +
+                '</div>' +
+            '</a>' +
             '<div class="navigation span8">' +
                 '<ul>' +
                     '<li>' +
