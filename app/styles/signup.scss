@@ -1,0 +1,61 @@
+#signupText {
+  float: left;
+  font-size: 20px;
+  li {
+    line-height: 26px;
+  }
+}
+
+#signupSteps {
+  position: relative;
+  float: right;
+  background-color: #279bd6;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 20px;
+  text-shadow: none;
+  padding: 10px 0px 10px 20px;
+  width: 260px;
+  li {
+    line-height: 26px;
+  }
+}
+
+#detailsForm {
+  position: relative;
+  height: 205px;
+  width: 600px;
+  background-color: #279bd6;
+  border-radius: 10px;
+  float: left;
+  color: #fff;
+  text-shadow: none;
+  margin-top: 30px;
+  #formRequiredText {
+    position: relative;
+    right: 10px;
+    top: 10px;
+    float: right;
+    color: #a30000;
+  }
+  form {
+    float: left;
+    position: absolute;
+    left: 30px;
+    padding-top: 10px;
+    .requiredStar {
+      color: #a30000;
+    }
+    #submitBtn {
+      position: relative;
+      left: 480px;
+      top: -47px;
+      width: 80px;
+      height: 40px;
+      background-color: #fff;
+      color: #279bd6;
+      border-radius: 10px;
+      border: none;
+    }
+  }
+}

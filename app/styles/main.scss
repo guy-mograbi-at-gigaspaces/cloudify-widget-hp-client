@@ -1,3 +1,138 @@
+@import "bootstrap-sass/lib/bootstrap";
+
+$HP_SPRITE: "https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_base/images/icon.png";
+
+@font-face {
+  font-family: "HP Simplified";
+  src: url(http://www.hpcloud.com/sites/default/themes/hp_cloud_tile_base/fonts/HPSimplified-Bold.eot);
+  src:url(http://www.hpcloud.com/sites/default/themes/hp_cloud_tile_base/fonts/HPSimplified-Bold.eot?#iefix) format('eot'),
+  url(http://www.hpcloud.com/sites/default/themes/hp_cloud_tile_base/fonts/HPSimplified-Bold.woff) format('woff'),
+  url(http://www.hpcloud.com/sites/default/themes/hp_cloud_tile_base/fonts/HPSimplified-Bold.ttf) format('truetype'),
+  url(http://www.hpcloud.com/sites/default/themes/hp_cloud_tile_base/fonts/HPSimplified-Bold.svg) format('svg')
+}
+
+@font-face {
+  font-family:"HP Simplified Rg";
+  src:url(http://www.hpcloud.com/sites/default/themes/hp_cloud_tile_base/fonts/HPSimplifiedW01-Regular.eot);
+  src:url(http://www.hpcloud.com/sites/default/themes/hp_cloud_tile_base/fonts/HPSimplifiedW01-Regular.eot?#iefix) format('eot'),
+  url(http://www.hpcloud.com/sites/default/themes/hp_cloud_tile_base/fonts/HPSimplifiedW01-Regular.woff) format('woff'),
+  url(http://www.hpcloud.com/sites/default/themes/hp_cloud_tile_base/fonts/HPSimplifiedW01-Regular.ttf) format('truetype'),
+  url(http://www.hpcloud.com/sites/default/themes/hp_cloud_tile_base/fonts/HPSimplifiedW01-Regular.svg) format('svg')
+}
+
+
+$HEADER_PADDING:20px;
+$HEADER_HEIGHT:21px;
+
+$HEADER_TOTAL_HEIGHT:$HEADER_PADDING + $HEADER_HEIGHT;
+
+.hp-header{
+
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:100;
+
+  height:$HEADER_HEIGHT;
+  padding: 10px 20px 20px 20px;
+
+  background-color: #fff;
+  background-position: 0% -1412px;
+  background-repeat: repeat-x;
+  -webkit-box-shadow: #909090 0 1px 8px;
+  box-shadow: #909090 0 1px 8px;
+  background-image: url($HP_SPRITE);
+
+  .logo{
+    background: url($HP_SPRITE) 0 0 no-repeat;
+    height:35px;
+    text-indent: -99999px;
+  }
+
+  .navigation {
+    ul {
+      margin:0;
+      padding:0;
+      list-style: none;
+      list-style-image: none;
+      li {
+        float:left;
+        position:relative;
+        a{
+          display:block;
+          padding:5px 10px;
+          float:left;
+          margin-right:5px;
+          text-decoration: none;
+
+        }
+        &:hover {
+          .submenu {
+            display: block;
+          }
+        }
+        .submenu {
+
+          background-color:white;
+          margin-top: -6px;
+          margin-left:-10px;
+          border-radius:10px;
+          &:before{
+            content:"";
+            position:absolute;
+            top: 18px;
+            left: 23px;
+            display:inline-block;
+            border-width:10px;
+            border-style:solid;
+            border-top-color: transparent;
+            border-bottom-color: white;
+            height:0;
+            width:0;
+            z-index:200;
+            border-right-color: transparent;
+            border-left-color: transparent;
+
+          }
+          display: none;
+          float:none;
+          ul{
+            li{
+              font-size: 14px;
+              font-family: "HP Simplified Rg", Arial, Helvetica, sans-serif;;
+              text-shadow: none;
+
+              &:first-child{
+                margin-top:44px;
+              }
+
+              padding:20px;
+              &:hover{
+                &:first-child{
+                  border-top-left-radius:10px;
+                  border-top-right-radius:10px;
+                }
+                &:last-child{
+                  border-bottom-left-radius:10px;
+                  border-bottom-right-radius:10px;
+                }
+                background: #294054;
+                color: #fff;
+                a{color:#fff}
+              }
+              display:block;
+              float:none;
+              a{float:none;}
+            }
+            display:block;
+          }
+        }
+      }
+    }
+  }
+
+}
 
 #main-header {
   background: transparent url(../../img/header.png);
@@ -23,9 +158,196 @@
 }
 
 #main-content {
-
+  width:1040px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 40px;
+  margin-top: 40px;
 }
 
-#main-footer {
+#footer-container {
+  cursor: auto;
+  position: relative;
+  height: 270px;
+  overflow: hidden;
+  padding: 30px 0 0;
+  font-family: "HP Simplified Rg", Arial, Helvetica, sans-serif;
+  color: #ccc;
 
+  .wrapper {
+    background: transparent url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_base/images/page-footer-background.png?1352827785) repeat;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 100%;
+    padding-top: 24px;
+  }
+
+  nav {
+    margin: 0 auto;
+    overflow: hidden;
+    width: 960px;
+  }
+
+  dl {
+    float: left;
+    margin: 0 10px;
+    width: 140px;
+    text-shadow: #000 0 1px 1px;
+  }
+
+  dd {
+    font-size: 12px;
+    line-height: 1.75;
+    color: #ccc;
+    margin-left: 0px;
+  }
+
+  dt {
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 10px;
+    color: #fff;
+
+    a {
+      color: #fff;
+    }
+
+    a:visited {
+      color: #fff;
+    }
+
+    a:hover {
+      color: #0096d6;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: #ccc;
+  }
+
+  a:hover {
+    color: #0096d6;
+  }
+
+  #content-info {
+    font-size: 10px;
+    margin-top: 20px;
+
+    .container {
+      zoom: 1;
+      text-shadow: none;
+      width: 960px;
+
+      .grid_1 {
+        width: 580px;
+        display: inline;
+        float: left;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+      .grid_2 {
+        width: 340px;
+      }
+
+      .align-right {
+        text-align: right !important;
+        float: right;
+      }
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      list-style-image: none;
+      list-style-type: none;
+      display: inline;
+      margin: 0;
+      padding-right: 0;
+
+      a {
+        margin-right: 5px;
+      }
+    }
+
+    li:after {
+      content: "|";
+    }
+  }
+
+  .homepage-social {
+    height: 32px;
+    line-height: 32px;
+    width: 224px;
+    margin-right: auto;
+    margin-left: auto;
+
+    a.icon {
+      height: 0;
+      padding-top: 32px;
+      overflow: hidden;
+      width: 32px;
+      display: block;
+      float: left;
+      margin-right: 16px;
+    }
+
+    a.icon.facebook {
+      background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/facebook-light.png?1364490981) no-repeat;
+    }
+    a.icon.facebook:hover {
+      background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/facebook.png?1364490981) no-repeat;
+    }
+
+    a.icon.twitter {
+      background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/twitter-light.png?1364490981) no-repeat;
+    }
+    a.icon.twitter:hover {
+      background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/twitter.png?1364490981) no-repeat;
+    }
+
+    a.icon.youtube {
+      background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/youtube-light.png?1364490981) no-repeat;
+    }
+    a.icon.youtube:hover {
+      background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/youtube.png?1364490981) no-repeat;
+    }
+
+    a.icon.linkedin {
+      background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/linkedin-light.png?1364490981) no-repeat;
+    }
+    a.icon.linkedin:hover {
+      background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/linkedin.png?1364490981) no-repeat;
+    }
+
+    a.icon.email {
+      background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/email-light.png?1364490981) no-repeat;
+    }
+    a.icon.email:hover {
+      background: url(https://www.hpcloud.com/sites/default/themes/hp_cloud_tile_site/images/social/email.png?1364490981) no-repeat;
+    }
+
+    a.icon.last {
+      margin-right: 0;
+    }
+  }
+
+  .openstack-text-container {
+    width: 940px;
+    text-align: left;
+    text-shadow: none;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 10px;
+  }
+
+  p.homepage-openstack {
+    font-size: 10px;
+    font-weight: normal;
+    color: #000;
+  }
 }
