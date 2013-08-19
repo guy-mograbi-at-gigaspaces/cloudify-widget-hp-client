@@ -80,12 +80,19 @@
 }
 
 #checkMailPopup {
-  width: 400px;
-  height: 250px;
-  position: absolute;
+  display: none;
+  width: 410px;
+  height: 200px;
+  position: relative;
   background-color: #e89626;
   color: #fff;
-  margin: auto;
+  font-size: 22px;
+  text-align: center;
+  margin:0 auto;
   border-radius: 10px;
-  padding: 10px;
+  padding: 20px 10px 10px 0px;
+
+  p {
+    position: absolute;
+  }
 }
