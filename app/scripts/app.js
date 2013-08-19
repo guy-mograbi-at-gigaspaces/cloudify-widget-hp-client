@@ -7,16 +7,13 @@ angular.module('cloudifyWidgetHpClientApp', [])
                 templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
             })
-            .when('/widget', {
-                templateUrl: 'views/widget.html',
-                controller: 'WidgetCtrl'
-            })
             .when('/demo', {
                 templateUrl: 'views/demo.html',
                 controller: 'DemoCtrl'
             })
             .when('/preview', {
-                templateUrl: 'views/preview.html'
+                templateUrl: 'views/preview.html',
+                controller: 'PreviewCtrl'
             })
             .when('/signup', {
                 templateUrl: 'views/signup.html',
