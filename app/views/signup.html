@@ -17,31 +17,40 @@
         </ul>
     </div>
 
-    <div id="detailsForm">
-        <div id="formRequiredText">
-            * Reqired field
+    <div id="formContainer">
+        <div id="detailsForm">
+            <div id="formRequiredText">
+                * Reqired field
+            </div>
+            <form id="signupForm" action="">
+                <h3>Get Started:</h3>
+                <table>
+                    <tr>
+                        <td>First name <span class="requiredStar">*</span></td>
+                        <td><input type="text" name="fname" required autofocus></td>
+                    </tr>
+                    <tr>
+                        <td>Last name <span class="requiredStar">*</span></td>
+                        <td><input type="text" name="lname" required></td>
+                    </tr>
+                    <tr>
+                        <td>Email <span class="requiredStar">*</span></td>
+                        <td><input type="email" name="email" autocomplete="off" required></td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td><input type="text" name="phone"></td>
+                    </tr>
+                </table>
+                <input id="submitBtn" type="submit" value="Enter">
+            </form>
         </div>
-        <form id="signupForm" action="">
-            Get Started:
-            <table>
-                <tr>
-                    <td>First name <span class="requiredStar">*</span></td>
-                    <td><input type="text" name="fname" required autofocus></td>
-                </tr>
-                <tr>
-                    <td>Last name <span class="requiredStar">*</span></td>
-                    <td><input type="text" name="lname" required autofocus></td>
-                </tr>
-                <tr>
-                    <td>Email <span class="requiredStar">*</span></td>
-                    <td><input type="email" name="email" autocomplete="off" required></td>
-                </tr>
-                <tr>
-                    <td>Phone</td>
-                    <td><input type="text" name="phone"></td>
-                </tr>
-            </table>
-            <input id="submitBtn" type="submit" value="Enter">
-        </form>
     </div>
+
+    <!--<div id="checkMailPopup">-->
+        <!--Please check your email for link to activate Free Trial.-->
+        <!--Note: If you do not see your email in your inbox please check your junk mail folder for email with-->
+        <!--Subject: XXXXXXXXXXXXX-->
+        <!--From: Admin@Gigaspaces.com-->
+    <!--</div>-->
 </div>

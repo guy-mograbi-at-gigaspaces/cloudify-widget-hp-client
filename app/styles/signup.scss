@@ -1,8 +1,8 @@
 #signupText {
   float: left;
-  font-size: 20px;
+  font-size: 23px;
   li {
-    line-height: 26px;
+    line-height: 34px;
   }
 }
 
@@ -12,50 +12,80 @@
   background-color: #279bd6;
   border-radius: 10px;
   color: #fff;
-  font-size: 20px;
+  font-size: 22px;
   text-shadow: none;
-  padding: 10px 0px 10px 20px;
-  width: 260px;
+  padding: 20px 0px 10px 20px;
+  width: 290px;
+  height: 120px;
   li {
     line-height: 26px;
   }
 }
 
-#detailsForm {
-  position: relative;
-  height: 205px;
-  width: 600px;
+#formContainer {
+  width: 100%;
   background-color: #279bd6;
   border-radius: 10px;
   float: left;
-  color: #fff;
-  text-shadow: none;
-  margin-top: 30px;
-  #formRequiredText {
+  margin-top: 20px;
+
+  #detailsForm {
     position: relative;
-    right: 10px;
-    top: 10px;
-    float: right;
-    color: #a30000;
-  }
-  form {
-    float: left;
-    position: absolute;
-    left: 30px;
-    padding-top: 10px;
-    .requiredStar {
+    margin: auto;
+    height: 260px;
+    width: 600px;
+    color: #fff;
+    text-shadow: none;
+
+    #formRequiredText {
+      position: relative;
+      right: 20px;
+      top: 20px;
+      float: right;
       color: #a30000;
     }
-    #submitBtn {
-      position: relative;
-      left: 480px;
-      top: -47px;
-      width: 80px;
-      height: 40px;
-      background-color: #fff;
-      color: #279bd6;
-      border-radius: 10px;
-      border: none;
+
+    form {
+      float: left;
+      position: absolute;
+      left: 30px;
+      padding-top: 10px;
+
+      .requiredStar {
+        color: #a30000;
+      }
+
+      td {
+        padding-right: 10px;
+      }
+
+      #submitBtn {
+        position: relative;
+        left: 470px;
+        top: -47px;
+        width: 80px;
+        height: 40px;
+        background-color: #fff;
+        color: #279bd6;
+        border-radius: 10px;
+        border: none;
+        &:hover {
+          background-color: #e8e8e8;
+          font-weight: bold;
+        }
+      }
+
     }
   }
+}
+
+#checkMailPopup {
+  width: 400px;
+  height: 250px;
+  position: absolute;
+  background-color: #e89626;
+  color: #fff;
+  margin: auto;
+  border-radius: 10px;
+  padding: 10px;
 }

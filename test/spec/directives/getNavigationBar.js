@@ -8,6 +8,6 @@ describe('Directive: getNavigationBar', function () {
   it('should make hidden element visible', inject(function ($rootScope, $compile) {
     element = angular.element('<get-navigation-bar></get-navigation-bar>');
     element = $compile(element)($rootScope);
-    expect(element.text()).toBe('this is the getNavigationBar directive');
+    expect(element.length).toBe(1);
   }));
 });
