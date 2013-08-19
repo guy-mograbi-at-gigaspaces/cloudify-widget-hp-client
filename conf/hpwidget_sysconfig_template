@@ -1,0 +1,4 @@
+DOMAIN_NAME=_MY_DOMAIN_NAME_
+DEST_FOLDER=/var/www/hpwidget
+GIT_LOCATION=https://github.com/guy-mograbi-at-gigaspaces/cloudify-widget-hp-client.git
+CONF_FILE=$DEST_FOLDER/conf/dev/me.conf
