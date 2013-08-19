@@ -16,7 +16,8 @@ angular.module('cloudifyWidgetHpClientApp', [])
                 controller: 'DemoCtrl'
             })
             .when('/signup', {
-                templateUrl: 'views/signup.html'
+                templateUrl: 'views/signup.html',
+                controller: 'SignupCtrl'
             })
             .otherwise({
                 redirectTo: '/'
