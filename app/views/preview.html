@@ -1,4 +1,16 @@
 <div id="main-content">
-    <div id="widgets"></div>
-    <div ng-include src="'views/widgetSkin.html'"></div>
+    <div id="widgets">
+        <ul>
+            <li class="widgetItem" ng-click="widgetClick(widget)" ng-repeat="widget in widgetsList">
+                    <div id="widgetIcon">
+                        <img ng-src="{{widget.icon}}" />
+                    </div>
+                    <div id="widgetName">{{widget.productName}}</div>
+            </li>
+        </ul>
+    </div>
+    <!--<div id="skin" ng-include src="'views/widgetSkin.html'" data-api-key="{{selectedWidget.apiKey}}"></div>-->
+    <div id="skin">
+        <iframe ng-src="http://launch.cloudifysource.org/demos/133/{{selectedWidget.apiKey}}"></iframe>
+    </div>
 </div>

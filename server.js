@@ -4,6 +4,8 @@
  * Express Dependencies
  */
 var express = require('express');
+var ajax = require("http");
+var conf = require("./conf/dev/meConf")
 var app = express();
 var port = 9000;
 
@@ -77,6 +79,49 @@ if (app.get('env') === 'development') {
     app.use(express.static('dist'));
 }
 
+app.get("/widgetslist", function(request, response, next) {
+
+    var options = {
+        hostname: conf.widgetServer,
+        path: '/api/demo/widget/list?email=default_demo@gigaspaces.com',
+        method: 'GET'
+    };
+
+    var data = '';
+
+    var callback = function(res) {
+        var result = '';
+
+        console.log('STATUS: ' + res.statusCode);
+        //console.log('HEADERS: ' + JSON.stringify(res.headers));
+
+        res.setEncoding('utf8');
+
+        res.on('data', function (chunk) {
+            result += chunk;
+            //console.log('BODY: ' + chunk);
+        });
+
+        res.on('end', function () {
+            //console.log('request is done');
+            var jsonStr = JSON.stringify(result);
+            data = JSON.parse(jsonStr);
+
+            console.log('Request done, data: ' + data);
+
+            response.send(data);
+        });
+    }
+
+    var onError = function(e) {
+        console.log('problem with request: ' + e.message);
+    };
+
+    var req = ajax.request(options, callback);
+    req.on('error', onError);
+
+    req.end();
+});
 
 // Since this is the last non-error-handling
 // middleware use()d, we assume 404, as nothing else
@@ -201,6 +246,8 @@ app.get('/500', function(req, res, next){
     // trigger a generic (500) error
     next(new Error('keyboard cat!'));
 });
+
+
 
 
 app.listen(port);

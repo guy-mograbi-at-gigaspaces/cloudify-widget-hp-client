@@ -4,21 +4,19 @@ angular.module('cloudifyWidgetHpClientApp')
     .service('widgetService', function widgetService($http) {
 
         var widgets = [];
-    //        var userData = {};
+//        var userData = {};
 
-        this.getWidgetList = function() {
+        this.getWidgetList = function(callback) {
             // load widgets list from API
             //  api/user/<email>/widget/list
 
-            $http.get('http://launch.cloudifysource.org/demos/133/list')
+            $http.get('/widgetslist')
                 .success(function(data) {
-                    console.log(data);
                     widgets = data;
+                    callback(widgets);
                 });
 
             return widgets;
-
-    //            return [{id: 1, name: 'widget1'}, {id: 2, name: 'widget2'}];
         };
 
         this.updateLead = function(/*userData*/) {
