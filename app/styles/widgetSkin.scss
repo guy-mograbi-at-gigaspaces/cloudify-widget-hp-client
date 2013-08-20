@@ -81,7 +81,7 @@ body {
   width: 91px;
   height: 47px;
   float: right;
-  background-image:url('../../img/beta.new.png');
+  background-image:url('/styles/img/beta.new.png');
 }
 
 #widget-footer {
@@ -114,15 +114,15 @@ body {
 }
 
 #widget-footer #social .button.twitter {
-  background-image: url('../../img/share_twitter.png');
+  background-image: url('/styles/img/share_twitter.png');
 }
 
 #widget-footer #social .button.facebook {
-  background-image: url('../../img/share_facebook.png');
+  background-image: url('/styles/img/share_facebook.png');
 }
 
 #widget-footer #social .button.google {
-  background-image: url('../../img/share_google.png');
+  background-image: url('/styles/img/share_google.png');
 }
 
 #widget-footer #poweredText {
@@ -173,7 +173,7 @@ body {
   font-size: 14px;
   text-shadow: none;
   list-style-type: none;
-  height: 120px;
+  height: 110px;
   overflow-y: hidden;
 }
 
@@ -202,6 +202,52 @@ body {
 #log li a::selection {
   background-color: #F09927;
   color: #FFF;
+}
+
+#links {
+  list-style-type: none;
+  position: relative;
+  font-size: 14px;
+
+  a {
+    color: black;
+  }
+
+  li {
+    float: left;
+    margin-right: 9px;
+    background: url("/img/arrow.png") no-repeat left top;
+    background-position-y: 2px;
+    padding: 0px 0px 0px 14px;
+
+    .mock_text {
+      display: none;
+    }
+
+    a {
+      display: inline;
+    }
+  }
+
+  li.mock .mock_text {
+    display: inline;
+  }
+
+  li.mock a {
+    display: none;
+  }
+}
+
+#time_left {
+  position: absolute;
+  color: white;
+  top: 199px;
+  left: 332px;
+  font-size: 14px;
+}
+
+#time_left_counter {
+  font-weight: bold;
 }
 
 #video_container {
@@ -257,7 +303,7 @@ body {
 .advanced_section #advancedArrow {
   width: 9px;
   height: 9px;
-  background-image: url('../../img/advanced_arrow.new.png');
+  background-image: url('/styles/img/advanced_arrow.new.png');
   position: relative;
   top: 6px;
   left: 24px;
@@ -398,7 +444,7 @@ body {
   height: 310px;
   border: 1px solid #00B4DA;
   padding: 12px;
-  background: #e6e6e6 url("../../img/hp-tooltip.jpg") 50% 100% no-repeat;
+  background: #e6e6e6 url("/styles/img/hp-tooltip.jpg") 50% 100% no-repeat;
   color: #213540;
   box-shadow: 1px 1px 7px #777;
 }
@@ -447,6 +493,6 @@ body {
   right: 6px;
   width: 29px;
   height: 29px;
-  background: url("../../img/close-button.png") 50% 50% no-repeat;
+  background: url("/styles/img/close-button.png") 50% 50% no-repeat;
   cursor: pointer;
 }
