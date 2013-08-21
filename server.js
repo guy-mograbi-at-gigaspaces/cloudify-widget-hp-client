@@ -4,7 +4,7 @@
 var npid = require('npid');
 
 try {
-    npid.create('RUNNING_PID_2');
+    npid.create('RUNNING_PID');
 } catch (err) {
     console.log(err);
     process.exit(1);
