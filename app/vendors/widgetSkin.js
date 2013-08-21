@@ -2,7 +2,7 @@
 
 $(function () {
 
-    var postUrl = 'http://latestwidget.gsdev.info';
+    var postUrl = "http://" + conf.widgetServer;
 
         $(document).on('click', '#play_btn', function () {
         var iframe = $('#iframe');
