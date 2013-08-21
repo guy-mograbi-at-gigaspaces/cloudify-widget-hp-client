@@ -5,10 +5,11 @@
  */
 var express = require('express');
 var ajax = require("http");
-var conf = require("./conf/dev/meConf")
+var conf = require("./backend/appConf");
 var app = express();
 var port = 9000;
 
+console.log(["using configuration",JSON.stringify(conf)]);
 /*
  * App methods and libraries
  */
@@ -115,6 +116,7 @@ app.get("/widgetslist", function(request, response, next) {
 
     var onError = function(e) {
         console.log('problem with request: ' + e.message);
+        response.send(500);
     };
 
     var req = ajax.request(options, callback);
