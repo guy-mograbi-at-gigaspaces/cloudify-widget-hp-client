@@ -14,3 +14,9 @@ bower install
 
 echo "running grunt --force"
 grunt build --force
+
+echo "copying service script"
+\cp -f conf/initd.conf /etc/init.d/hpwidget
+
+echo "restarting server"
+service hpwidget restart
