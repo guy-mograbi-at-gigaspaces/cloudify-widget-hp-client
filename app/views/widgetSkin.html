@@ -66,9 +66,9 @@
             <h3>Embed Code</h3>
             <p>Copy the code below to embed the widget on your website.</p>
             <textarea class="autoselect" readonly="readonly">
-                &lt;script type="text/javascript" id="cloudify-widget" data-api-key="189c8c97-c48a-4020-b680-0146f70b0626" data-title="Launch MongoDB" data-host="latestwidget.gsdev.info" data-video_url="http://www.youtube.com/embed/w5qr4sx5Vt0" src="http://latestwidget.gsdev.info/js/get_widget.js"&gt;&lt;/script&gt;</textarea>
+                &lt;script type="text/javascript" id="cloudify-widget" data-api-key="{{selectedWidget.apiKey}}" data-title="{{selectedWidget.productName}}" data-host="latestwidget.gsdev.info" data-video_url="http://www.youtube.com/embed/w5qr4sx5Vt0" src="http://latestwidget.gsdev.info/js/get_widget.js"&gt;&lt;/script&gt;</textarea>
         </div>
     </div>
 
-    <iframe id="iframe" ng-src="http://latestwidget.gsdev.info/widget/widget?apiKey={{selectedWidget.apiKey}}&origin_page_url=http://localhost:9000/"></iframe>
+    <iframe id="iframe" ng-src="http://latestwidget.gsdev.info/widget/widget?apiKey={{selectedWidget.apiKey}}&origin_page_url={{page_url}}"></iframe>
 </div>

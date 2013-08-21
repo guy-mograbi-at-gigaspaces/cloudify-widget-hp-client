@@ -7,6 +7,7 @@ angular.module('cloudifyWidgetHpClientApp')
         var milliseconds = 0;
         $scope.selectedWidget = {};
         $scope.widgetTime = '';
+        $scope.page_url = $location.protocol() +'://' + $location.host() + ':' + $location.port();
 
         $scope.onWidgetsLoaded = function (widgetsList) {
             $scope.widgetsList = widgetsList;
