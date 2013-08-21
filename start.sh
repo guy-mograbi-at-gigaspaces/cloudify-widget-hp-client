@@ -1,3 +1,4 @@
 #! /usr/bin/env sh
 
-nohup ./run.sh &
+./run.sh &
+echo $! > RUNNING_PID
