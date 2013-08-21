@@ -1,4 +1,8 @@
 #! /usr/bin/env sh
 
-node server.js &
-echo $! > RUNNING_PID
+if [ ! -f RUNNING_PID ];then
+    node server.js &
+    echo $! > RUNNING_PID
+else
+    echo "RUNNING_PID file exists"
+fi
