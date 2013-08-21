@@ -1,0 +1,49 @@
+#widgets {
+  width: 300px;
+  height: 485px;
+  position: absolute;
+  overflow-y: auto;
+
+  ul {
+    padding-top: 10px;
+  }
+
+  li {
+    background-color: #e7e7e7;
+    border-radius: 10px;
+    list-style: none;
+    margin: 0px 10px 10px 10px;
+    height: 50px;
+    padding-left: 10px;
+    box-shadow: #909090 0 1px 8px;
+    cursor: pointer;
+
+    #widgetIcon {
+      float: left;
+      margin-right: 10px;
+    }
+
+    #widgetName {
+      padding-top: 14px;
+      padding-left: 10px;
+      font-size: 24px;
+      color: #0088cc;
+    }
+
+    &:hover {
+      background-color: #ccc;
+    }
+  }
+}
+
+#skin {
+  left: 320px;
+  top: 50px;
+  width: 620px;
+  height: 470px;
+  position: relative;
+
+  #iframe {
+    display: none;
+  }
+}

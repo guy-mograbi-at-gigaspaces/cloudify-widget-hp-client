@@ -3,12 +3,17 @@
     <div id="widgetContainer">
 
         <div id="widget-header">
-            <div id="title">Widget Name</div>
+            <div id="title">{{selectedWidget.productName}}</div>
             <div class="beta-ribbon"></div>
         </div>
 
         <div id="logContainer">
             <ul id="log"></ul>
+            <ul id="links">{{selectedWidget.productName}} Console</ul>
+            <span id="time_left">
+                Time left:
+                <span id="time_left_counter">{{widgetTime}}</span>
+            </span>
             <div id="controls">
                 <div class="button">
                     <div id="play_btn"></div>
@@ -17,7 +22,9 @@
             </div>
         </div>
 
-        <div id="video_container"></div>
+        <div id="video_container">
+            <iframe id="widgetVideo" ng-src="{{selectedWidget.youtubeVideoUrl}}" frameborder="0" allowfullscreen></iframe>
+        </div>
 
         <div class="advanced_section" id="advanced">
             <div class="remember_creds">
@@ -43,14 +50,14 @@
 
         <div id="widget-footer">
             <div id="poweredText">Powered by:</div>
-            <a href="http://hpcloud.com" target="_blank" id="hpLogo"><img class="brand_btns" src="/img/hp_cloud_icon.white.png"></a>
-            <a href="http://cloudifysource.org" target="_blank" id="cloudifysLogo"><img class="brand_btns" src="/img/cloudify_icon.white.png"></a>
+            <a href="http://hpcloud.com" target="_blank" id="hpLogo"><img class="brand_btns" src="styles/img/hp_cloud_icon.white.png"></a>
+            <a href="http://cloudifysource.org" target="_blank" id="cloudifysLogo"><img class="brand_btns" src="styles/img/cloudify_icon.white.png"></a>
             <a herf="javascript:void(0)" id="patent_pending">&nbsp;&nbsp;(Patent Pending)</a>
             <div id="social">
-                <span id="embed_btn"><img src="/img/share_widget.png"></span>
-                <a class="share_link" id="facebook_share_link" href="http://www.facebook.com/sharer/sharer.php?u=http://launch.cloudifysource.org/admin/signin"><img src="/img/share_facebook.png"></a>
-                <a class="share_link" id="google_plus_share_link" href="https://plus.google.com/share?url=http://launch.cloudifysource.org/admin/signin"><img src="/img/share_google.png"></a>
-                <a class="share_link" id="twitter_share_link" href="https://twitter.com/share?url=http%3A%2F%2Ferez.cloudifysource.org%2Fdemos%2F131%2F189c8c97-c48a-4020-b680-0146f70b0626&amp;text=Launch%20MongoDB%20on%20any%20cloud%20with%20a%20single%20click%20with%20%23cloudifysource"><img src="/img/share_twitter.png"></a>
+                <span id="embed_btn"><img src="styles/img/share_widget.png"></span>
+                <a class="share_link" id="facebook_share_link" href="http://www.facebook.com/sharer/sharer.php?u=http://launch.cloudifysource.org/admin/signin"><img src="styles/img/share_facebook.png"></a>
+                <a class="share_link" id="google_plus_share_link" href="https://plus.google.com/share?url=http://launch.cloudifysource.org/admin/signin"><img src="styles/img/share_google.png"></a>
+                <a class="share_link" id="twitter_share_link" href="https://twitter.com/share?url=http%3A%2F%2Ferez.cloudifysource.org%2Fdemos%2F131%2F189c8c97-c48a-4020-b680-0146f70b0626&amp;text=Launch%20MongoDB%20on%20any%20cloud%20with%20a%20single%20click%20with%20%23cloudifysource"><img src="styles/img/share_twitter.png"></a>
             </div>
         </div>
 
@@ -59,9 +66,9 @@
             <h3>Embed Code</h3>
             <p>Copy the code below to embed the widget on your website.</p>
             <textarea class="autoselect" readonly="readonly">
-                &lt;script type="text/javascript" id="cloudify-widget" data-api-key="189c8c97-c48a-4020-b680-0146f70b0626" data-title="Launch MongoDB" data-host="erez.cloudifysource.org" data-video_url="http://www.youtube.com/embed/w5qr4sx5Vt0" src="http://erez.cloudifysource.org/js/get_widget.js"&gt;&lt;/script&gt;</textarea>
+                &lt;script type="text/javascript" id="cloudify-widget" data-api-key="189c8c97-c48a-4020-b680-0146f70b0626" data-title="Launch MongoDB" data-host="latestwidget.gsdev.info" data-video_url="http://www.youtube.com/embed/w5qr4sx5Vt0" src="http://latestwidget.gsdev.info/js/get_widget.js"&gt;&lt;/script&gt;</textarea>
         </div>
     </div>
 
-    <iframe id="iframe" style="display:none" src="http://erez.cloudifysource.org/widget/widget?apiKey=189c8c97-c48a-4020-b680-0146f70b0626&title=Launch%20MongoDB&origin_page_url=http://localhost:9000/&video_url=http://www.youtube.com/embed/w5qr4sx5Vt0"></iframe>
+    <iframe id="iframe" ng-src="http://latestwidget.gsdev.info/widget/widget?apiKey={{selectedWidget.apiKey}}"></iframe>
 </div>

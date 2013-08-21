@@ -1,4 +1,16 @@
 <div id="main-content">
-    <div id="widgets"></div>
-    <div ng-include src="'views/widgetSkin.html'"></div>
+    <div id="widgets">
+        <ul>
+            <li class="widgetItem" ng-click="widgetClick(widget)" ng-repeat="widget in widgetsList">
+                    <div id="widgetIcon">
+                        <img ng-src="http://latestwidget.gsdev.info/widget/icon?apiKey={{widget.apiKey}}" />
+                    </div>
+                    <div id="widgetName">{{widget.productName}}</div>
+            </li>
+        </ul>
+    </div>
+    <div id="skin">
+        <div id="widgetSkin" ng-include src="'views/widgetSkin.html'"></div>
+        <!--<iframe id="iframe" ng-src="http://latestwidget.gsdev.info/demos/133/{{selectedWidget.apiKey}}"></iframe>-->
+    </div>
 </div>

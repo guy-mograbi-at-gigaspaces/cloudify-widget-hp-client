@@ -34,8 +34,6 @@ body {
 }
 
 #widgetContainer {
-  margin-right: auto;
-  margin-left: auto;
   width: 630px;
   height: 355px;
   background-color: #e1e1e1;
@@ -208,6 +206,8 @@ body {
   list-style-type: none;
   position: relative;
   font-size: 14px;
+  width: 260px;
+  display: inline-block;
 
   a {
     color: black;
@@ -239,10 +239,7 @@ body {
 }
 
 #time_left {
-  position: absolute;
   color: white;
-  top: 199px;
-  left: 332px;
   font-size: 14px;
 }
 
@@ -259,6 +256,11 @@ body {
   height: 108px;
   border: 1px solid #fff;
   float: left;
+
+  #widgetVideo {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 #video_container object {
@@ -407,18 +409,6 @@ body {
   position: relative;
   left: 37px;
   display: none;
-}
-
-#time_left {
-  position: absolute;
-  color: white;
-  top: 199px;
-  left: 332px;
-  font-size: 14px;
-}
-
-#time_left_counter {
-  font-weight: bold;
 }
 
 .form-footer-links {
