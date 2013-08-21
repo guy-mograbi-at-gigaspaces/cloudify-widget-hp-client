@@ -2,7 +2,7 @@
 
 $(function () {
 
-    var postUrl = 'http://erez.cloudifysource.org';
+    var postUrl = 'http://latestwidget.gsdev.info';
 
     $(document).on('click', '#play_btn', function () {
         var iframe = $('#iframe');

@@ -3,16 +3,16 @@
     <div id="widgetContainer">
 
         <div id="widget-header">
-            <div id="title">Widget Name</div>
+            <div id="title">{{selectedWidget.productName}}</div>
             <div class="beta-ribbon"></div>
         </div>
 
         <div id="logContainer">
             <ul id="log"></ul>
-            <ul id="links"></ul>
-            <span id="time_left" style="display:none;">
+            <ul id="links">{{selectedWidget.productName}} Console</ul>
+            <span id="time_left">
                 Time left:
-                <span id="time_left_counter"></span>
+                <span id="time_left_counter">{{widgetTime}}</span>
             </span>
             <div id="controls">
                 <div class="button">
@@ -22,7 +22,9 @@
             </div>
         </div>
 
-        <div id="video_container"></div>
+        <div id="video_container">
+            <iframe id="widgetVideo" ng-src="{{selectedWidget.youtubeVideoUrl}}" frameborder="0" allowfullscreen></iframe>
+        </div>
 
         <div class="advanced_section" id="advanced">
             <div class="remember_creds">
@@ -64,9 +66,9 @@
             <h3>Embed Code</h3>
             <p>Copy the code below to embed the widget on your website.</p>
             <textarea class="autoselect" readonly="readonly">
-                &lt;script type="text/javascript" id="cloudify-widget" data-api-key="189c8c97-c48a-4020-b680-0146f70b0626" data-title="Launch MongoDB" data-host="erez.cloudifysource.org" data-video_url="http://www.youtube.com/embed/w5qr4sx5Vt0" src="http://erez.cloudifysource.org/js/get_widget.js"&gt;&lt;/script&gt;</textarea>
+                &lt;script type="text/javascript" id="cloudify-widget" data-api-key="189c8c97-c48a-4020-b680-0146f70b0626" data-title="Launch MongoDB" data-host="latestwidget.gsdev.info" data-video_url="http://www.youtube.com/embed/w5qr4sx5Vt0" src="http://latestwidget.gsdev.info/js/get_widget.js"&gt;&lt;/script&gt;</textarea>
         </div>
     </div>
 
-    <iframe id="iframe" style="display:none" src="http://erez.cloudifysource.org/widget/widget?apiKey=189c8c97-c48a-4020-b680-0146f70b0626&title=Launch%20MongoDB&origin_page_url=http://localhost:9000/&video_url=http://www.youtube.com/embed/w5qr4sx5Vt0"></iframe>
+    <iframe id="iframe" ng-src="http://latestwidget.gsdev.info/demos/133/{{selectedWidget.apiKey}}"></iframe>
 </div>

@@ -1,5 +1,5 @@
 #widgets {
-  width: 280px;
+  width: 300px;
   height: 485px;
   position: absolute;
   overflow-y: auto;
@@ -37,11 +37,13 @@
 }
 
 #skin {
-  left: 290px;
+  left: 320px;
+  top: 50px;
+  width: 620px;
+  height: 470px;
   position: relative;
 
-  iframe {
-    width: 620px;
-    height: 470px;
+  #iframe {
+    display: none;
   }
 }
