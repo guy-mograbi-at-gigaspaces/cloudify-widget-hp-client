@@ -79,7 +79,7 @@ body {
   width: 91px;
   height: 47px;
   float: right;
-  background-image:url('/styles/img/beta.new.png');
+  background: url("/images/beta.new.png") no-repeat;
 }
 
 #widget-footer {
@@ -112,15 +112,15 @@ body {
 }
 
 #widget-footer #social .button.twitter {
-  background-image: url('/styles/img/share_twitter.png');
+  background-image: url('/images/share_twitter.png');
 }
 
 #widget-footer #social .button.facebook {
-  background-image: url('/styles/img/share_facebook.png');
+  background-image: url('/images/share_facebook.png');
 }
 
 #widget-footer #social .button.google {
-  background-image: url('/styles/img/share_google.png');
+  background-image: url('/images/share_google.png');
 }
 
 #widget-footer #poweredText {
@@ -216,7 +216,7 @@ body {
   li {
     float: left;
     margin-right: 9px;
-    background: url("/img/arrow.png") no-repeat left top;
+    background: url("/images/arrow.png") no-repeat left top;
     background-position-y: 2px;
     padding: 0px 0px 0px 14px;
 
@@ -305,7 +305,7 @@ body {
 .advanced_section #advancedArrow {
   width: 9px;
   height: 9px;
-  background-image: url('/styles/img/advanced_arrow.new.png');
+  background-image: url('/images/advanced_arrow.new.png');
   position: relative;
   top: 6px;
   left: 24px;
@@ -434,7 +434,7 @@ body {
   height: 310px;
   border: 1px solid #00B4DA;
   padding: 12px;
-  background: #e6e6e6 url("/styles/img/hp-tooltip.jpg") 50% 100% no-repeat;
+  background: #e6e6e6 url("/images/hp-tooltip.jpg") 50% 100% no-repeat;
   color: #213540;
   box-shadow: 1px 1px 7px #777;
 }
@@ -483,6 +483,6 @@ body {
   right: 6px;
   width: 29px;
   height: 29px;
-  background: url("/styles/img/close-button.png") 50% 50% no-repeat;
+  background: url("/images/close-button.png") 50% 50% no-repeat;
   cursor: pointer;
 }

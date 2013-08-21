@@ -42,7 +42,7 @@ angular.module('cloudifyWidgetHpClientApp')
             var seconds = Math.floor((milli / 1000) % 60);
             var minutes = Math.floor((milli / (60 * 1000)) % 60);
 
-            return minutes + ':' + seconds;
+            return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
         }
 
         widgetService.getWidgetList($scope.onWidgetsLoaded);
