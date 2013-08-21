@@ -1,3 +1,3 @@
 #! /usr/bin/env sh
 
-nohup run.sh &
+nohup ./run.sh &
