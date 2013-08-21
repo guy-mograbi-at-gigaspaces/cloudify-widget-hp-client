@@ -10,7 +10,7 @@ angular.module('cloudifyWidgetHpClientApp')
             // load widgets list from API
             //  api/user/<email>/widget/list
 
-            $http.get('/widgetslist')
+            $http.get('/backend/widgetslist')
                 .success(function(data) {
                     widgets = data;
                     callback(widgets);

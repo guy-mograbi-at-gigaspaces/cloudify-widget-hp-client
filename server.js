@@ -80,7 +80,7 @@ if (app.get('env') === 'development') {
     app.use(express.static('dist'));
 }
 
-app.get("/widgetslist", function(request, response, next) {
+app.get("/backend/widgetslist", function(request, response, next) {
 
     var options = {
         hostname: conf.widgetServer,

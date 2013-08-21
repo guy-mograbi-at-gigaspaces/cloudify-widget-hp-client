@@ -4,7 +4,7 @@ $(function () {
 
     var postUrl = 'http://latestwidget.gsdev.info';
 
-    $(document).on('click', '#play_btn', function () {
+        $(document).on('click', '#play_btn', function () {
         var iframe = $('#iframe');
         var postObj = {name: 'play_widget'};
         if (getAdvanced().project !== '' && getAdvanced().key !== '' && getAdvanced().secretKey !== '') {
