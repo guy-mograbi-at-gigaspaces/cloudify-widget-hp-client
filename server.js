@@ -7,7 +7,7 @@ var express = require('express');
 var ajax = require("http");
 var conf = require("./backend/appConf");
 var app = express();
-var port = 9000;
+var port = conf.port || 9000;
 
 console.log(["using configuration",JSON.stringify(conf)]);
 /*
