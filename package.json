@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "dependencies": {
     "express": "~3.3.5",
-    "xtend": "~2.0.6"
+    "xtend": "~2.0.6",
+    "npid": "~0.3.2"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
