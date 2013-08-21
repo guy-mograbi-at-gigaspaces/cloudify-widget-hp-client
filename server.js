@@ -1,14 +1,14 @@
 'use strict';
 
 
-var npid = require('npid');
-
-try {
-    npid.create('RUNNING_PID');
-} catch (err) {
-    console.log(err);
-    process.exit(1);
-}
+//var npid = require('npid');
+//
+//try {
+//    npid.create('RUNNING_PID');
+//} catch (err) {
+//    console.log(err);
+//    process.exit(1);
+//}
 
 /*
  * Express Dependencies

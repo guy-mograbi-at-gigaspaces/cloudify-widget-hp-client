@@ -1,3 +1,4 @@
 #! /usr/bin/env sh
 
-./run.sh &
+node server.js &
+echo $! > RUNNING_PID
