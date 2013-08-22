@@ -7,7 +7,7 @@ angular.module('cloudifyWidgetHpClientApp')
         var milliseconds = 0;
         $scope.selectedWidget = {};
         $scope.widgetTime = '';
-        $scope.pageUrl = $location.protocol() +'://' + $location.host(); // + ':' + $location.port();
+        $scope.pageUrl = $location.protocol() +'://' + $location.host();
 
         $scope.onWidgetsLoaded = function (widgetsList) {
             $scope.widgetsList = widgetsList;
@@ -45,6 +45,10 @@ angular.module('cloudifyWidgetHpClientApp')
 
             return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
         }
+
+        $('#iframe').live('widget_status', function(e) {
+           $scope.log = e.message;
+        });
 
         widgetService.getWidgetList($scope.onWidgetsLoaded);
     });

@@ -71,6 +71,11 @@ $(function () {
                     $key.val(msg.key);
                     $secretKey.val(msg.secretKey);
                 } else if (msg.name === 'widget_status') {
+                    $('#iframe').trigger({
+                        type: "widget_status",
+                        message: msg.status.output
+                    });
+
                     updateButtonState(msg.status.state === 'STOPPED' ? 'stop' : 'play');
                 }
             } catch (exception) {
