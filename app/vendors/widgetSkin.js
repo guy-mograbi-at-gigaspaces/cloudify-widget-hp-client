@@ -73,7 +73,7 @@ $(function () {
                 } else if (msg.name === 'widget_status') {
                     $('#iframe').trigger({
                         type: "widget_status",
-                        message: msg.status.output
+                        status: msg.status
                     });
 
                     updateButtonState(msg.status.state === 'STOPPED' ? 'stop' : 'play');

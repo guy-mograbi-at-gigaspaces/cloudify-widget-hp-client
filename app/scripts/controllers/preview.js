@@ -34,7 +34,6 @@ angular.module('cloudifyWidgetHpClientApp')
 
         function startTimer() {
             $timeout.cancel(timeout);
-            milliseconds = $scope.selectedWidget.lifeExpectancy;
             timeout = $timeout($scope.onTimeout, 1000);
         }
 
@@ -47,7 +46,9 @@ angular.module('cloudifyWidgetHpClientApp')
         }
 
         $('#iframe').live('widget_status', function(e) {
-           $scope.log = e.message;
+           $scope.log = e.status.output;
+           $scope.milliseconds = e.status.timeleftMillis;
+           startTimer();
         });
 
         widgetService.getWidgetList($scope.onWidgetsLoaded);
