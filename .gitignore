@@ -8,3 +8,7 @@ app/bower_components
 Gruntfile.js
 conf/dev
 libpeerconnection.log
+upgrade_script.sh
+upgrade.sh
+setup.sh
+start.sh
