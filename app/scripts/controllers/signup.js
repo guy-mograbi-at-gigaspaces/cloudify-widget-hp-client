@@ -1,8 +1,18 @@
 'use strict';
 
 angular.module('cloudifyWidgetHpClientApp')
-    .controller('SignupCtrl', function () {
+    .controller('SignupCtrl', function (widgetService) {
         $(document).on('click', '#submitBtn', function() {
-            $(document).find('#checkMailPopup').show();
+
+            var formData = {
+                'fname' : $('#fname').val(),
+                'lname' : $('#lname').val(),
+                'email' : $('#email').val()
+            };
+
+            widgetService.updateLead(formData, function(res) {
+                console.log(res);
+                // if success: $(document).find('#checkMailPopup').show();
+            });
         });
     });
