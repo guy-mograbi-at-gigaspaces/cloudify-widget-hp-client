@@ -12,12 +12,12 @@ angular.module('cloudifyWidgetHpClientApp')
         $scope.onWidgetsLoaded = function (widgetsList) {
             $scope.widgetsList = widgetsList;
             $scope.selectedWidget = $scope.widgetsList[0];
-            startTimer();
+            //startTimer();
         };
 
         $scope.widgetClick = function (widget) {
             $scope.selectedWidget = widget;
-            startTimer();
+            //startTimer();
             console.log(widget.productName + ' selected');
         };
 
@@ -47,7 +47,7 @@ angular.module('cloudifyWidgetHpClientApp')
 
         $('#iframe').live('widget_status', function(e) {
            $scope.log = e.status.output;
-           $scope.milliseconds = e.status.timeleftMillis;
+           milliseconds = e.status.timeleftMillis;
            startTimer();
         });
 

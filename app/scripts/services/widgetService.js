@@ -19,9 +19,16 @@ angular.module('cloudifyWidgetHpClientApp')
             return widgets;
         };
 
-        this.updateLead = function(/*userData*/) {
+        this.updateLead = function(leadData, callback) {
             // update API with user lead data
             //  api/user/<userId>/lead
+
+            var data = JSON.stringify(leadData);
+
+            $http.post('/backend/lead', data)
+                .success(function(data) {
+                    callback();
+                });
         };
 
         this.getLead = function(/*userEmail*/) {
