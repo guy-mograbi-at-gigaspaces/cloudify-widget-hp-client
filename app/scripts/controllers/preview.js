@@ -46,9 +46,9 @@ angular.module('cloudifyWidgetHpClientApp')
         }
 
         $('#iframe').live('widget_status', function(e) {
-           $scope.log = e.status.output;
-           milliseconds = e.status.timeleftMillis;
-           startTimer();
+            $scope.log = e.status.output;
+            milliseconds = e.status.timeleftMillis;
+            startTimer();
         });
 
         widgetService.getWidgetList($scope.onWidgetsLoaded);

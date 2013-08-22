@@ -26,7 +26,7 @@ angular.module('cloudifyWidgetHpClientApp')
             var data = JSON.stringify(leadData);
 
             $http.post('/backend/lead', data)
-                .success(function(data) {
+                .success(function() {
                     callback();
                 });
         };
