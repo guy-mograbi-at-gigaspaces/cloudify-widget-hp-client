@@ -133,12 +133,15 @@ app.get('/backend/widgetslist', function(request, response, next) {
 
 app.post('/backend/lead', function(request, response) {
 
+    var post_data = JSON.stringify(request.body);
     var options = {
         hostname: conf.widgetServer,
         path: '/api/user/' + conf.userId + '/lead?authToken=' + conf.authToken,
         method: 'POST',
-        body: request.body,
-        json: true
+        headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': post_data.length
+        }
     };
 
     var data = '';
@@ -170,6 +173,7 @@ app.post('/backend/lead', function(request, response) {
 
     var req = ajax.request(options, callback);
     req.on('error', onError);
+    req.write(post_data);
 
     req.end();
 });

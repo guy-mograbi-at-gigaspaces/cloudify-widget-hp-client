@@ -10,9 +10,8 @@ angular.module('cloudifyWidgetHpClientApp')
                 'email' : $('#email').val()
             };
 
-            widgetService.updateLead(formData, function(res) {
-                console.log(res);
-                // if success: $(document).find('#checkMailPopup').show();
+            widgetService.updateLead(formData, function() {
+                $(document).find('#checkMailPopup').show();
             });
         });
     });
