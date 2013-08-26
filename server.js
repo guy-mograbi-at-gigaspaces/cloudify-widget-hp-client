@@ -90,7 +90,7 @@ if (app.get('env') === 'development') {
     app.use(express.static('dist'));
 }
 
-app.get("/backend/widgetslist", function(request, response, next) {
+app.get('/backend/widgetslist', function(request, response, next) {
 
     var options = {
         hostname: conf.widgetServer,
@@ -104,17 +104,13 @@ app.get("/backend/widgetslist", function(request, response, next) {
         var result = '';
 
         console.log('STATUS: ' + res.statusCode);
-        //console.log('HEADERS: ' + JSON.stringify(res.headers));
 
         res.setEncoding('utf8');
-
         res.on('data', function (chunk) {
             result += chunk;
-            //console.log('BODY: ' + chunk);
         });
 
         res.on('end', function () {
-            //console.log('request is done');
             var jsonStr = JSON.stringify(result);
             data = JSON.parse(jsonStr);
 
@@ -130,6 +126,49 @@ app.get("/backend/widgetslist", function(request, response, next) {
     };
 
     var req = ajax.request(options, callback);
+    req.on('error', onError);
+
+    req.end();
+});
+
+app.post('/backend/lead', function(request, response, next) {
+
+    var options = {
+        hostname: conf.widgetServer,
+        path: '/api/user/' + conf.userId + '/lead?authToken=' + conf.authToken,
+        method: 'POST'
+    };
+
+    var data = '';
+
+    var callback = function(res) {
+        var result = '';
+
+        console.log('STATUS: ' + res.statusCode);
+
+        res.setEncoding('utf8');
+        res.on('data', function (chunk) {
+            result += chunk;
+        });
+
+        res.on('end', function () {
+            var jsonStr = JSON.stringify(result);
+            data = JSON.parse(jsonStr);
+
+            console.log('Request done, data: ' + data);
+
+            response.send(data);
+        });
+    }
+
+    var onError = function(e) {
+        console.log('problem with request: ' + e.message);
+        response.send(500);
+    };
+
+    var req = ajax.request(options, callback);
+
+    req.write(JSON.stringify(request.body));
     req.on('error', onError);
 
     req.end();

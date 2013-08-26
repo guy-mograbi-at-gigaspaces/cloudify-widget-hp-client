@@ -7,17 +7,17 @@ angular.module('cloudifyWidgetHpClientApp')
         var milliseconds = 0;
         $scope.selectedWidget = {};
         $scope.widgetTime = '';
-        $scope.pageUrl = $location.protocol() +'://' + $location.host(); // + ':' + $location.port();
+        $scope.pageUrl = $location.protocol() +'://' + $location.host();
 
         $scope.onWidgetsLoaded = function (widgetsList) {
             $scope.widgetsList = widgetsList;
             $scope.selectedWidget = $scope.widgetsList[0];
-            startTimer();
+            //startTimer();
         };
 
         $scope.widgetClick = function (widget) {
             $scope.selectedWidget = widget;
-            startTimer();
+            //startTimer();
             console.log(widget.productName + ' selected');
         };
 
@@ -34,7 +34,6 @@ angular.module('cloudifyWidgetHpClientApp')
 
         function startTimer() {
             $timeout.cancel(timeout);
-            milliseconds = $scope.selectedWidget.lifeExpectancy;
             timeout = $timeout($scope.onTimeout, 1000);
         }
 
@@ -45,6 +44,12 @@ angular.module('cloudifyWidgetHpClientApp')
 
             return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
         }
+
+        $('#iframe').live('widget_status', function(e) {
+            $scope.log = e.status.output;
+            milliseconds = e.status.timeleftMillis;
+            startTimer();
+        });
 
         widgetService.getWidgetList($scope.onWidgetsLoaded);
     });
