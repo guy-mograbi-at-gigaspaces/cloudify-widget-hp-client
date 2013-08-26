@@ -23,4 +23,4 @@ echo "copying service script"
 \cp -f conf/initd.conf /etc/init.d/hpwidget
 
 echo "restarting server"
-service hpwidget restart
+nohup service hpwidget restart &
