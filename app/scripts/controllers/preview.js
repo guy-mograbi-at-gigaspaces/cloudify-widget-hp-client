@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cloudifyWidgetHpClientApp')
-    .controller('PreviewCtrl', function ($scope, $timeout, $location, widgetService) {
+    .controller('PreviewCtrl', function ($scope, $timeout, $location, wiwdgetService) {
 
         var timeout = 0;
         var milliseconds = 0;
