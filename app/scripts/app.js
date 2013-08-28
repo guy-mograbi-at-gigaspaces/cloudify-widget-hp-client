@@ -26,7 +26,8 @@ angular.module('cloudifyWidgetHpClientApp', [])
                 templateUrl: 'views/support.html'
             })
             .when('/landing', {
-                templateUrl: 'views/landing.html'
+                templateUrl: 'views/landing.html',
+                controller: 'PreviewCtrl'
             })
             .otherwise({
                 redirectTo: '/'

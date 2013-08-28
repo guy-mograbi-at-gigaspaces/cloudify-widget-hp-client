@@ -21,6 +21,10 @@ angular.module('cloudifyWidgetHpClientApp')
                         elm.removeClass('done');
                     }
                 }
+
+                if (scope.currentStep == 4) {
+                    doc.find('#stepsList').css('visibility', 'hidden');
+                }
             }
         };
     });
