@@ -5,7 +5,7 @@ angular.module('cloudifyWidgetHpClientApp')
 
         var timeout = 0;
         var milliseconds = 0;
-        $scope.currentStep = $location.path() == '/landing' ? 4 : 2;
+        $scope.currentStep = $location.path() === '/landing' ? 4 : 2;
         $scope.selectedWidget = {};
         $scope.widgetTime = '';
         $scope.pageUrl = $location.protocol() +'://' + $location.host();

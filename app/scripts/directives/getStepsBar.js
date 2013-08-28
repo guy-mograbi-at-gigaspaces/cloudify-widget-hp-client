@@ -22,7 +22,7 @@ angular.module('cloudifyWidgetHpClientApp')
                     }
                 }
 
-                if (scope.currentStep == 4) {
+                if (scope.currentStep === 4) {
                     doc.find('#stepsList').css('visibility', 'hidden');
                 }
             }
