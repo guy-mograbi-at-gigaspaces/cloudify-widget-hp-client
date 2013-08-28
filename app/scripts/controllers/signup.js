@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('cloudifyWidgetHpClientApp')
-    .controller('SignupCtrl', function (widgetService) {
-        $(document).on('click', '#submitBtn', function() {
+    .controller('SignupCtrl', function ($scope, widgetService) {
+        $scope.currentStep = 3;
 
+        $(document).on('click', '#submitBtn', function() {
             var formData = {
                 'fname' : $('#fname').val(),
                 'lname' : $('#lname').val(),
