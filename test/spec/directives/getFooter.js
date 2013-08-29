@@ -1,13 +1,16 @@
 'use strict';
 
 describe('Directive: getFooter', function () {
-  beforeEach(module('cloudifyWidgetHpClientApp'));
+    beforeEach(module('cloudifyWidgetHpClientApp'));
 
-  var element;
+    var element;
 
-  it('should make hidden element visible', inject(function ($rootScope, $compile) {
-    element = angular.element('<get-footer></get-footer>');
-    element = $compile(element)($rootScope);
-    expect(element).not.toBe(undefined);
-  }));
+    beforeEach(inject(function ($rootScope, $compile) {
+        element = angular.element('<div get-footer></get-div>');
+        element = $compile(element)($rootScope);
+    }));
+
+    it('should make hidden element visible', function() {
+        expect(element).not.toBeUndefined();
+    });
 });
