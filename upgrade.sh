@@ -19,7 +19,7 @@ echo "running grunt --force"
 grunt build --force
 
 echo "updating monit configuration"
-MONIT_PIDFILE=$DEST_DIR/RUNNING_PID
+MONIT_PIDFILE=$DEST_FOLDER/RUNNING_PID
 cat conf/monit.conf | sed 's,__monit_pidfile__,'"$MONIT_PIDFILE"',' > /etc/monit.d/hpwidget
 
 echo "copying service script"
