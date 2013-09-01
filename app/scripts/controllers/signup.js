@@ -4,7 +4,7 @@ angular.module('cloudifyWidgetHpClientApp')
     .controller('SignupCtrl', function ($scope, widgetService) {
         $scope.currentStep = 3;
 
-        $(document).on('click', '#submitBtn', function() {
+        $('#submitBtn').click(function() {
             var formData = {
                 'fname' : $('#fname').val(),
                 'lname' : $('#lname').val(),

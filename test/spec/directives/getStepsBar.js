@@ -22,6 +22,12 @@ describe('Directive: getStepsBar', function () {
         expect(element).not.toBeUndefined();
     });
 
+    it('should contain 3 li elements', function () {
+        var lis = element.find('li');
+
+        expect(lis.length).toBe(3);
+    });
+
     xit('should update step1 item with done class when currentStep is set to 1', function () {
         //element = compileElement(scope, compile);
         var step1 = element.find('li')[0];
