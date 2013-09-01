@@ -1,3 +1,6 @@
+SYSCONF_DEST=/etc/sysconfig/hpwidget
+. $SYSCONF_DEST
+
 echo "I am checking out revision $1" > upgrade.output
 
 echo "pulling from git"
