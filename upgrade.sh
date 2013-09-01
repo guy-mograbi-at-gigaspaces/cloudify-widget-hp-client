@@ -1,3 +1,6 @@
+SYSCONF_DEST=/etc/sysconfig/hpwidget
+. $SYSCONF_DEST
+
 echo "I am checking out revision $1" > upgrade.output
 
 echo "pulling from git"
@@ -16,7 +19,7 @@ echo "running grunt --force"
 grunt build --force
 
 echo "updating monit configuration"
-MONIT_PIDFILE=$DEST_DIR/RUNNING_PID
+MONIT_PIDFILE=$DEST_FOLDER/RUNNING_PID
 cat conf/monit.conf | sed 's,__monit_pidfile__,'"$MONIT_PIDFILE"',' > /etc/monit.d/hpwidget
 
 echo "copying service script"
