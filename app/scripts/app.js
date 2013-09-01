@@ -4,8 +4,7 @@ angular.module('cloudifyWidgetHpClientApp', [])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'views/main.html',
-                controller: 'MainCtrl'
+                templateUrl: 'views/main.html'
             })
             .when('/demo', {
                 templateUrl: 'views/demo.html',
@@ -19,8 +18,16 @@ angular.module('cloudifyWidgetHpClientApp', [])
                 templateUrl: 'views/signup.html',
                 controller: 'SignupCtrl'
             })
+            .when('/learn', {
+                templateUrl: 'views/learn.html',
+                controller: 'LearnCtrl'
+            })
             .when('/support', {
                 templateUrl: 'views/support.html'
+            })
+            .when('/landing', {
+                templateUrl: 'views/landing.html',
+                controller: 'PreviewCtrl'
             })
             .otherwise({
                 redirectTo: '/'

@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('cloudifyWidgetHpClientApp')
-    .controller('PreviewCtrl', function ($scope, $timeout, $location, widgetService) {
+    .controller('PreviewCtrl', function ($scope, $location, $timeout, widgetService) {
 
         var timeout = 0;
         var milliseconds = 0;
+        $scope.currentStep = $location.path() === '/landing' ? 4 : 2;
         $scope.selectedWidget = {};
         $scope.widgetTime = '';
         $scope.pageUrl = $location.protocol() +'://' + $location.host();
@@ -12,13 +13,10 @@ angular.module('cloudifyWidgetHpClientApp')
         $scope.onWidgetsLoaded = function (widgetsList) {
             $scope.widgetsList = widgetsList;
             $scope.selectedWidget = $scope.widgetsList[0];
-            //startTimer();
         };
 
         $scope.widgetClick = function (widget) {
             $scope.selectedWidget = widget;
-            //startTimer();
-            console.log(widget.productName + ' selected');
         };
 
         $scope.onTimeout = function() {
