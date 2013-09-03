@@ -82,7 +82,7 @@
 #checkMailPopup {
   display: none;
   width: 410px;
-  height: 200px;
+  height: 230px;
   position: relative;
   background-color: #e89626;
   color: #fff;
@@ -94,5 +94,34 @@
 
   p {
     position: absolute;
+  }
+
+  #codeForm {
+    position: relative;
+    top: 190px;
+    left: 15px;
+
+    form {
+      position: absolute;
+
+      p {
+        top: 5px;
+      }
+
+      #code {
+        left: 110px;
+        top: 5px;
+        position: relative;
+      }
+
+      #codeSubmitBtn {
+        position: relative;
+        left: 115px;
+        background-color: #fff;
+        color: #279bd6;
+        border-radius: 5px;
+        border: none;
+      }
+    }
   }
 }

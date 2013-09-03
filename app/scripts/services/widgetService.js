@@ -28,7 +28,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 });
         };
 
-        // load user data (and extended widget validation) from API
+        // load user data (and extended widget validation) from APIn
         this.getLead = function(callback) {
             $http.get('/backend/lead/list')
                 .success(function(data) {
@@ -37,5 +37,13 @@ angular.module('cloudifyWidgetHpClientApp')
                 });
 
             return leads;
+        };
+
+        this.updateCode = function(code, callback) {
+            $http.post('/backend/lead', code)
+                .success(function(data) {
+                    console.log(data);
+                    callback();
+                });
         };
     });

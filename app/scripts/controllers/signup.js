@@ -15,4 +15,14 @@ angular.module('cloudifyWidgetHpClientApp')
                 $(document).find('#checkMailPopup').show();
             });
         });
+
+        $('#codeSubmitBtn').click(function() {
+            var codeFormData = {
+                'code' : $('#code').val()
+            };
+
+            widgetService.updateCode(codeFormData, function() {
+                // ??
+            });
+        });
     });

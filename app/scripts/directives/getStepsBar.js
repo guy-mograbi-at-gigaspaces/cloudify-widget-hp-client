@@ -9,21 +9,20 @@ angular.module('cloudifyWidgetHpClientApp')
                   '<li id="step3">Signup for free 30 days trial</li>' +
               '</ul>',
             restrict: 'AE',
-            link: function(scope) {
-                var doc = $(document);
+            link: function(scope, element) {
+                var lis = $(element).find('li');
 
-                for(var i = 1; i <= doc.find('#stepsList').children().length; i++) {
-                    var elm = doc.find('#step' + i);
-
+                for(var i = 0; i < lis.length - 1; i++) {
+                    var elm = lis[i];
                     if (i <= scope.currentStep) {
-                        elm.addClass('done');
+                        $(elm).addClass('done');
                     } else {
-                        elm.removeClass('done');
+                        $(elm).removeClass('done');
                     }
                 }
 
                 if (scope.currentStep === 4) {
-                    doc.find('#stepsList').css('visibility', 'hidden');
+                    $(element).find('#stepsList').css('visibility', 'hidden');
                 }
             }
         };

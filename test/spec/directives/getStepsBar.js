@@ -5,16 +5,19 @@ describe('Directive: getStepsBar', function () {
 
     var DemoCtrl,
         scope,
+        route,
         compile,
+        location,
+        controller,
         element;
 
-    beforeEach(inject(function ($controller, $rootScope, $compile) {
+    beforeEach(inject(function ($controller, $rootScope, $route, $compile, $location) {
         scope = $rootScope.$new();
         compile = $compile;
-        DemoCtrl = $controller('DemoCtrl', {
-            $scope: scope
-        });
-        scope.currentStep = 1;
+        location = $location;
+        controller = $controller;
+        route = $route;
+
         element = compileElement(scope, compile);
     }));
 
@@ -28,11 +31,21 @@ describe('Directive: getStepsBar', function () {
         expect(lis.length).toBe(3);
     });
 
-    xit('should update step1 item with done class when currentStep is set to 1', function () {
-        //element = compileElement(scope, compile);
-        var step1 = element.find('li')[0];
+    it('should update steps item with done class when currentStep is set to 1 by DemoCtrl controller', function () {
 
-        expect(step1.classList).toBe(5);
+        var elm;
+        var lis;
+
+        controller('DemoCtrl', {
+            $scope: scope
+        });
+        elm = compileElement(scope, compile);
+        lis = elm.find('li');
+        scope.$digest();
+
+        expect(lis[0].classList[0]).toBe('done');
+        expect(lis[1].classList[0]).toBe('done');
+        expect(lis[2].classList.length).toBe(0);
     });
 
     function compileElement(scope, compile) {
