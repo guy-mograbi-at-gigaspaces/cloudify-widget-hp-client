@@ -1,6 +1,9 @@
 #signupText {
   float: left;
   font-size: 23px;
+  padding-left: 50px;
+  padding-top: 20px;
+
   li {
     line-height: 34px;
   }
@@ -17,17 +20,21 @@
   padding: 20px 0px 10px 20px;
   width: 290px;
   height: 120px;
+  right: 50px;
+  top: 20px;
+
   li {
     line-height: 26px;
   }
 }
 
 #formContainer {
-  width: 100%;
+  width: 90%;
   background-color: #279bd6;
   border-radius: 10px;
   float: left;
   margin-top: 20px;
+  margin-left: 70px;
 
   #detailsForm {
     position: relative;

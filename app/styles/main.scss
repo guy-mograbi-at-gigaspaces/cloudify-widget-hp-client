@@ -37,12 +37,12 @@ $HEADER_TOTAL_HEIGHT:$HEADER_PADDING + $HEADER_HEIGHT;
   height:$HEADER_HEIGHT;
   padding: 10px 20px 20px 20px;
 
-  background-color: #fff;
+  background-color: #f5f5f5;
   background-position: 0% -1412px;
   background-repeat: repeat-x;
   -webkit-box-shadow: #909090 0 1px 8px;
   box-shadow: #909090 0 1px 8px;
-  background-image: url($HP_SPRITE);
+  //background-image: url($HP_SPRITE);
 
   .logo{
     background: url($HP_SPRITE) 0 0 no-repeat;
@@ -138,7 +138,7 @@ $HEADER_TOTAL_HEIGHT:$HEADER_PADDING + $HEADER_HEIGHT;
   background: transparent url(/images/header.png) no-repeat 0px -50px;
   background-position: center center;
   width: 100%;
-  height: 235px;
+  height: 75px;
 }
 
 #main-menu {
@@ -159,11 +159,9 @@ $HEADER_TOTAL_HEIGHT:$HEADER_PADDING + $HEADER_HEIGHT;
 }
 
 #main-content {
-  width:1040px;
+  width:1290px;
   margin-right: auto;
   margin-left: auto;
-  margin-bottom: 40px;
-  margin-top: 40px;
 }
 
 #footer-container {
@@ -355,53 +353,60 @@ $HEADER_TOTAL_HEIGHT:$HEADER_PADDING + $HEADER_HEIGHT;
 
 #stepsBar {
   float: left;
+  cursor: auto;
+  position: relative;
+  height: 66px;
+  width: 100%;
+  overflow: hidden;
+  padding: 10px 0 0;
+  background-color: #dcdcdc;
 
   ul {
-    margin: 20px 60px;
+    width: 80%;
+    margin: 10px auto;
 
     li {
       display: inline-block;
       height: 30px;
       line-height: 30px;
-      width: 300px;
+      width: 33%;
       margin: 5px 1px 0 0;
-      text-indent: 35px;
       position: relative;
-      background-color: #ccc;
       text-align: center;
-      color: #fff;
+      color: #a5a5a5;
+      font-size: 14px;
 
-      &:after {
-        content: " ";
-        height: 0;
-        width: 0;
-        position: absolute;
-        right: -15px;
-        border-style: solid;
-        border-width: 15px 0 15px 15px;
-        border-color: transparent transparent transparent #ccc;
-        z-index: 10;
-      }
-
-      &:before {
-        content: " ";
-        height: 0;
-        width: 0;
-        position: absolute;
-        left: 0px;
-        border-style: solid;
-        border-width: 15px 0 15px 15px;
-        border-color: transparent transparent transparent #fff;
-        z-index: 0;
-      }
+      //&:after {
+      //  content: " ";
+      //  height: 0;
+      //  width: 0;
+      //  position: absolute;
+      //  right: -15px;
+      //  border-style: solid;
+      //  border-width: 15px 0 15px 15px;
+      //  border-color: transparent transparent transparent #ccc;
+      //  z-index: 10;
+      //}
+      //
+      //&:before {
+      //  content: " ";
+      //  height: 0;
+      //  width: 0;
+      //  position: absolute;
+      //  left: 0px;
+      //  border-style: solid;
+      //  border-width: 15px 0 15px 15px;
+      //  border-color: transparent transparent transparent #fff;
+      //  z-index: 0;
+      //}
     }
 
     .done {
-      background-color: #0096d6;
+      color: #184155;
 
-      &:after {
-        border-color: transparent transparent transparent #0096d6
-      }
+      //&:after {
+      //  border-color: transparent transparent transparent #0096d6
+      //}
     }
   }
 }
