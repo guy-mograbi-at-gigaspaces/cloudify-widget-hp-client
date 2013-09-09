@@ -45,9 +45,9 @@ angular.module('cloudifyWidgetHpClientApp')
         }
 
         function updateSelectedWidget(widget) {
-            var newSelectionIndex = parseInt($('#widget' + widget.id).attr('index'));
+            var newSelectionIndex = parseInt($('#widget' + widget.id).attr('index'), 10);
             var selectedArrowOffset = 125 + newSelectionIndex;
-            var newSelectionHeight = parseInt($('#widget' + widget.id).css('height'));
+            var newSelectionHeight = parseInt($('#widget' + widget.id).css('height'), 10);
 
             $('#widget' + $scope.selectedWidget.id).removeClass('selected');
             $('#widget' + widget.id).addClass('selected');
