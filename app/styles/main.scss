@@ -26,6 +26,10 @@ $HEADER_HEIGHT:21px;
 
 $HEADER_TOTAL_HEIGHT:$HEADER_PADDING + $HEADER_HEIGHT;
 
+html, body {
+  height: 100%;
+}
+
 .hp-header{
 
   position:fixed;
@@ -131,7 +135,10 @@ $HEADER_TOTAL_HEIGHT:$HEADER_PADDING + $HEADER_HEIGHT;
       }
     }
   }
+}
 
+.container {
+  height: 80%;
 }
 
 #main-header {
@@ -160,6 +167,7 @@ $HEADER_TOTAL_HEIGHT:$HEADER_PADDING + $HEADER_HEIGHT;
 
 #main-content {
   width:1290px;
+  height: 100%;
   margin-right: auto;
   margin-left: auto;
 }
@@ -354,7 +362,8 @@ $HEADER_TOTAL_HEIGHT:$HEADER_PADDING + $HEADER_HEIGHT;
 #stepsBar {
   float: left;
   cursor: auto;
-  position: relative;
+  position: absolute;
+  bottom: 0px;
   height: 66px;
   width: 100%;
   overflow: hidden;
