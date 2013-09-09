@@ -21,9 +21,12 @@ angular.module('cloudifyWidgetHpClientApp')
                     }
                 }
 
-                if (scope.currentStep === 4) {
-                    $(element).find('#stepsList').css('visibility', 'hidden');
-                }
+                scope.$watch("model", function() {
+                    console.log("Changed");
+                    if (scope.currentStep === 4) {
+                        $(element).find('#stepsList').css('visibility', 'hidden');
+                    }
+                });
             }
         };
     });
