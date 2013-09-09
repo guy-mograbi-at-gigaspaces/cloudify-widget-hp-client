@@ -1,19 +1,20 @@
 #widgets {
-  width: 320px;
+  width: 271px;
   height: 90%;
   position: relative;
   float: left;
-  overflow-y: auto;
+  overflow-y: hidden;
+  overflow-x: hidden;
   display: inline-block;
-  box-shadow: 5px 0px 5px rgba(144, 144, 144, 0.15);
+  box-shadow: 10px 0px 15px rgba(144, 144, 144, 0.15);
 
   ul {
-    padding-top: 10px;
     background-color: #f5f5f5;
+    margin: 0 0 10px 0px;
   }
 
   li {
-    background-color: none;
+    background-color: transparent;
     list-style: none;
     margin: 0px 10px 0px 10px;
     height: 56px;
@@ -21,7 +22,7 @@
     padding-left: 10px;
     cursor: pointer;
     border-bottom: #d0d0d0 solid 1px;
-
+    box-shadow: 5px 0px 5px rgba(144, 144, 144, 0.15);
 
     #widgetIcon {
       float: left;
@@ -39,11 +40,21 @@
         color: #0096d6;
       }
     }
-
-    .selected {
-      background-color: #fff;
-    }
   }
+}
+
+#widgets .selected {
+  background-color: #fff;
+}
+
+#selectedArrow {
+  width: 0px;
+  height: 0px;
+  border-top: 28px solid transparent;
+  border-bottom: 29px solid transparent;
+  border-left: 15px solid #FFF;
+  float: left;
+  position: relative;
 }
 
 #skin {
@@ -52,12 +63,11 @@
   height: 90%;
   display: inline-block;
   position: relative;
-  background-color: rgba(200, 200, 200, 0.25);
 
   #widgetSkin {
     position: relative;
     top: 30px;
-    left: 20px;
+    left: 100px;
   }
 
   #iframe {
@@ -67,13 +77,13 @@
 
 #instructions {
   position: relative;
-  float: left;
+  float: right;
   width: 240px;
   height: 90%;
   padding-top: 20px;
   display: inline-block;
   background-color: #fff;
-  box-shadow: -5px 0px 5px rgba(144, 144, 144, 0.15);
+  box-shadow: -10px 0px 15px rgba(144, 144, 144, 0.15);
 }
 
 #instructions li {
