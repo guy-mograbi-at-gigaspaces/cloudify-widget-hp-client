@@ -21,8 +21,8 @@ angular.module('cloudifyWidgetHpClientApp')
                     }
                 }
 
-                scope.$watch("model", function() {
-                    console.log("Changed");
+                scope.$watch('model', function() {
+                    console.log('Changed');
                     if (scope.currentStep === 4) {
                         $(element).find('#stepsList').css('visibility', 'hidden');
                     }
