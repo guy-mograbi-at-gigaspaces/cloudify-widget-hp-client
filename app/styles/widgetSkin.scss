@@ -375,17 +375,19 @@ body {
 #controls {
   position: absolute;
   top: 5px;
-  right: 140px;
+  right: 230px;
   height: 100px;
 }
 
 #controls .button {
-  height: 120px;
-  width: 120px;
+  height: 80px;
+  width: 80px;
   position: absolute;
-  background-color: #2c2b2b;
+  top: 95px;
+  left: 15px;
+  background-color: #fff;
   border-radius: 70px;
-  border: 5px solid #eaeaea;
+  border: 7px double #eaeaea;
 }
 
 #controls .button:hover {
@@ -395,23 +397,23 @@ body {
 #play_btn {
   width: 0px;
   height: 0px;
-  top: 37px;
-  left: 50px;
+  top: 16px;
+  left: 32px;
   position: relative;
   border-radius: 2px;
-  border-top: 23px solid transparent;
-  border-bottom: 23px solid transparent;
+  border-top: 25px solid transparent;
+  border-bottom: 25px solid transparent;
   border-left: 30px solid #ffb217;
 }
 
 #stop_btn {
-  background-color: #fff;
-  width: 46px;
+  background-color: #ffb217;
+  width: 45px;
   height: 46px;
   border-radius: 5px;
-  top: 37px;
+  top: 18px;
   position: relative;
-  left: 37px;
+  left: 18px;
   display: none;
 }
 
