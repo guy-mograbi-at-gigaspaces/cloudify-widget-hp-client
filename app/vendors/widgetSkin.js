@@ -58,7 +58,7 @@ $(function () {
                 var msg = JSON.parse(e.data);
                 var $log = $('#log');
 
-                if (msg.name === 'write_log') {
+                if (msg.name === 'widget_log') {
                     $log.append($('<li/>', {html: msg.html}).addClass(msg.className));
                     $log.scrollTop($log[0].scrollHeight);
                 } else if (msg.name === 'set_advanced') {

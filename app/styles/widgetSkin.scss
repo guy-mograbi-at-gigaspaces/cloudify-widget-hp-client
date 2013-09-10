@@ -43,11 +43,6 @@ body {
 #widgetContainer {
   width: 630px;
   height: 355px;
-  //background-color: #e1e1e1;
-  //background-image: linear-gradient(to bottom, #FFFFFF 0%, #CDCDCD 100%);
-  //border: 2px solid #b7b7b7;
-  //border-top-left-radius: 10px;
-  //border-top-right-radius: 10px;
 }
 
 .hidden {
@@ -63,16 +58,12 @@ body {
 #widget-header {
   width: 630px;
   height: 46px;
-  //background-color: #279bd6;
-  //border-top-left-radius: 8px;
-  //border-top-right-radius: 8px;
-  //border-bottom: 2px solid #fafafa;
-  //box-shadow: 0px 5px 15px -10px #888;
 
   #title {
     color: #000;
-    font-size: 24px;
+    font-size: 30px;
     position: relative;
+    font-weight: bold;
     top: 5px;
     float: left;
   }
@@ -162,8 +153,8 @@ body {
 #logContainer {
   color: #000;
   position: relative;
-  height: 140px;
-  width: 530px;
+  height: 153px;
+  width: 540px;
   top: 5px;
   overflow-y: hidden;
   border-radius: 10px;
@@ -176,8 +167,9 @@ body {
   font-size: 14px;
   text-shadow: none;
   list-style-type: none;
-  height: 110px;
+  height: 120px;
   overflow-y: hidden;
+  padding-top: 7px;
 }
 
 #log li.error {
@@ -210,9 +202,11 @@ body {
 #links {
   list-style-type: none;
   position: relative;
+  bottom: 10px;
   font-size: 14px;
   width: 260px;
   display: inline-block;
+  color: #3fb0e0;
 
   a {
     color: black;
@@ -244,8 +238,11 @@ body {
 }
 
 #time_left {
-  color: white;
-  font-size: 14px;
+  color: #000;
+  font-size: 20px;
+  position: absolute;
+  top: 5px;
+  right: 30px;
 }
 
 #time_left_counter {
@@ -254,7 +251,7 @@ body {
 
 #video_container {
   position: relative;
-  top: 12px;
+  top: 30px;
   background-color: #000;
   width: 278px;
   height: 155px;
@@ -282,8 +279,8 @@ body {
   width: 272px;
   height: 158px;
   position: relative;
-  top: 12px;
-  left: 10px;
+  top: 30px;
+  left: 22px;
   background-color: #f3f3f3;
   border: 1px solid #fff;
   float: left;
@@ -384,10 +381,10 @@ body {
   width: 80px;
   position: absolute;
   top: 95px;
-  left: 15px;
+  left: 40px;
   background-color: #fff;
   border-radius: 70px;
-  border: 7px double #eaeaea;
+  border: 8px double #dbdbdb;
 }
 
 #controls .button:hover {
@@ -400,14 +397,14 @@ body {
   top: 16px;
   left: 32px;
   position: relative;
-  border-radius: 2px;
+  border-radius: 5px;
   border-top: 25px solid transparent;
   border-bottom: 25px solid transparent;
-  border-left: 30px solid #ffb217;
+  border-left: 30px solid #ff5a00;
 }
 
 #stop_btn {
-  background-color: #ffb217;
+  background-color: #ff5a00;
   width: 45px;
   height: 46px;
   border-radius: 5px;
