@@ -49,7 +49,7 @@ $(function () {
                 var $log = $('#log');
 
                 if (msg.name === 'widget_log') {
-                    $log.append($('<li/>', {html: msg.html}).addClass(msg.className));
+                    $log.append($('<li/>', {html: msg.message}));
                     $log.scrollTop($log[0].scrollHeight);
                 } else if (msg.name === 'set_advanced') {
                     var $advanced = $('#advanced');
