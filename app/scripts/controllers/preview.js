@@ -65,7 +65,7 @@ angular.module('cloudifyWidgetHpClientApp')
             startTimer();
         });
 
-        $('#iframe').live('stop_widget', function(e) {
+        $('#iframe').live('stop_widget', function() {
             $scope.widgetTime = '';
             stopTimer();
         });
