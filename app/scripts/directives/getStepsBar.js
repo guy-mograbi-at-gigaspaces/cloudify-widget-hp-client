@@ -4,9 +4,9 @@ angular.module('cloudifyWidgetHpClientApp')
   .directive('getStepsBar', function () {
         return {
             template: '<ul id="stepsList">' +
-                  '<li id="step1">See the demo</li>' +
-                  '<li id="step2">Start free 60 min. preview</li>' +
-                  '<li id="step3">Signup for free 30 days trial</li>' +
+                  '<li id="step1"><div class="stepIcon">1</div>See the demo</li>' +
+                  '<li id="step2"><div class="stepIcon">2</div>Start free 60 min. preview</li>' +
+                  '<li id="step3"><div class="stepIcon">3</div>Signup for free 30 days trial</li>' +
               '</ul>',
             restrict: 'AE',
             link: function(scope, element) {
