@@ -16,6 +16,9 @@ angular.module('cloudifyWidgetHpClientApp')
                         '<a href="#/signup">Sign up for Free Trial</a>' +
                     '</li>' +
                     '<li>' +
+                    '<a href="#/registered">Registered Users</a>' +
+                    '</li>' +
+                    '<li>' +
                         '<a href="#/learn">Learn More</a>' +
                     '</li>' +
                     '<li>' +

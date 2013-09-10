@@ -60,7 +60,7 @@ html, body {
 
         a {
           display:block;
-          padding: 5px 50px;
+          padding: 5px 30px;
           float:left;
           margin-right:5px;
           text-decoration: none;
@@ -76,6 +76,10 @@ html, body {
   height: 80%;
 }
 
+#container.container{
+  width: 100%;
+}
+
 #main-header {
   background: #42bff4 url(/images/header.jpg) no-repeat center center;
   width: 100%;
@@ -85,6 +89,10 @@ html, body {
 #main-menu {
   position: relative;
   background: #F5F5F5 url(http://www.hpcloud.com/sites/default/themes/hp_cloud_tile_base/images/background-hatch.png?1352827785);
+
+  .container {
+    width: 1050px;
+  }
 
   .navigation {
     width: 1050px;
@@ -178,7 +186,7 @@ html, body {
     .container {
       zoom: 1;
       text-shadow: none;
-      width: 960px;
+      width: 1050px;
 
       .grid_1 {
         width: 580px;
