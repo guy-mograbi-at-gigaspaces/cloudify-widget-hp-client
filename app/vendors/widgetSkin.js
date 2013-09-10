@@ -24,17 +24,6 @@ $(function () {
         $.postMessage(JSON.stringify({name: 'stop_widget'}), postUrl, iframe.get(0).contentWindow);
     });
 
-    $('#embed-code-box').hide();
-    $('#embed-code-box').val($.trim($('#embed-code-box').val()));
-
-    $(document).on('click', '#embed_btn', function () {
-        $('#embed-code-box').toggle();
-    });
-
-    $(document).on('click', '#embed-code-box .close', function () {
-        $('#embed-code-box').hide();
-    });
-
     function getAdvanced() {
         var $advanced = $('#advanced');
         var $project = $advanced.find('[name=project_name]');
@@ -78,6 +67,11 @@ $(function () {
                     });
 
                     updateButtonState(msg.status.state === 'STOPPED' ? 'stop' : 'play');
+                } else if (msg.name === 'stop_widget') {
+                    $('#iframe').trigger({
+                        type: "stop_widget",
+                        status: msg.status
+                    });
                 }
             } catch (exception) {
                 console.log(['problem invoking callback for ', e, exception]);

@@ -312,7 +312,7 @@ html, body {
   background-color: #dcdcdc;
 
   ul {
-    width: 455px;
+    width: 515px;
     margin: 10px auto;
     background: transparent url(/images/steps.png) no-repeat center 9px;
 
@@ -320,12 +320,13 @@ html, body {
       display: inline-block;
       height: 30px;
       line-height: 30px;
-      width: 33%;
+      width: 170px;
       margin: 5px 1px 0 0;
       position: relative;
       text-align: center;
       color: #a6a6a6;
       font-size: 14px;
+      word-wrap:normal;
 
       .stepIcon {
         width: 27px;
@@ -337,23 +338,27 @@ html, body {
       }
 
       .activeStep {
-        width: 27px;
-        height: 27px;
-        background: url(/images/activeStep.png) no-repeat;
-        color: #184155;
+        position: relative;
+        top: 2px;
+        left: 1px;
+        width: 26px;
+        height: 28px;
+        background: url(/images/activeStep.png) no-repeat 0px 1px;
+        color: #a6a6a6;
       }
 
       .done {
         position: relative;
         top: 7px;
         width: 16px;
-        height: 16px;
+        height: 27px;
+        color: transparent;
         background: url(/images/stepDone.png) no-repeat;
       }
     }
 
     #step1 {
-      left: -63px;
+      left: -43px;
     }
 
     #step2 {
@@ -361,7 +366,7 @@ html, body {
     }
 
     #step3 {
-      left: 68px;
+      left: 48px;
     }
   }
 }

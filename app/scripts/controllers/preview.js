@@ -32,8 +32,12 @@ angular.module('cloudifyWidgetHpClientApp')
         };
 
         function startTimer() {
-            $timeout.cancel(timeout);
+            stopTimer();
             timeout = $timeout($scope.onTimeout, 1000);
+        }
+
+        function stopTimer() {
+            $timeout.cancel(timeout);
         }
 
         function millisecondsToTime(milli)
@@ -59,6 +63,11 @@ angular.module('cloudifyWidgetHpClientApp')
             $scope.log = e.status.output;
             milliseconds = e.status.timeleftMillis;
             startTimer();
+        });
+
+        $('#iframe').live('stop_widget', function(e) {
+            $scope.widgetTime = '';
+            stopTimer();
         });
 
         widgetService.getWidgetList($scope.onWidgetsLoaded);
