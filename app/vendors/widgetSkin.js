@@ -30,6 +30,7 @@ $(function () {
     $(document).on('click', '#embed_btn', function () {
         $('#embed-code-box').toggle();
     });
+
     $(document).on('click', '#embed-code-box .close', function () {
         $('#embed-code-box').hide();
     });

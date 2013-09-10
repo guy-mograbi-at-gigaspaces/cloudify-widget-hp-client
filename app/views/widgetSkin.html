@@ -40,25 +40,16 @@
             <div id="advancedHeader">
                 <div id="advancedTitle">Advanced</div>
             </div>
+            <div class="form-footer-links">
+                <a class="form-footer-links" href="http://youtu.be/lHtOBXpouyo" target="_blank">Help</a>
+                <a style="display:none" id="hp_console_link" class="form-footer-links" href="http://console.hpcloud.com" target="_blank">HP Console</a>
+            </div>
             <form class="advanced_form" autocomplete="off">
                 <input name="project_name" autocomplete="off" placeholder="project"/>
                 <input name="hpcs_key" autocomplete="off" placeholder="HPCS Key"/>
                 <input name="hpcs_secret_key" placeholder="HPCS Secret Key" type="password"/>
-
-                <div class="form-footer-links">
-                    <a class="form-footer-links" href="http://youtu.be/lHtOBXpouyo" target="_blank">Help</a>
-                    <a style="display:none" id="hp_console_link" class="form-footer-links" href="http://console.hpcloud.com" target="_blank">HP Console</a>
-                </div>
                 <input type="submit" class="hidden" value="submit"/>
             </form>
-        </div>
-
-        <div id="embed-code-box" style="display: none;">
-            <i class="close"></i>
-            <h3>Embed Code</h3>
-            <p>Copy the code below to embed the widget on your website.</p>
-            <textarea class="autoselect" readonly="readonly">
-                &lt;script type="text/javascript" id="cloudify-widget" data-api-key="{{selectedWidget.apiKey}}" data-title="{{selectedWidget.productName}}" data-host="latestwidget.gsdev.info" data-video_url="http://www.youtube.com/embed/w5qr4sx5Vt0" src="http://latestwidget.gsdev.info/js/get_widget.js"&gt;&lt;/script&gt;</textarea>
         </div>
     </div>
 
