@@ -12,7 +12,7 @@ angular.module('cloudifyWidgetHpClientApp')
             };
 
             widgetService.updateLead(formData, function() {
-                $(document).find('#checkMailPopup').show();
+                toggleForms();
             });
         });
 
@@ -22,7 +22,16 @@ angular.module('cloudifyWidgetHpClientApp')
             };
 
             widgetService.updateCode(codeFormData, function() {
-                // ??
+                // where to send the userId + code to ??
             });
         });
+
+        $('#switchToActivationForm, #switchToSignUpForm').click(function() {
+            toggleForms();
+        });
+
+        function toggleForms() {
+            $('#detailsForm').toggle();
+            $('#codeForm').toggle();
+        }
     });

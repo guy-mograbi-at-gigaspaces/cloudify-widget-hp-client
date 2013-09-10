@@ -3,28 +3,29 @@
     <div id="signupText">
         <ul>
             <li>30 Days free trial of Cloudify and HP's public cloud</li>
-            <li>Spin up unlimited instances</li>
+            <li>Spin up unlimited services</li>
             <li>No Credit card required</li>
             <li>No public cloud credentials required during trial</li>
         </ul>
-    </div>
 
-    <div id="signupSteps">
-        Simple 3 steps process
-        <ul>
-            <li>Provide valid email ID</li>
-            <li>Click link in email</li>
-            <li>Start trial</li>
-        </ul>
+        <div id="signupSteps">
+            Simple 3 steps process
+            <ol>
+                <li><span class="stepsNumber">1.</span>Provide valid email ID</li>
+                <li><span class="stepsNumber">2.</span>Click link in email</li>
+                <li><span class="stepsNumber">3.</span>Start trial</li>
+            </ol>
+        </div>
     </div>
 
     <div id="formContainer">
+
         <div id="detailsForm">
             <div id="formRequiredText">
                 * Reqired field
             </div>
             <form id="signupForm">
-                <h3>Get Started:</h3>
+                <div class="formTitle">Get Started:</div>
                 <table>
                     <tr>
                         <td>First name <span class="requiredStar">*</span></td>
@@ -43,25 +44,31 @@
                         <td><input type="text" name="phone"></td>
                     </tr>
                 </table>
-                <button id="submitBtn">Enter</button>
+                <div id="switchToActivationForm" class="formSwitch">Already have activation code? <span class="clickText">Click here</span></div>
+                <button id="submitBtn" class="submitBtn">Sign Up</button>
+            </form>
+        </div>
+
+        <div id="codeForm">
+            <form id="activationForm">
+                <div class="formTitle">Activate Trial</div>
+                <div id="activateText">Please check your email for link to activate Free Trial.</div>
+                <div id="activateNote">
+                    Note: If you do not see your email in your inbox please check your junk mail folder for email with<br>
+                    subject: Your HP Cloud PLayer 30 Days Trial Verification<br>
+                    From: cloudplayer@hpcloud.com
+                </div>
+                <table>
+                    <tr>
+                        <td>Enter Code</td>
+                        <td><input type="text" id="code" autofocus></td>
+                    </tr>
+                </table>
+                <div id="switchToSignUpForm" class="formSwitch">Don't have activation code? <span class="clickText">Click here</span></div>
+                <button id="codeSubmitBtn" class="submitBtn">Activate</button>
             </form>
         </div>
     </div>
-    <!--<div get-steps-bar id="stepsBar" ng-model="currentStep"></div>-->
-</div>
 
-<div id="checkMailPopup">
-    <p>
-        Please check your email for link to activate Free Trial.
-        Note: If you do not see your email in your inbox please check your junk mail folder for email with subject: XXXXXXXXXXXXX<br>
-        From: Admin@Gigaspaces.com
-    </p>
-    <div id="codeForm">
-        <form>
-            <p id="codeFormText">Enter code:</p>
-            <input type="text" id="code" required></td>
-            <button id="codeSubmitBtn">Enter</button>
-        </form>
-    </div>
 </div>
 

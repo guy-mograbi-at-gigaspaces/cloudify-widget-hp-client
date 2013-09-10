@@ -1,134 +1,166 @@
 #signupText {
   float: left;
-  font-size: 23px;
+  font-size: 18px;
   padding-left: 50px;
   padding-top: 20px;
+  color: #222222;
 
-  li {
-    line-height: 34px;
+  ul {
+    list-style: none;
+
+    li {
+      line-height: 31px;
+
+      &:before {
+        content: "• ";
+        padding-right: 5px;
+        font-size: 20px;
+        color: #0096d6;
+      }
+    }
   }
 }
 
 #signupSteps {
   position: relative;
-  float: right;
-  background-color: #279bd6;
-  border-radius: 10px;
-  color: #fff;
-  font-size: 22px;
+  float: left;
+  color: #184155;
+  font-size: 16px;
   text-shadow: none;
   padding: 20px 0px 10px 20px;
   width: 290px;
   height: 120px;
-  right: 50px;
+  left: 10px;
   top: 20px;
 
-  li {
-    line-height: 26px;
+  ol {
+    width: 520px;
+    list-style: none;
+    margin: 10px 0 0 0  ;
+
+    li {
+      font-size: 16px;
+      line-height: 26px;
+      float: left;
+      margin-right: 40px;
+
+      .stepsNumber {
+        padding-right: 5px;
+        color: #0096d6;
+      }
+    }
   }
 }
 
 #formContainer {
-  width: 90%;
-  background-color: #279bd6;
-  border-radius: 10px;
-  float: left;
+  float: right;
   margin-top: 20px;
+  position: relative;
+  right: 150px;
   margin-left: 70px;
+  border-width: 1px;
+  border-radius: 5px;
+  border: 1px inset #e3e3e3;
+  background-color: rgba(217, 217, 217, 0.1);
+
+  .formTitle {
+    font-size: 20px;
+    color: #0096d6;
+  }
+
+  form {
+    float: left;
+    position: absolute;
+    left: 30px;
+    padding-top: 10px;
+
+    table {
+      margin-top: 10px;
+
+      td {
+        padding-right: 10px;
+        font-size: 16px;
+        color: #184155;
+
+        input {
+          width: 300px;
+          height: 40px;
+          padding: 0px;
+          text-indent: 10px;
+        }
+      }
+    }
+  }
+
+  .submitBtn {
+    position: relative;
+    right: 10px;
+    width: 100px;
+    height: 40px;
+    float: right;
+    background-color: #279bd6;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+  }
+
+  .formSwitch {
+    position: relative;
+    float: left;
+    top: 26px;
+    font-size: 10px;
+    color: #184155;
+
+    .clickText {
+      color: #279bd6;
+      cursor: pointer;
+    }
+  }
 
   #detailsForm {
     position: relative;
     margin: auto;
-    height: 260px;
-    width: 600px;
+    height: 312px;
+    width: 452px;
     color: #fff;
     text-shadow: none;
 
     #formRequiredText {
       position: relative;
-      right: 20px;
+      right: 30px;
       top: 20px;
       float: right;
       color: #a30000;
+      font-size: 10px;
     }
 
-    form {
-      float: left;
-      position: absolute;
-      left: 30px;
-      padding-top: 10px;
-
-      .requiredStar {
-        color: #a30000;
-      }
-
-      td {
-        padding-right: 10px;
-      }
-
-      #submitBtn {
-        position: relative;
-        left: 470px;
-        top: -47px;
-        width: 80px;
-        height: 40px;
-        background-color: #fff;
-        color: #279bd6;
-        border-radius: 10px;
-        border: none;
-        &:hover {
-          background-color: #e8e8e8;
-          font-weight: bold;
-        }
-      }
-
+    .requiredStar {
+      color: #a30000;
     }
-  }
-}
-
-#checkMailPopup {
-  display: none;
-  width: 410px;
-  height: 230px;
-  position: relative;
-  background-color: #e89626;
-  color: #fff;
-  font-size: 22px;
-  text-align: center;
-  margin:0 auto;
-  border-radius: 10px;
-  padding: 20px 10px 10px 0px;
-
-  p {
-    position: absolute;
   }
 
   #codeForm {
     position: relative;
-    top: 190px;
-    left: 15px;
+    margin: auto;
+    height: 312px;
+    width: 452px;
+    display: none;
 
-    form {
-      position: absolute;
+    #activateText {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #184155;
+    }
 
-      p {
-        top: 5px;
-      }
+    #activateNote {
+      margin-top: 20px;
+      font-size: 14px;
+      color: rgba(24, 65, 85, 0.55);
+    }
 
-      #code {
-        left: 110px;
-        top: 5px;
-        position: relative;
-      }
-
-      #codeSubmitBtn {
-        position: relative;
-        left: 115px;
-        background-color: #fff;
-        color: #279bd6;
-        border-radius: 5px;
-        border: none;
-      }
+    table {
+      margin-top: 30px;
     }
   }
 }
