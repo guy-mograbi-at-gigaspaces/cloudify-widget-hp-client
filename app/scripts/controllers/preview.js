@@ -4,7 +4,7 @@ angular.module('cloudifyWidgetHpClientApp')
     .controller('PreviewCtrl', function ($scope, $location, $timeout, widgetService) {
 
         var timeout = 0;
-        var milliseconds = 0;
+        var milliseconds = -1;
         $scope.currentStep = $location.path() === '/registered' ? 4 : 2;
         $scope.selectedWidget = {};
         $scope.widgetTime = '';
@@ -21,11 +21,11 @@ angular.module('cloudifyWidgetHpClientApp')
         };
 
         $scope.onTimeout = function() {
-            if (milliseconds > 0) {
+            if (milliseconds > 0 || milliseconds === -1) {
                 milliseconds -= 1000;
                 $scope.widgetTime = millisecondsToTime(milliseconds) +  ' Min.';
                 timeout = $timeout($scope.onTimeout, 1000);
-            } else {
+            } else if (milliseconds === 0){
                 $timeout.cancel(timeout);
                 $location.path('/signup');
             }
