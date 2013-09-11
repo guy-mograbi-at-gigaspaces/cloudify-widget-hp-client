@@ -17,14 +17,14 @@ angular.module('cloudifyWidgetHpClientApp')
 
                     if (i < scope.currentStep) {
                         elm.addClass('done');
-                    } else if (i === scope.currentStep){
+                    } else if (i === scope.currentStep) {
                         elm.addClass('activeStep');
+                        $(lis[i - 1]).toggleClass('activeText');
                     } else {
                         elm.removeClass('done');
                     }
                 }
 
-                // hide steps list if registration done
                 scope.$watch('currentStep', function() {
                     if (scope.currentStep === 4) {
                         $('#stepsBar').hide();

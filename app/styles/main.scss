@@ -132,6 +132,10 @@ html, body {
     margin: 10px auto;
     background: transparent url(/images/steps.png) no-repeat center 9px;
 
+    .activeText {
+      color: #184155;
+    }
+
     li {
       display: inline-block;
       height: 30px;
