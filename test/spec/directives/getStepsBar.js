@@ -31,21 +31,21 @@ describe('Directive: getStepsBar', function () {
         expect(lis.length).toBe(3);
     });
 
-    xit('should update steps item with done class when currentStep is set to 1 by DemoCtrl controller', function () {
+    it('should update steps item with done class when currentStep is set to 3 by SignupCtrl controller', function () {
 
         var elm;
         var lis;
 
-        controller('DemoCtrl', {
+        controller('SignupCtrl', {
             $scope: scope
         });
         elm = compileElement(scope, compile);
         lis = elm.find('li');
         scope.$digest();
 
-        expect(lis[0].classList[0]).toBe('done');
-        expect(lis[1].classList[0]).toBe('done');
-        expect(lis[2].classList.length).toBe(0);
+        expect(lis[0].children[0].classList[1]).toBe('done');
+        expect(lis[1].children[0].classList[1]).toBe('done');
+        expect(lis[2].children[0].classList[1]).toBe('activeStep');
     });
 
     function compileElement(scope, compile) {
