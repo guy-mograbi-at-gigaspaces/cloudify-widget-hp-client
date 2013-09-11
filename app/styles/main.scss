@@ -78,6 +78,7 @@ html, body {
 
 #container.container{
   width: 100%;
+  background: url(/images/pageBG.png) repeat;
 }
 
 #main-header {
@@ -88,7 +89,7 @@ html, body {
 
 #main-menu {
   position: relative;
-  background: #F5F5F5 url(http://www.hpcloud.com/sites/default/themes/hp_cloud_tile_base/images/background-hatch.png?1352827785);
+  background: url(/images/navBG.png) repeat;
 
   .container {
     width: 1050px;
@@ -111,7 +112,15 @@ html, body {
   height: 100%;
   margin-right: auto;
   margin-left: auto;
-  background-color: rgba(200, 200, 200, 0.25);
+  background: url(/images/pageBG.png) repeat;
+}
+
+#widget-content {
+  width: 1290px;
+  height: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  background: url(/images/widgetBG.png) repeat;
 }
 
 #footer-container {
