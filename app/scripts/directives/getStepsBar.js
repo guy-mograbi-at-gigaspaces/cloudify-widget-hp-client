@@ -17,7 +17,7 @@ angular.module('cloudifyWidgetHpClientApp')
 
                     if (i < scope.currentStep) {
                         elm.addClass('done');
-                    } else if (i == scope.currentStep){
+                    } else if (i === scope.currentStep){
                         elm.addClass('activeStep');
                     } else {
                         elm.removeClass('done');
