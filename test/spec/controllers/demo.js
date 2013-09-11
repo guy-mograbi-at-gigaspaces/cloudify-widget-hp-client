@@ -6,12 +6,10 @@ describe('Controller: DemoCtrl', function () {
     beforeEach(module('cloudifyWidgetHpClientApp'));
 
     var DemoCtrl,
-        scope,
-        stepsSrv;
+        scope;
 
     // Initialize the controller and a mock scope
-    beforeEach(inject(function ($controller, $rootScope, stepsService) {
-        stepsSrv = stepsService;
+    beforeEach(inject(function ($controller, $rootScope) {
         scope = $rootScope.$new();
         DemoCtrl = $controller('DemoCtrl', {
             $scope: scope
@@ -23,6 +21,6 @@ describe('Controller: DemoCtrl', function () {
     });
 
     it('should update currentStep variable with 1', function () {
-        expect(stepsSrv.getCurrentStep()).toBe(1);
+        expect(scope.currentStep).toBe(1);
     });
 });
