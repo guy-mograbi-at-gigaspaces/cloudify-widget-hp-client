@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('cloudifyWidgetHpClientApp', [])
+angular.module('cloudifyWidgetHpClientApp', ['ngCookies'])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {

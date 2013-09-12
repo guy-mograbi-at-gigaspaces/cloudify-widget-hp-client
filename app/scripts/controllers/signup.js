@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cloudifyWidgetHpClientApp')
-    .controller('SignupCtrl', function ($scope, widgetService) {
+    .controller('SignupCtrl', function ($scope, $cookieStore, $location,widgetService) {
         $scope.currentStep = 3;
 
         $('#submitBtn').click(function() {
@@ -11,18 +11,28 @@ angular.module('cloudifyWidgetHpClientApp')
                 'email' : $('#email').val()
             };
 
-            widgetService.updateLead(formData, function() {
+            widgetService.updateLead(formData, function(data) {
+                $cookieStore.put("leadId", data.id);
+                $cookieStore.put("formSubmitted", true);
                 toggleForms();
             });
         });
 
         $('#codeSubmitBtn').click(function() {
             var codeFormData = {
-                'code' : $('#code').val()
+                'code' : $.trim($('#code').val()),
+                'leadId' : $cookieStore.get("leadId")
             };
 
-            widgetService.updateCode(codeFormData, function() {
-                // where to send the userId + code to ??
+            widgetService.validateCode(codeFormData, function() {
+                var data = {
+                    'leadId' : $cookieStore.get("leadId"),
+                    'instanceId' : $cookieStore.get("instanceId")
+                };
+
+                widgetService.prolong(data, function() {
+                    $location.path('/registered');
+                });
             });
         });
 
@@ -33,5 +43,9 @@ angular.module('cloudifyWidgetHpClientApp')
         function toggleForms() {
             $('#detailsForm').toggle();
             $('#codeForm').toggle();
+        }
+
+        if ($cookieStore.get("formSubmitted") == true) {
+            toggleForms();
         }
     });

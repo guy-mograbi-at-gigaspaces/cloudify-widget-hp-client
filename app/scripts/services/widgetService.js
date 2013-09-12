@@ -24,11 +24,11 @@ angular.module('cloudifyWidgetHpClientApp')
             $http.post('/backend/lead', data)
                 .success(function(data) {
                     console.log(data);
-                    callback();
+                    callback(data);
                 });
         };
 
-        // load user data (and extended widget validation) from APIn
+        // load user data (and extended widget validation) from API
         this.getLead = function(callback) {
             $http.get('/backend/lead/list')
                 .success(function(data) {
@@ -39,8 +39,18 @@ angular.module('cloudifyWidgetHpClientApp')
             return leads;
         };
 
-        this.updateCode = function(code, callback) {
-            $http.post('/backend/lead', code)
+        // validate code
+        this.validateCode = function(code, callback) {
+            $http.post('/backend/validate', code)
+                .success(function(data) {
+                    console.log(data);
+                    callback();
+                });
+        };
+
+        // extend widget time for specific user
+        this.prolong = function(userData, callback) {
+            $http.post('/backend/prolong', userData)
                 .success(function(data) {
                     console.log(data);
                     callback();

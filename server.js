@@ -178,6 +178,95 @@ app.post('/backend/lead', function(request, response) {
     req.end();
 });
 
+app.post('/backend/validate', function(request, response) {
+
+    var options = {
+        hostname: conf.widgetServer,
+        path: '/api/user/' + conf.userId + '/lead/' + request.body.leadId + '/validate?authToken=' + conf.authToken + '&confirmationCode=' + request.body.code,
+        method: 'POST'
+    };
+
+    var data = '';
+
+    var callback = function(res) {
+        var result = '';
+
+        console.log('STATUS: ' + res.statusCode);
+
+        res.setEncoding('utf8');
+        res.on('data', function (chunk) {
+            result += chunk;
+        });
+
+        res.on('end', function () {
+            var jsonStr = JSON.stringify(result);
+            data = JSON.parse(jsonStr);
+
+            console.log('Request done, data: ' + data);
+
+            response.send(data);
+        });
+    }
+
+    var onError = function(e) {
+        console.log(e);
+        console.log('problem with request: ' + e.message);
+        response.send(500);
+    };
+
+    var req = ajax.request(options, callback);
+    req.on('error', onError);
+
+    req.end();
+});
+
+app.post('/backend/prolong', function(request, response) {
+
+    var post_data = JSON.stringify(request.body);
+    var options = {
+        hostname: conf.widgetServer,
+        path: '/api/user/' + conf.userId + '/lead/' + request.body.leadId + '/prolong/' + request.body.instanceId + '?authToken=' + conf.authToken,
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': post_data.length
+        }
+    };
+
+    var data = '';
+
+    var callback = function(res) {
+        var result = '';
+
+        console.log('STATUS: ' + res.statusCode);
+
+        res.setEncoding('utf8');
+        res.on('data', function (chunk) {
+            result += chunk;
+        });
+
+        res.on('end', function () {
+            var jsonStr = JSON.stringify(result);
+            data = JSON.parse(jsonStr);
+
+            console.log('Request done, data: ' + data);
+
+            response.send(data);
+        });
+    }
+
+    var onError = function(e) {
+        console.log('problem with request: ' + e.message);
+        response.send(500);
+    };
+
+    var req = ajax.request(options, callback);
+    req.on('error', onError);
+    req.write(post_data);
+
+    req.end();
+});
+
 // Since this is the last non-error-handling
 // middleware use()d, we assume 404, as nothing else
 // responded.

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cloudifyWidgetHpClientApp')
-    .controller('PreviewCtrl', function ($scope, $location, $timeout, widgetService) {
+    .controller('PreviewCtrl', function ($scope, $location, $timeout, $cookieStore, widgetService) {
 
         var timeout = 0;
         var milliseconds = 0;
@@ -62,6 +62,8 @@ angular.module('cloudifyWidgetHpClientApp')
         $('#iframe').live('widget_status', function(e) {
             $scope.log = e.status.output;
             milliseconds = e.status.timeleftMillis;
+            $cookieStore.put("instanceId", e.status.instanceId);
+
             startTimer();
         });
 
