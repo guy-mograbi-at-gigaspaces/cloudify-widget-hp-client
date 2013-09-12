@@ -27,11 +27,11 @@
             </div>
         </div>
 
-        <div id="video_container">
+        <div id="video_container" ng-class="currentStep == '2' && 'videoPreview' || 'videoRegistered'">
             <iframe id="widgetVideo" ng-src="{{selectedWidget.youtubeVideoUrl}}" frameborder="0" allowfullscreen></iframe>
         </div>
 
-        <div class="advanced_section" id="advanced">
+        <div ng-class="currentStep == '2' && 'advancedHide' || 'advanced_section'" id="advanced">
             <div class="remember_creds">
                 <div class="remember_me_title">Remember me?</div>
                 <div class="remember_option"><button class="yes" onclick="$(this).trigger('yes');">Yes</button></div>
