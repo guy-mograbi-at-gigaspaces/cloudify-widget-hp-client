@@ -62,7 +62,7 @@ angular.module('cloudifyWidgetHpClientApp')
         $('#iframe').live('widget_status', function(e) {
             $scope.log = e.status.output;
             milliseconds = e.status.timeleftMillis;
-            $cookieStore.put("instanceId", e.status.instanceId);
+            $cookieStore.put('instanceId', e.status.instanceId);
 
             startTimer();
         });

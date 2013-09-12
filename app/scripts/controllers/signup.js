@@ -12,8 +12,8 @@ angular.module('cloudifyWidgetHpClientApp')
             };
 
             widgetService.updateLead(formData, function(data) {
-                $cookieStore.put("leadId", data.id);
-                $cookieStore.put("formSubmitted", true);
+                $cookieStore.put('leadId', data.id);
+                $cookieStore.put('formSubmitted', true);
                 toggleForms();
             });
         });
@@ -21,13 +21,13 @@ angular.module('cloudifyWidgetHpClientApp')
         $('#codeSubmitBtn').click(function() {
             var codeFormData = {
                 'code' : $.trim($('#code').val()),
-                'leadId' : $cookieStore.get("leadId")
+                'leadId' : $cookieStore.get('leadId')
             };
 
             widgetService.validateCode(codeFormData, function() {
                 var data = {
-                    'leadId' : $cookieStore.get("leadId"),
-                    'instanceId' : $cookieStore.get("instanceId")
+                    'leadId' : $cookieStore.get('leadId'),
+                    'instanceId' : $cookieStore.get('instanceId')
                 };
 
                 widgetService.prolong(data, function() {
@@ -45,7 +45,7 @@ angular.module('cloudifyWidgetHpClientApp')
             $('#codeForm').toggle();
         }
 
-        if ($cookieStore.get("formSubmitted") == true) {
+        if ($cookieStore.get('formSubmitted') === true) {
             toggleForms();
         }
     });
