@@ -1,0 +1,33 @@
+#support-content {
+  #main-content {
+    width: 1290px;
+    margin-right: auto;
+    margin-left: auto;
+    background: url(/images/pageBG.png) repeat;
+  }
+}
+
+#supportText {
+  font-size: 24px;
+  color: #222222;
+  width: 870px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+
+  ul {
+    list-style: none;
+
+    li {
+      line-height: 50px;
+
+      &:before {
+        content: "• ";
+        padding-right: 5px;
+        font-size: 20px;
+        color: #0096d6;
+      }
+    }
+  }
+}
