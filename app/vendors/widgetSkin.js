@@ -5,10 +5,6 @@ $(function () {
     var postUrl = "http://" + conf.widgetServer;
     var currentView = this.location.hash.substr(2);
 
-    $('#advanced').load(function() {
-        showAdvanced(currentView);
-    });
-
     $(document).on('click', '#play_btn', function () {
         var iframe = $('#iframe');
         var postObj = {name: 'play_widget'};
@@ -45,15 +41,6 @@ $(function () {
         } else if (state === 'stop') {
             $('#stop_btn').hide();
             $('#play_btn').show();
-        }
-    }
-
-    function showAdvanced(currentViewName) {
-        var adv = $('#advanced');
-        if (currentViewName === 'preview') {
-            $('#advanced').css('background-color', 'red');
-        } else {
-            $('#advanced').show();
         }
     }
 

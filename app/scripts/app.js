@@ -33,6 +33,12 @@ angular.module('cloudifyWidgetHpClientApp', ['ngCookies'])
                 templateUrl: 'views/landing.html',
                 controller: 'PreviewCtrl'
             })
+            .when('/404', {
+                templateUrl: 'views/404.html'
+            })
+            .when('/503', {
+                templateUrl: 'views/503.html'
+            })
             .otherwise({
                 redirectTo: '/'
             });

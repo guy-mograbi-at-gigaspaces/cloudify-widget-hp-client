@@ -14,7 +14,7 @@
                 </li>
             </ul>
             <ul id="links">{{selectedWidget.productName}} Console</ul>
-            <span id="time_left">
+            <span id="time_left" ng-class="currentStep == '2' && 'visible' || 'hidden'">
                 Time left:
                 <span id="time_left_counter">{{widgetTime}}</span>
             </span>
@@ -31,7 +31,7 @@
             <iframe id="widgetVideo" ng-src="{{selectedWidget.youtubeVideoUrl}}" frameborder="0" allowfullscreen></iframe>
         </div>
 
-        <div ng-class="currentStep == '2' && 'advancedHide' || 'advanced_section'" id="advanced">
+        <div ng-class="currentStep == '2' && 'hidden' || 'advanced_section'" id="advanced">
             <div class="remember_creds">
                 <div class="remember_me_title">Remember me?</div>
                 <div class="remember_option"><button class="yes" onclick="$(this).trigger('yes');">Yes</button></div>

@@ -18,21 +18,12 @@ body {
     overflow-x: hidden;
 }
 
-.hero-unit {
-  margin: 50px auto 0 auto;
-  width: 300px;
-  font-size: 18px;
-  font-weight: 200;
-  line-height: 30px;
-  background-color: #eee;
-  border-radius: 6px;
-  padding: 60px;
+.hidden {
+  display: none;
+}
 
-  h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
+.visible {
+  display: block;
 }
 
 #widgetContainer {
@@ -256,10 +247,6 @@ body {
 #video_container object, #video_container embed {
   height: 108px;
   width: 280px;
-}
-
-.advancedHide {
-  display: none;
 }
 
 .advanced_section {
