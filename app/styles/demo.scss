@@ -21,8 +21,18 @@
 #demoInstructions li {
   display: block;
   line-height: 30px;
+
+  a {
+    color: #0096d6;
+    text-decoration: none;
+
+    &:hover {
+      color: #444140;
+    }
+  }
 }
 
 #demoInstructions li .instructionsNumber {
   color: #119dd9;
 }
+
