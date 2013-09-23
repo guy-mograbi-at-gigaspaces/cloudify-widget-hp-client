@@ -2,4 +2,27 @@
   margin-top: 50px;
   width: 580px;
   height: 370px;
+  float: left;
+  position: relative;
+  left: 300px;
+}
+
+#demoInstructions {
+  position: relative;
+  float: right;
+  width: 330px;
+  height: 95%;
+  padding-top: 20px;
+  display: inline-block;
+  background-color: #fff;
+  box-shadow: -10px 0px 15px rgba(144, 144, 144, 0.15);
+}
+
+#demoInstructions li {
+  display: block;
+  line-height: 30px;
+}
+
+#demoInstructions li .instructionsNumber {
+  color: #119dd9;
 }

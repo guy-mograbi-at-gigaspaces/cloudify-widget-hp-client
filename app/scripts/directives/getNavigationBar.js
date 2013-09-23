@@ -7,22 +7,22 @@ angular.module('cloudifyWidgetHpClientApp')
             '<div class="navigation span8">' +
                 '<ul>' +
                     '<li>' +
-                        '<a href="#/demo">See Demo</a>' +
+                        '<a href="#/demo">Demo</a>' +
                     '</li>' +
                     '<li>' +
-                        '<a href="#/preview">60 Min. Free Preview</a>' +
+                        '<a href="#/preview">Preview Cloudify</a>' +
                     '</li>' +
                     '<li>' +
-                        '<a href="#/signup">Sign up for Free Trial</a>' +
+                        '<a href="#/signup">Free Trial</a>' +
                     '</li>' +
                     '<li>' +
-                    '<a href="#/registered">Registered Users</a>' +
+                    '<a href="#/registered">Get Cloudify</a>' +
                     '</li>' +
                     '<li>' +
                         '<a href="#/learn">Learn More</a>' +
                     '</li>' +
                     '<li>' +
-                        '<a href="#/support">Support</a>' +
+                        '<a href="#/support">Get Support</a>' +
                     '</li>' +
                 '</ul>' +
             '</div>' +

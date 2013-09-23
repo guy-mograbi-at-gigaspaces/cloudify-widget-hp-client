@@ -280,7 +280,7 @@ app.use(function(req, res, next) {
 
     // respond with html page
     if (req.accepts('html')) {
-        res.render('404', { url: req.url });
+        res.sendfile('app/error.html?statusCode=' + res.statusCode);
         return;
     }
 
