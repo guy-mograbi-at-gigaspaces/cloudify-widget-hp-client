@@ -8,6 +8,7 @@
 
   ul {
     list-style: none;
+    float: left;
 
     li {
       line-height: 40px;
@@ -28,9 +29,9 @@
   color: #184155;
   font-size: 16px;
   text-shadow: none;
-  padding: 20px 0px 10px 20px;
+  padding: 0px 0px 0px 20px;
   width: 290px;
-  height: 240px;
+  height: 210px;
   left: 10px;
   top: 20px;
 
@@ -52,7 +53,7 @@
   }
 }
 
-#formContainer {
+.linedContainer {
   float: right;
   margin-top: 20px;
   position: relative;
@@ -118,10 +119,19 @@
     }
   }
 
+  .signupDisclaimer {
+    position: relative;
+    float: left;
+    top: 10px;
+    left: 30px;
+    font-size: 10px;
+    color: rgba(24, 65, 85, 0.55);
+  }
+
   #detailsForm {
     position: relative;
     margin: auto;
-    height: 312px;
+    height: 330px;
     width: 452px;
     color: #fff;
     text-shadow: none;
