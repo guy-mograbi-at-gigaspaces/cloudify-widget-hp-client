@@ -67,11 +67,10 @@
 
         <script type="text/javascript">
 
-            var errorCode = '';
+            var errorCode = '404';
 
 
             function showByErrorCode() {
-                console.log(window.location.search);
                 $('#messageContainer').find("#"+ errorCode).children().show();
                 $('#messageContainer').find(":not('#"+ errorCode + "')").children().hide();
             }
