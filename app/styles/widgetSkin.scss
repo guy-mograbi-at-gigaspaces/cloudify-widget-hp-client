@@ -55,65 +55,6 @@ body {
   }
 }
 
-#widget-footer {
-  color: #fff;
-  font-size: 12px;
-  position: relative;
-  top: 17px;
-  left: 31px;
-  width: 570px;
-  height: 28px;
-  border: 1px solid #098aaa;
-  border-radius: 8px;
-  background-color: #02a8cc;
-  display:inline-block;
-  vertical-align:middle
-
-  #social {
-    float: right;
-    top: 2px;
-    position: relative;
-    right: 5px;
-
-    .button {
-      border-radius: 5px;
-      width: 28px;
-      height: 26px;
-      float: right;
-    }
-  }
-
-  #poweredText {
-    float: left;
-    top: 6px;
-    position: relative;
-    left: 7px;
-    text-shadow: none;
-  }
-
-  #hpLogo {
-    top: -2px;
-    left: 13px;
-    position: relative;
-  }
-
-  #cloudifysLogo {
-    left: 23px;
-    position: relative;
-  }
-
-  #patent_pending {
-    font-size: 10px;
-    top: 13px;
-    left: 218px;
-    list-style-type: none;
-    position: absolute;
-    color: #fff;
-    font-family: "Helvetica Neue";
-    text-shadow: none;
-  }
-}
-
 #logContainer {
   color: #000;
   position: relative;
@@ -375,6 +316,10 @@ body {
   border-top: 25px solid transparent;
   border-bottom: 25px solid transparent;
   border-left: 30px solid #ff5a00;
+}
+
+#play_btn.disabled {
+  border-left: 30px solid #dbdbdb;
 }
 
 #stop_btn {

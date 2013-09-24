@@ -6,6 +6,10 @@ $(function () {
     var currentView = this.location.hash.substr(2);
 
     $(document).on('click', '#play_btn', function () {
+        if (!credentialsChecked()) {
+            return;
+        }
+
         var iframe = $('#iframe');
         var postObj = {name: 'play_widget'};
         if (getAdvanced().project !== '' && getAdvanced().key !== '' && getAdvanced().secretKey !== '') {
@@ -25,6 +29,14 @@ $(function () {
         $.postMessage(JSON.stringify({name: 'stop_widget'}), postUrl, iframe.get(0).contentWindow);
     });
 
+    $(document).on('change', 'input[name="project_name"], input[name="hpcs_key"], input[name="hpcs_secret_key"]', function () {
+        if (credentialsChecked()) {
+            $('#play_btn').removeClass('disabled');
+        } else {
+            $('#play_btn').addClass('disabled');
+        }
+    });
+
     function getAdvanced() {
         var $advanced = $('#advanced');
         var $project = $advanced.find('[name=project_name]');
@@ -35,12 +47,24 @@ $(function () {
     }
 
     function updateButtonState(state) {
-        if (state === 'play') {
+        if (state === 'play' && credentialsChecked()) {
             $('#stop_btn').show();
             $('#play_btn').hide();
         } else if (state === 'stop') {
             $('#stop_btn').hide();
             $('#play_btn').show();
+        }
+    }
+
+    function credentialsChecked() {
+        if ((currentView === 'registered' &&
+            $('input[name="project_name"]').val().length > 0 &&
+            $('input[name="hpcs_key"]').val().length > 0 &&
+            $('input[name="hpcs_secret_key"]').val().length > 0)
+            || currentView !== 'registered') {
+            return true;
+        } else {
+            return false;
         }
     }
 

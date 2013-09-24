@@ -3,7 +3,7 @@
     <div id="widgetContainer">
 
         <div id="widget-header">
-            <div id="title">Launch {{selectedWidget.productName}} Now!</div>
+            <div id="title">Launch {{currentStep == '2' && selectedWidget.productName || 'Opensource Applications'}} Now!</div>
             <div class="beta-ribbon"></div>
         </div>
 
@@ -22,7 +22,7 @@
 
         <div id="controls">
             <div class="button">
-                <div id="play_btn"></div>
+                <div id="play_btn" ng-class="{disabled: currentStep == '4'}"></div>
                 <div id="stop_btn"></div>
             </div>
         </div>
