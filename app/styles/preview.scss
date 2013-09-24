@@ -104,20 +104,3 @@
 .instructions li .instructionsNumber {
   color: #119dd9;
 }
-
-#createAccount {
-  position: relative;
-  float: left;
-  width: 540px;
-  height: 20px;
-  text-align: center;
-
-  a {
-    color: #444140;
-    text-decoration: none;
-
-    &:hover {
-      color: #0096d6;
-    }
-  }
-}

@@ -3,7 +3,7 @@
     <div id="widgetContainer">
 
         <div id="widget-header">
-            <div id="title">{{currentStep == '2' && "Launch " + selectedWidget.productName + " Now!" || "Cloud App Catalog"}}</div>
+            <div id="title">{{currentStep == '2' && "Launch " + selectedWidget.productName + " Now!" || "Cloudify App Catalog"}}</div>
             <div class="beta-ribbon"></div>
         </div>
 
@@ -48,14 +48,12 @@
                 <input name="project_name" autocomplete="off" placeholder="project"/>
                 <input name="hpcs_key" autocomplete="off" placeholder="HPCS Key"/>
                 <input name="hpcs_secret_key" placeholder="HPCS Secret Key" type="password"/>
+                <div id="createAccount"><a href="http://www.hpcloud.com/free-trial">Create HP Public Cloud account</a></div>
                 <input type="submit" class="hidden" value="submit"/>
             </form>
         </div>
 
-
     </div>
-
-    <div id="createAccount"><a href="http://www.hpcloud.com/free-trial">Create HP Public Cloud account</a></div>
 
     <iframe id="iframe" ng-src="http://latestwidget.gsdev.info/widget/widget?apiKey={{selectedWidget.apiKey}}&origin_page_url={{pageUrl}}"></iframe>
 </div>

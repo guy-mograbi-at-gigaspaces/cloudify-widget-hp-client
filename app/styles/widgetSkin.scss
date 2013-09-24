@@ -192,7 +192,7 @@ body {
 
 .advanced_section {
   width: 272px;
-  height: 158px;
+  height: 164px;
   position: relative;
   top: 30px;
   left: 22px;
@@ -362,4 +362,21 @@ body {
   color: #213540;
   box-shadow: 1px 1px 7px #777;
   z-index: 999;
+}
+
+#createAccount {
+  position: relative;
+  width: 270px;
+  height: 20px;
+  text-align: center;
+
+  a {
+    color: #444140;
+    text-decoration: none;
+    font-size: 12px;
+
+    &:hover {
+      color: #0096d6;
+    }
+  }
 }
