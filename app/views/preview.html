@@ -13,12 +13,21 @@
     <div id="skin">
         <div id="widgetSkin" ng-include src="'views/widgetSkin.html'"></div>
     </div>
-    <div id="instructions">
+    <div id="instructions" class="instructions" ng-show="currentStep == '2'">
         <ol>
-            <li><span class="instructionsNumber">1.</span> Select the service to run from left panel</li>
-            <li><span class="instructionsNumber">2.</span> Press the orange play button to run Cloudify player</li>
+            <li><span class="instructionsNumber">1.</span> Select the service to run from panel on left</li>
+            <li><span class="instructionsNumber">2.</span> Press the orange play button to start preview</li>
             <li><span class="instructionsNumber">3.</span> Click "Manage your app" to monitor the service deployment</li>
-            <li><span class="instructionsNumber">4.</span> The player will complete the service deployment - The process may takes 2-5 mins.</li>
+            <li><span class="instructionsNumber">4.</span> Service deployment may takes 2-5 minutes</li>
+        </ol>
+    </div>
+    <div id="registeredInstructions" class="instructions" ng-show="currentStep == '4'">
+        <ol>
+            <li><span class="instructionsNumber">1.</span> Enter your HP Cloud credentials. If you are not a current HP Cloud user, <a href="#">create an account now</a></li>
+            <li><span class="instructionsNumber">2.</span> Select the service to run from panel on left</li>
+            <li><span class="instructionsNumber">3.</span> Press the orange PLAY to start preview</li>
+            <li><span class="instructionsNumber">4.</span> Click "Manage your app" to monitor service deployment</li>
+            <li><span class="instructionsNumber">5.</span> Service deployment may takes 2-5 minutes</li>
         </ol>
     </div>
 </div>

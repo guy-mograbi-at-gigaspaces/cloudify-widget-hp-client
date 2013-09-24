@@ -3,7 +3,7 @@
     <div id="widgetContainer">
 
         <div id="widget-header">
-            <div id="title">Launch {{currentStep == '2' && selectedWidget.productName || 'Opensource Applications'}} Now!</div>
+            <div id="title">{{currentStep == '2' && "Launch " + selectedWidget.productName + " Now!" || "Cloud App Catalog"}}</div>
             <div class="beta-ribbon"></div>
         </div>
 
