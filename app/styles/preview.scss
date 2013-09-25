@@ -99,6 +99,11 @@
 .instructions li {
   display: block;
   line-height: 30px;
+
+  a {
+    color: #333;
+    text-decoration: none;
+  }
 }
 
 .instructions li .instructionsNumber {
