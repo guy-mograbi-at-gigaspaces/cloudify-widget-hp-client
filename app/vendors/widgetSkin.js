@@ -72,9 +72,9 @@ $(function () {
             try {
                 var msg = JSON.parse(e.data);
                 var $log = $('#log');
-
                 if (msg.name === 'widget_log') {
-                    $log.append($('<li/>', {html: msg.message}));
+                    // todo - dispatch this to angularJS..
+                    $log.append($('<li/>', {html: msg.message, class:msg.type}));
                     $log.scrollTop($log[0].scrollHeight);
                 } else if (msg.name === 'set_advanced') {
                     var $advanced = $('#advanced');

@@ -9,9 +9,7 @@
 
         <div id="logContainer">
             <ul id="log">
-                <li ng-repeat="logInput in log">
-                    {{logInput}}
-                </li>
+                <!-- currently, DOM manipulation from JQuery -->
             </ul>
             <ul id="links">{{selectedWidget.productName}} Console</ul>
             <span id="time_left" ng-class="currentStep == '2' && 'visible' || 'hidden'">
