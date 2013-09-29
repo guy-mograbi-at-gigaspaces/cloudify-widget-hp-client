@@ -3,7 +3,7 @@
     <div id="widgetContainer">
 
         <div id="widget-header">
-            <div id="title">{{currentStep == '2' && "Launch " + selectedWidget.productName + " Now!" || "Cloudify App Catalog"}}</div>
+            <div id="title">{{currentStep == '2' && selectedWidget.productName != undefined && "Launch " + selectedWidget.productName + " Now!"|| "Cloudify App Catalog" || "Cloudify App Catalog"}}</div>
             <div class="beta-ribbon"></div>
         </div>
 
