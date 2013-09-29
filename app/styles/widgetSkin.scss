@@ -75,13 +75,22 @@ body {
   height: 140px;
   overflow-y: hidden;
   padding-top: 7px;
+
+  li{
+    &.error{
+      color: #E95625;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    &.log-ellipsis{
+      display:none;
+      &:last-child{
+        display:block;
+      }
+    }
+  }
 }
 
-#log li.error {
-  color: #E95625;
-  font-size: 16px;
-  font-weight: bold;
-}
 
 #log li.important {
   font-size: 16px;
