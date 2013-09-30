@@ -13,7 +13,7 @@ echo "running npm install"
 npm install
 
 echo "running bower install"
-bower install
+bower install --allow-root
 
 echo "running grunt --force"
 grunt build --force
