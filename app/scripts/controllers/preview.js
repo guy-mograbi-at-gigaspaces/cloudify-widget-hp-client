@@ -12,7 +12,6 @@ angular.module('cloudifyWidgetHpClientApp')
 
         $scope.onWidgetsLoaded = function (widgetsList) {
             $scope.widgetsList = widgetsList;
-            $scope.selectedWidget = $scope.widgetsList[0];
         };
 
         $scope.widgetClick = function (widget) {
