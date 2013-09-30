@@ -14,6 +14,13 @@ angular.module('cloudifyWidgetHpClientApp')
             widgetService.updateLead(formData, function(data) {
                 $cookieStore.put('leadId', data.id);
                 $cookieStore.put('formSubmitted', true);
+
+                var data = {
+                    'leadId' : data.id,
+                    'instanceId' : $cookieStore.get('instanceId')
+                };
+
+                widgetService.prolong(data);
             });
 
             toggleForms();
@@ -26,14 +33,8 @@ angular.module('cloudifyWidgetHpClientApp')
             };
 
             widgetService.validateCode(codeFormData, function() {
-                var data = {
-                    'leadId' : $cookieStore.get('leadId'),
-                    'instanceId' : $cookieStore.get('instanceId')
-                };
+                $location.path('/registered');
 
-                widgetService.prolong(data, function() {
-                    $location.path('/registered');
-                });
             });
         });
 

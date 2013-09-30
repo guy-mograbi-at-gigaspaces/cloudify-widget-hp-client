@@ -76,6 +76,17 @@ angular.module('cloudifyWidgetHpClientApp')
             stopTimer();
         });
 
+        $('#iframe').live('prolong', function(e) {
+            var data = {
+                'leadId' : $cookieStore.get('leadId'),
+                'instanceId' : $cookieStore.get('instanceId')
+            };
+
+            if (data.leadId !== undefined && data.instanceId !== undefined) {
+                widgetService.prolong(data);
+            }
+        });
+
         widgetService.getWidgetList($scope.onWidgetsLoaded);
         $('#selectedArrow').css({opacity: 0});
     });
