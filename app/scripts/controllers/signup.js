@@ -14,8 +14,9 @@ angular.module('cloudifyWidgetHpClientApp')
             widgetService.updateLead(formData, function(data) {
                 $cookieStore.put('leadId', data.id);
                 $cookieStore.put('formSubmitted', true);
-                toggleForms();
             });
+
+            toggleForms();
         });
 
         $('#codeSubmitBtn').click(function() {
