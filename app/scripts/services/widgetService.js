@@ -53,7 +53,9 @@ angular.module('cloudifyWidgetHpClientApp')
             $http.post('/backend/prolong', userData)
                 .success(function(data) {
                     console.log(data);
-                    callback();
+                    if (callback !== undefined) {
+                        callback();
+                    }
                 });
         };
     });

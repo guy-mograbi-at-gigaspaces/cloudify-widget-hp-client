@@ -21,7 +21,7 @@ angular.module('cloudifyWidgetHpClientApp')
 
         $scope.onTimeout = function() {
             milliseconds -= 1000;
-            $scope.widgetTime = millisecondsToTime(milliseconds) +  ' Min.';
+            $scope.widgetTime = millisecondsToTime(milliseconds);
             timeout = $timeout($scope.onTimeout, 1000);
         };
 
@@ -38,13 +38,21 @@ angular.module('cloudifyWidgetHpClientApp')
         {
             var seconds = Math.floor((milli / 1000) % 60);
             var minutes = Math.floor((milli / (60 * 1000)) % 60);
+            var days = Math.floor(milli / (1000 * 60 * 60 * 24));
+            var timeToDisplay = '';
 
             if (seconds < 0 || minutes < 0) {
                 seconds = '--';
                 minutes = '--';
             }
 
-            return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+            if (days > 0) {
+                timeToDisplay = days + ' Days';
+            } else {
+                timeToDisplay = minutes + ':' + (seconds < 10 ? '0' : '') + seconds + ' Min.';
+            }
+
+            return timeToDisplay;
         }
 
 //        function updateSelectedWidget(widget) {
@@ -66,6 +74,17 @@ angular.module('cloudifyWidgetHpClientApp')
         $('#iframe').live('stop_widget', function() {
             $scope.widgetTime = '';
             stopTimer();
+        });
+
+        $('#iframe').live('prolong', function(e) {
+            var data = {
+                'leadId' : $cookieStore.get('leadId'),
+                'instanceId' : $cookieStore.get('instanceId')
+            };
+
+            if (data.leadId !== undefined && data.instanceId !== undefined) {
+                widgetService.prolong(data);
+            }
         });
 
         widgetService.getWidgetList($scope.onWidgetsLoaded);

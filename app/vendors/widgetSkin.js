@@ -18,6 +18,8 @@ $(function () {
 
         updateButtonState('play');
 
+        $('#iframe').trigger({type: "prolong"});
+
         $.postMessage(JSON.stringify(postObj), postUrl, iframe.get(0).contentWindow);
     });
 
