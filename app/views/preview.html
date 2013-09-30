@@ -1,7 +1,7 @@
 <div id="widget-content">
     <div id="widgets">
         <ul>
-            <li class="widgetItem" id="widget{{widget.id}}" index="{{$index}}" ng-click="widgetClick(widget)" ng-repeat="widget in widgetsList">
+            <li class="widgetItem" id="widget{{widget.id}}" ng-class="{selected:selectedWidget == widget}" index="{{$index}}" ng-click="widgetClick(widget)" ng-repeat="widget in widgetsList">
                     <div id="widgetIcon">
                         <img ng-src="http://latestwidget.gsdev.info/widget/icon?apiKey={{widget.apiKey}}" />
                     </div>

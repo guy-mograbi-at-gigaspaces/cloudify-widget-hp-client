@@ -3,8 +3,7 @@
   height: 570px;
   position: relative;
   float: left;
-  overflow-y: hidden;
-  overflow-x: hidden;
+  overflow-x: visible;
   display: inline-block;
   box-shadow: 10px 0px 15px rgba(144, 144, 144, 0.15);
 
@@ -13,13 +12,48 @@
     margin: 0 0 10px 0px;
   }
 
-  li {
+  li.widgetItem {
     background-color: transparent;
     list-style: none;
+    background-color:#f5f5f5;
     margin: 0px 10px 0px 10px;
     height: 56px;
-    width: 251px;
+    width: 100%;
+    padding-top: 0;
+    padding-right: 0;
     padding-left: 10px;
+    padding-bottom: 0;
+    margin:0;
+
+    &.selected{
+      background-color: #fff;
+
+      #widgetIcon {
+        filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+        -webkit-filter: grayscale(0%);
+      }
+
+      &:after{
+        content:"";
+        display:block;
+
+        border-style:solid;
+        border-top-width: 29px;
+        border-right-width: 29px;
+        border-left-width: 10px;
+        border-bottom-width: 29px;
+        border-top-color:transparent;
+        border-right-color:transparent;
+        border-bottom-color:transparent;
+        border-left-color:#fff;
+
+        position:relative;
+        left:271px;
+        top:-40px;
+      }
+
+    }
+
     cursor: pointer;
     border-bottom: #d0d0d0 solid 1px;
     box-shadow: 5px 0px 5px rgba(144, 144, 144, 0.15);
@@ -36,7 +70,7 @@
 
     #widgetName {
       padding-top: 19px;
-      padding-left: 10px;
+      //padding-left: 10px;
       font-size: 18px;
       color: #444140;
 
@@ -44,15 +78,6 @@
         color: #0096d6;
       }
     }
-  }
-}
-
-#widgets .selected {
-  background-color: #fff;
-
-  #widgetIcon {
-    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
-    -webkit-filter: grayscale(0%);
   }
 }
 

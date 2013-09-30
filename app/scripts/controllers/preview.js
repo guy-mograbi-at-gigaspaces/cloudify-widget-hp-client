@@ -16,7 +16,7 @@ angular.module('cloudifyWidgetHpClientApp')
         };
 
         $scope.widgetClick = function (widget) {
-            updateSelectedWidget(widget);
+//            updateSelectedWidget(widget);
             $scope.selectedWidget = widget;
         };
 
@@ -48,16 +48,13 @@ angular.module('cloudifyWidgetHpClientApp')
             return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
         }
 
-        function updateSelectedWidget(widget) {
-            var newSelectionIndex = parseInt($('#widget' + widget.id).attr('index'), 10);
-            var selectedArrowOffset = 165 + newSelectionIndex;
-            var newSelectionHeight = parseInt($('#widget' + widget.id).css('height'), 10);
-
-            $('#widget' + $scope.selectedWidget.id).removeClass('selected');
-            $('#widget' + widget.id).addClass('selected');
-
-            $('#selectedArrow').css({opacity: 1}).offset({top: selectedArrowOffset + (newSelectionIndex * newSelectionHeight)});
-        }
+//        function updateSelectedWidget(widget) {
+//            var newSelectionIndex = parseInt($('#widget' + widget.id).attr('index'), 10);
+//            var selectedArrowOffset = 165 + newSelectionIndex;
+//            var newSelectionHeight = parseInt($('#widget' + widget.id).css('height'), 10);
+//
+//            $('#selectedArrow').css({opacity: 1}).offset({top: selectedArrowOffset + (newSelectionIndex * newSelectionHeight)});
+//        }
 
         $('#iframe').live('widget_status', function(e) {
             $scope.log = e.status.output;
