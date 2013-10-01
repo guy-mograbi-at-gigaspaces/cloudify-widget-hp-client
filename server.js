@@ -220,6 +220,8 @@ app.post('/backend/validate', function(request, response) {
     req.end();
 });
 
+app.get('/backend/conf', conf.sendPublicConfiguration );
+
 app.post('/backend/prolong', function(request, response) {
 
     var post_data = JSON.stringify(request.body);
