@@ -1,4 +1,4 @@
-<div id="widget-content">
+<div id="widget-content" class="clearfix    ">
     <div id="widgets">
         <ul>
             <li class="widgetItem" id="widget{{widget.id}}" ng-class="{selected:selectedWidget == widget}" index="{{$index}}" ng-click="widgetClick(widget)" ng-repeat="widget in widgetsList">
@@ -31,4 +31,4 @@
         </ol>
     </div>
 </div>
-<div get-steps-bar id="stepsBar" current-step="{{currentStep}}"></div>
+<div get-steps-bar id="stepsBar" class="clearfix" current-step="{{currentStep}}"></div>
