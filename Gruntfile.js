@@ -186,7 +186,7 @@ module.exports = function (grunt) {
             }
         },
         useminPrepare: {
-            html: '<%= yeoman.app %>/index.html',
+            html: ['<%= yeoman.app %>/index.html', '<%= yeoman.app %>/404.html','<%= yeoman.app %>/503.html'],
             options: {
                 dest: '<%= yeoman.dist %>'
             }
@@ -355,6 +355,7 @@ module.exports = function (grunt) {
         // 'cdnify',
         'ngmin',
         'cssmin',
+
         'uglify',
         'rev',
         'usemin'

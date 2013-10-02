@@ -1,0 +1,57 @@
+@font-face {
+  font-family: "HP Simplified";
+  src: url(http://www.hpcloud.com/sites/default/themes/hp_cloud_tile_base/fonts/HPSimplified-Bold.eot);
+  src:url(http://www.hpcloud.com/sites/default/themes/hp_cloud_tile_base/fonts/HPSimplified-Bold.eot?#iefix) format('eot')
+}
+
+@font-face {
+  font-family:"HP Simplified Rg";
+  src:url(http://www.hpcloud.com/sites/default/themes/hp_cloud_tile_base/fonts/HPSimplifiedW01-Regular.eot);
+  src:url(http://www.hpcloud.com/sites/default/themes/hp_cloud_tile_base/fonts/HPSimplifiedW01-Regular.eot?#iefix) format('eot')
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'HP Simplified';
+  overflow: hidden;
+}
+
+#main-header {
+  background: #42bff4 url(/images/header.png) no-repeat center center;
+  width: 100%;
+  height: 115px;
+  box-shadow: #909090 0 1px 8px;
+}
+
+#main-content {
+  width: 1290px;
+  height: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  background: url(/images/pageBG.png) repeat;
+}
+
+.pageErrorTextbox {
+  color: #414141;
+  position: relative;
+  height: 200px;
+  width: 600px;
+  top: 25px;
+  overflow-y: hidden;
+  border-radius: 10px;
+  background-color: #fff;
+  border: 2px solid #c1c1c1;
+  box-shadow: 0px 0px 15px 0px rgba(144, 144, 144, 0.5);
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+h2 {
+  font-size: 40px;
+}
+
+p {
+  font-size: 20px;
+}
