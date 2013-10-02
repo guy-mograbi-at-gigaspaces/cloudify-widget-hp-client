@@ -9,34 +9,57 @@ angular.module('cloudifyWidgetHpClientApp')
         $scope.selectedWidget = {};
         $scope.widgetTime = '';
         $scope.pageUrl = $location.protocol() +'://' + $location.host();
-
         $scope.conf = window.conf;
 
-        $scope.onWidgetsLoaded = function (widgetsList) {
-            $scope.widgetsList = widgetsList;
-        };
+        widgetService.getWidgetList()
+            .then(function(data) {
+                $scope.widgetsList = data;
+            });
 
         $scope.widgetClick = function (widget) {
-//            updateSelectedWidget(widget);
             $scope.selectedWidget = widget;
         };
 
         $scope.onTimeout = function() {
             milliseconds -= 1000;
-            $scope.widgetTime = millisecondsToTime(milliseconds);
+            $scope.widgetTime = _millisecondsToTime(milliseconds);
             timeout = $timeout($scope.onTimeout, 1000);
         };
 
-        function startTimer() {
-            stopTimer();
+        $('#iframe').live('widget_status', function(e) {
+            $scope.log = e.status.output;
+            milliseconds = e.status.timeleftMillis;
+            $cookieStore.put('instanceId', e.status.instanceId);
+
+            _startTimer();
+        });
+
+        $('#iframe').live('stop_widget', function() {
+            $scope.widgetTime = '';
+            _stopTimer();
+        });
+
+        $('#iframe').live('prolong', function() {
+            var data = {
+                'leadId' : $cookieStore.get('leadId'),
+                'instanceId' : $cookieStore.get('instanceId')
+            };
+
+            if (data.leadId !== undefined && data.instanceId !== undefined) {
+                widgetService.prolong(data);
+            }
+        });
+
+        function _startTimer() {
+            _stopTimer();
             timeout = $timeout($scope.onTimeout, 1000);
         }
 
-        function stopTimer() {
+        function _stopTimer() {
             $timeout.cancel(timeout);
         }
 
-        function millisecondsToTime(milli)
+        function _millisecondsToTime(milli)
         {
             var seconds = Math.floor((milli / 1000) % 60);
             var minutes = Math.floor((milli / (60 * 1000)) % 60);
@@ -57,38 +80,5 @@ angular.module('cloudifyWidgetHpClientApp')
             return timeToDisplay;
         }
 
-//        function updateSelectedWidget(widget) {
-//            var newSelectionIndex = parseInt($('#widget' + widget.id).attr('index'), 10);
-//            var selectedArrowOffset = 165 + newSelectionIndex;
-//            var newSelectionHeight = parseInt($('#widget' + widget.id).css('height'), 10);
-//
-//            $('#selectedArrow').css({opacity: 1}).offset({top: selectedArrowOffset + (newSelectionIndex * newSelectionHeight)});
-//        }
-
-        $('#iframe').live('widget_status', function(e) {
-            $scope.log = e.status.output;
-            milliseconds = e.status.timeleftMillis;
-            $cookieStore.put('instanceId', e.status.instanceId);
-
-            startTimer();
-        });
-
-        $('#iframe').live('stop_widget', function() {
-            $scope.widgetTime = '';
-            stopTimer();
-        });
-
-        $('#iframe').live('prolong', function(e) {
-            var data = {
-                'leadId' : $cookieStore.get('leadId'),
-                'instanceId' : $cookieStore.get('instanceId')
-            };
-
-            if (data.leadId !== undefined && data.instanceId !== undefined) {
-                widgetService.prolong(data);
-            }
-        });
-
-        widgetService.getWidgetList($scope.onWidgetsLoaded);
         $('#selectedArrow').css({opacity: 0});
     });

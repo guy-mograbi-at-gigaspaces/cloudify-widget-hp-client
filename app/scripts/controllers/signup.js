@@ -11,17 +11,18 @@ angular.module('cloudifyWidgetHpClientApp')
                 'email' : $('#email').val()
             };
 
-            widgetService.updateLead(formData, function(data) {
-                $cookieStore.put('leadId', data.id);
-                $cookieStore.put('formSubmitted', true);
+            widgetService.updateLead(formData)
+                .then(function(data) {
+                    $cookieStore.put('leadId', data.id);
+                    $cookieStore.put('formSubmitted', true);
 
-                var data = {
-                    'leadId' : data.id,
-                    'instanceId' : $cookieStore.get('instanceId')
-                };
+                    var userData = {
+                        'leadId' : data.id,
+                        'instanceId' : $cookieStore.get('instanceId')
+                    };
 
-                widgetService.prolong(data);
-            });
+                    widgetService.prolong(userData);
+                });
 
             toggleForms();
         });

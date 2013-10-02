@@ -46,7 +46,7 @@ var publicConfiguration = {
 };
 
 var privateConfiguration = {
-    port:9040,
+    port:9000,
     widgetServerPort:80,
     authToken:undefined,
     userId:undefined
@@ -65,7 +65,7 @@ var privateConfiguration = {
 var meConf = null;
 try{
     meConf = require("../conf/dev/meConf");
-}catch( e ) { console.log("meConf does not exist. ignoring.. ")}
+}catch( e ) { console.log("meConf does not exist. ignoring.. " + e)}
 
 
 
