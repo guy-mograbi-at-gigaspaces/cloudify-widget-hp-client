@@ -12,6 +12,8 @@ angular.module('cloudifyWidgetHpClientApp')
                 'email' : $('#email').val()
             };
 
+            mixpanel.alias(formData.email);
+            mixpanel.identify(formData.email);
             mixpanel.people.set({
                 'First name': formData.fname,
                 'Last name': formData.lname,
