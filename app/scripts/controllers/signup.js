@@ -4,12 +4,15 @@ angular.module('cloudifyWidgetHpClientApp')
     .controller('SignupCtrl', function ($scope, $cookieStore, $location,widgetService) {
         $scope.currentStep = 3;
 
+
         $('#submitBtn').click(function() {
             var formData = {
                 'fname' : $('#fname').val(),
                 'lname' : $('#lname').val(),
                 'email' : $('#email').val()
             };
+
+            mixpanel.track("Signup", formData );
 
             widgetService.updateLead(formData)
                 .then(function(data) {
