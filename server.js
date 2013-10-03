@@ -94,7 +94,7 @@ app.get('/backend/widgetslist', function(request, response, next) {
 
     var options = {
         hostname: conf.widgetServer,
-        path: '/api/demo/widget/list?email=default_demo@gigaspaces.com',
+        path: '/api/user/'+ conf.userId +'/widgets?authToken=' + conf.authToken,
         method: 'GET'
     };
 
