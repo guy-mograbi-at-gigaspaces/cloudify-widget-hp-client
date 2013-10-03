@@ -14,6 +14,7 @@ angular.module('cloudifyWidgetHpClientApp')
 
 //            mixpanel.alias(formData.email);
             mixpanel.identify(formData.email);
+            mixpanel.people.identify( formData.email );
             mixpanel.people.set({
                 '$created': new Date(),
                 '$first_name':formData.email,
