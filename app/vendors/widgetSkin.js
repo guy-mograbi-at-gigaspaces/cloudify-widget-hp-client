@@ -63,7 +63,7 @@ $(function () {
             $('input[name="project_name"]').val().length > 0 &&
             $('input[name="hpcs_key"]').val().length > 0 &&
             $('input[name="hpcs_secret_key"]').val().length > 0)
-            || currentView !== 'registered') {
+            || currentView !== 'registered' && !$('#play_btn').hasClass('disabled')) {
             return true;
         } else {
             return false;

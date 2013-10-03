@@ -118,7 +118,7 @@ body {
   position: relative;
   bottom: 10px;
   font-size: 14px;
-  width: 260px;
+  width: 500px;
   display: inline-block;
   color: #3fb0e0;
 
@@ -129,12 +129,27 @@ body {
   li {
     float: left;
     margin-right: 9px;
-    background: url("/images/arrow.png") no-repeat left top;
-    background-position-y: 2px;
-    padding: 0px 0px 0px 14px;
+    padding: 0;
 
     .mock_text {
       display: none;
+    }
+
+    #manageApp {
+      min-width: 130px;
+    }
+
+    .consoleManageArrow {
+      width: 0px;
+      height: 0px;
+      top: 4px;
+      position: relative;
+      border-radius: 0px;
+      padding-right: 5px;
+      float: left;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-left: 6px solid #000;
     }
 
     a {
