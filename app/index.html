@@ -104,7 +104,7 @@
                     a._i.push([b,c,f])};a.__SV=1.1;})(document,window.mixpanel||[]);
             mixpanel.init( window.conf.mixpanelCode );
         }else{
-            mixpanel = { track:function(){} }
+            mixpanel = { track:function(){},  people : { set : function(){} }}
         }
     </script>
         </body>
