@@ -12,7 +12,13 @@ angular.module('cloudifyWidgetHpClientApp')
                 'email' : $('#email').val()
             };
 
-            mixpanel.track('Signup', formData );
+            mixpanel.people.set({
+                'First name': formData.fname,
+                'Last name': formData.lname,
+                'Signup date': new Date(),
+                '$email': formData.email
+            });
+//            mixpanel.track('Signup', formData );
 
             widgetService.updateLead(formData)
                 .then(function(data) {
