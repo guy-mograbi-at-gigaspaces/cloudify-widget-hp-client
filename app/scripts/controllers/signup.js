@@ -12,7 +12,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 'email' : $('#email').val()
             };
 
-            mixpanel.track("Signup", formData );
+            mixpanel.track('Signup', formData );
 
             widgetService.updateLead(formData)
                 .then(function(data) {

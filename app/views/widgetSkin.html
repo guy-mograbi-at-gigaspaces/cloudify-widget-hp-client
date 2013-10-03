@@ -11,7 +11,7 @@
             <ul id="log">
                 <!-- currently, DOM manipulation from JQuery -->
             </ul>
-            <ul id="links">{{selectedWidget.productName}} Console</ul>
+            <ul id="links"><li>{{selectedWidget.productName}} Console</li><li id="manageApp" ng-show="manageUrl != null"><div class="consoleManageArrow"></div><a href="{{manageUrl}}">Manage your app</a></li></ul>
             <span id="time_left" ng-class="currentStep == '2' && 'visible' || 'hidden'">
                 Time left:
                 <span id="time_left_counter">{{widgetTime}}</span>

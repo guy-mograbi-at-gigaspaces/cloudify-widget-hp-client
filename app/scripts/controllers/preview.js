@@ -10,6 +10,7 @@ angular.module('cloudifyWidgetHpClientApp')
         $scope.widgetTime = '';
         $scope.pageUrl = $location.protocol() +'://' + $location.host();
         $scope.conf = window.conf;
+        $scope.manageUrl = null;
 
         widgetService.getWidgetList()
             .then(function(data) {
@@ -30,6 +31,12 @@ angular.module('cloudifyWidgetHpClientApp')
             $scope.log = e.status.output;
             milliseconds = e.status.timeleftMillis;
             $cookieStore.put('instanceId', e.status.instanceId);
+
+            if (e.status.consoleLink !== null) {
+                $scope.manageUrl = e.status.consoleLink.url;
+            } else {
+                $scope.manageUrl = null;
+            }
 
             _startTimer();
         });
