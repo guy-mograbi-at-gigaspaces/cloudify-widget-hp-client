@@ -24,7 +24,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 'referrer':document.referrer,
                 '$email': formData.email
             });
-            mixpanel.register({gender: "male"});
+            mixpanel.register({gender: 'male'});
             mixpanel.track('Signup', formData );
 
 
