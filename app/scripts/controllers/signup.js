@@ -17,11 +17,12 @@ angular.module('cloudifyWidgetHpClientApp')
             mixpanel.people.identify( formData.email );
             mixpanel.people.set({
                 '$created': new Date(),
-                '$first_name':formData.email,
+                '$first_name':formData.fname,
+                '$last_name':formData.lname,
                 'First name': formData.fname,
                 'Last name': formData.lname,
                 'Signup date': new Date(),
-                'referrer':document.referrer,
+                'resource':'appCatalogUser',
                 '$email': formData.email
             });
             mixpanel.register({gender: 'male'});
