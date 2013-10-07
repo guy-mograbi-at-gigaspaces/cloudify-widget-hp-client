@@ -50,7 +50,19 @@ var privateConfiguration = {
     port:9000,
     widgetServerPort:80,
     authToken:undefined,
-    userId:undefined
+    userId:undefined,
+    log4js:{
+        appenders: [
+            { "type":"console" },
+            {
+                "type": "file",
+                "filename": "logs/application.log",
+                "maxLogSize": 20480,
+                "backups": 3
+            }
+        ],
+        replaceConsole: true
+    }
 }
 
 

@@ -5,7 +5,9 @@
     "express": "~3.3.5",
     "xtend": "~2.0.6",
     "npid": "~0.3.2",
-    "jade": "~0.35.0"
+    "jade": "~0.35.0",
+      "log4js":"~0.6.9",
+      "nodemailer":"~0.5.3"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

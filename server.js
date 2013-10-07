@@ -13,11 +13,17 @@
 /*
  * Express Dependencies
  */
+var log4js = require('log4js');
 var express = require('express');
 var ajax = require("http");
 var conf = require("./backend/appConf");
 var app = express();
 var port = conf.port || 9000;
+
+log4js.configure( conf.log4js || {} );
+//log4js.replaceConsole();
+var logger = log4js.getLogger("server");
+//logger.error("this is error. I should get an email");
 
 console.log(["using configuration",JSON.stringify(conf)]);
 /*
