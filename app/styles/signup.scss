@@ -7,18 +7,10 @@
   width: 620px;
 
   ul {
-    list-style: none;
     float: left;
 
     li {
       line-height: 40px;
-
-      &:before {
-        content: "• ";
-        padding-right: 5px;
-        font-size: 20px;
-        color: #0096d6;
-      }
     }
   }
 }
@@ -37,18 +29,12 @@
 
   ol {
     width: 520px;
-    list-style: none;
     margin: 10px 0 0 0  ;
 
     li {
       font-size: 16px;
       line-height: 26px;
       margin-right: 40px;
-
-      .stepsNumber {
-        padding-right: 5px;
-        color: #0096d6;
-      }
     }
   }
 }

@@ -19,8 +19,8 @@
 }
 
 #demoInstructions li {
-  display: block;
   line-height: 30px;
+  margin-left: 15px;
 
   a {
     color: #333;
@@ -30,9 +30,5 @@
       color: #444140;
     }
   }
-}
-
-#demoInstructions li .instructionsNumber {
-  color: #119dd9;
 }
 
