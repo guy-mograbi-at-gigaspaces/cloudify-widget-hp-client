@@ -57,7 +57,7 @@ angular.module('cloudifyWidgetHpClientApp')
             }
         });
 
-        $('#iframe').live('error', function(e) {
+        $('#iframe').live('error', function() {
             var data = {};
 
             if ($cookieStore.get('leadId') !== undefined) {
