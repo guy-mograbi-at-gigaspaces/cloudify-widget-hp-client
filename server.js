@@ -20,7 +20,7 @@ var conf = require("./backend/appConf");
 var app = express();
 var port = conf.port || 9000;
 
-log4js.configure( conf.log4js || {} );
+log4js.configure(conf.log4js || {});
 //log4js.replaceConsole();
 var logger = log4js.getLogger("server");
 //logger.error("this is error. I should get an email");
@@ -35,7 +35,6 @@ console.log(["using configuration",JSON.stringify(conf)]);
 // propagate app instance throughout app methods
 //app.api.use(app);
 
-
 /*
  * Set app settings depending on environment mode.
  * Express automatically sets the environment to 'development'
@@ -49,7 +48,6 @@ if (process.env.NODE_ENV === 'production' || process.argv[2] === 'production') {
 } else {
     app.locals.dev = true;
 }
-
 
 /*
  * Config
@@ -275,6 +273,10 @@ app.post('/backend/prolong', function(request, response) {
     req.end();
 });
 
+app.post('/backend/reportError', function(request) {
+    logger.error("Lead ID: " + request.body.leadId + ", Lead mail: " + request.body.leadMail + ", Instance ID: " + request.body.instanceId);
+});
+
 // Since this is the last non-error-handling
 // middleware use()d, we assume 404, as nothing else
 // responded.
@@ -398,9 +400,6 @@ app.get('/500', function(req, res, next){
     // trigger a generic (500) error
     next(new Error('keyboard cat!'));
 });
-
-
-
 
 app.listen(port);
 console.log('Express started on port ' + port);

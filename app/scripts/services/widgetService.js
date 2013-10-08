@@ -44,4 +44,12 @@ angular.module('cloudifyWidgetHpClientApp')
                     return data.data;
                 });
         };
+
+        // report widget error
+        this.reportError = function(userData) {
+            return $http.post('/backend/reportError', userData)
+                .then(function(data) {
+                    return data.data;
+                });
+        };
     });

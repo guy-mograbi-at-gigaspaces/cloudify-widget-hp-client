@@ -75,10 +75,18 @@ $(function () {
             try {
                 var msg = JSON.parse(e.data);
                 var $log = $('#log');
+
                 if (msg.name === 'widget_log') {
                     // todo - dispatch this to angularJS..
                     $log.append($('<li/>', {html: msg.message, class:msg.type}));
                     $log.scrollTop($log[0].scrollHeight);
+
+                    if (msg.type == 'error') {
+                        $('#iframe').trigger({
+                            type: "error",
+                            status: msg.status
+                        });
+                    }
                 } else if (msg.name === 'set_advanced') {
                     var $advanced = $('#advanced');
                     var $project = $advanced.find('[name=project_name]');
@@ -98,6 +106,11 @@ $(function () {
                 } else if (msg.name === 'stop_widget') {
                     $('#iframe').trigger({
                         type: "stop_widget",
+                        status: msg.status
+                    });
+                } else if (msg.name === 'play_widget') {
+                    $('#iframe').trigger({
+                        type: 'play_widget',
                         status: msg.status
                     });
                 }

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cloudifyWidgetHpClientApp')
-    .controller('SignupCtrl', function ($scope, $cookieStore, $location,widgetService) {
+    .controller('SignupCtrl', function ($scope, $cookieStore, $location, widgetService) {
         $scope.currentStep = 3;
 
 
@@ -28,6 +28,7 @@ angular.module('cloudifyWidgetHpClientApp')
             mixpanel.register({gender: 'male'});
             mixpanel.track('Signup', formData );
 
+            $cookieStore.put('leadMail', formData.email);
 
             widgetService.updateLead(formData)
                 .then(function(data) {
