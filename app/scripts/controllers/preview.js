@@ -32,8 +32,8 @@ angular.module('cloudifyWidgetHpClientApp')
             milliseconds = e.status.timeleftMillis;
             $cookieStore.put('instanceId', e.status.instanceId);
 
-            if (e.status.consoleLink !== null) {
-                $scope.manageUrl = e.status.consoleLink.url;
+            if (e.status.publicIp !== null) {
+                $scope.manageUrl = 'http://' + e.status.publicIp + ':8099/';
             } else {
                 $scope.manageUrl = null;
             }

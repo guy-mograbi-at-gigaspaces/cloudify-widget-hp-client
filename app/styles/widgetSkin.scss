@@ -72,9 +72,12 @@ body {
   font-size: 14px;
   text-shadow: none;
   list-style-type: none;
-  height: 140px;
+  height: 129px;
+  width: 480px;
   overflow-y: hidden;
-  padding-top: 7px;
+  padding-bottom: 17px;
+  position: relative;
+  top: 14px;
 
   li{
     &.error{
@@ -154,6 +157,7 @@ body {
 
     a {
       display: inline;
+      color: #3fb0e0;
     }
   }
 
@@ -172,6 +176,7 @@ body {
   position: absolute;
   top: 5px;
   right: 30px;
+  background-color: #FFF;
 }
 
 #time_left_counter {
