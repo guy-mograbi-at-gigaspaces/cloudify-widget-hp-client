@@ -78,7 +78,14 @@ angular.module('cloudifyWidgetHpClientApp')
 
         $('#iframe').live('widget_log', function(log) {
             $scope.$apply(function() {
-                $scope.widgetLog.push(log.html);
+                if (log.html.charAt(0) === '.') {
+                    $scope.widgetLog.pop();
+                    $scope.widgetLog.push(log.html);
+                } else {
+                    $scope.widgetLog.splice($scope.widgetLog.length - 2, 0, log.html);
+                }
+
+//                $scope.widgetLog.push(log.html);
             });
         });
 
