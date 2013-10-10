@@ -75,7 +75,6 @@ body {
   height: 129px;
   width: 480px;
   overflow-y: hidden;
-  padding-bottom: 17px;
   position: relative;
   top: 14px;
 
@@ -119,7 +118,7 @@ body {
 #links {
   list-style-type: none;
   position: relative;
-  bottom: 10px;
+  top: 10px;
   font-size: 14px;
   width: 500px;
   display: inline-block;

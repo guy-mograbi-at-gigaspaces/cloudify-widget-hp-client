@@ -11,6 +11,7 @@ angular.module('cloudifyWidgetHpClientApp')
         $scope.pageUrl = $location.protocol() +'://' + $location.host();
         $scope.conf = window.conf;
         $scope.manageUrl = null;
+        $scope.widgetLog = [];
 
         widgetService.getWidgetList()
             .then(function(data) {
@@ -18,6 +19,7 @@ angular.module('cloudifyWidgetHpClientApp')
             });
 
         $scope.widgetClick = function (widget) {
+            $scope.widgetLog = [];
             $scope.selectedWidget = widget;
         };
 
@@ -28,7 +30,6 @@ angular.module('cloudifyWidgetHpClientApp')
         };
 
         $('#iframe').live('widget_status', function(e) {
-            $scope.log = e.status.output;
             milliseconds = e.status.timeleftMillis;
             $cookieStore.put('instanceId', e.status.instanceId);
 
@@ -73,6 +74,12 @@ angular.module('cloudifyWidgetHpClientApp')
             }
 
             widgetService.reportError(data);
+        });
+
+        $('#iframe').live('widget_log', function(log) {
+            $scope.$apply(function() {
+                $scope.widgetLog.push(log.html);
+            });
         });
 
         function _startTimer() {

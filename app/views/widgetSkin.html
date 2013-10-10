@@ -9,7 +9,7 @@
 
         <div id="logContainer">
             <ul id="log">
-                <!-- currently, DOM manipulation from JQuery -->
+                <li ng-repeat="msg in widgetLog" ng-bind-html-unsafe="msg"></li>
             </ul>
             <ul id="links"><li>{{selectedWidget.productName}} Console</li><li id="manageApp" ng-show="manageUrl != null"><div class="consoleManageArrow"></div><a href="{{manageUrl}}" target="_blank">Manage your app</a></li></ul>
             <span id="time_left" ng-class="currentStep == '2' && 'visible' || 'hidden'">
@@ -53,5 +53,5 @@
 
     </div>
 
-    <iframe id="iframe" ng-src="http://{{conf.widgetServer}}/widget/widget?apiKey={{selectedWidget.apiKey}}&origin_page_url={{pageUrl}}"></iframe>
+    <iframe id="iframe" ng-src="http://{{conf.widgetServer}}/widget/widget?apiKey={{selectedWidget.apiKey}}&origin_page_url={{pageUrl}}/{{selectedWidget.apiKey}}"></iframe>
 </div>

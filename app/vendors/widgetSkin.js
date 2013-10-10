@@ -19,7 +19,6 @@ $(function () {
         updateButtonState('play');
 
         $('#iframe').trigger({type: "prolong"});
-        $('#log').html('');
 
         $.postMessage(JSON.stringify(postObj), postUrl, iframe.get(0).contentWindow);
     });
@@ -77,8 +76,11 @@ $(function () {
                 var $log = $('#log');
 
                 if (msg.name === 'widget_log') {
-                    // todo - dispatch this to angularJS..
-                    $log.append($('<li/>', {html: msg.message, class:msg.type}));
+                    $('#iframe').trigger({
+                        type: 'widget_log',
+                        html: msg.message,
+                        class: msg.type
+                    });
                     $log.scrollTop($log[0].scrollHeight);
 
                     if (msg.type == 'error') {
