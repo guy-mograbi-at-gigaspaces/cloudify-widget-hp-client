@@ -5,39 +5,47 @@ $(function () {
     var postUrl = "http://" + conf.widgetServer;
     var currentView = this.location.hash.substr(2);
 
-    $(document).on('click', '#play_btn', function () {
-        if (!credentialsChecked()) {
-            return;
-        }
-
-        var iframe = $('#iframe');
-        var postObj = {name: 'play_widget'};
-        if (getAdvanced().project !== '' && getAdvanced().key !== '' && getAdvanced().secretKey !== '') {
-            postObj.advanced = getAdvanced();
-        }
-
-        updateButtonState('play');
-
-        $('#iframe').trigger({type: "prolong"});
-
-        $.postMessage(JSON.stringify(postObj), postUrl, iframe.get(0).contentWindow);
-    });
-
-    $(document).on('click', '#stop_btn', function () {
-        var iframe = $('#iframe');
-
-        updateButtonState('stop');
-
-        $.postMessage(JSON.stringify({name: 'stop_widget'}), postUrl, iframe.get(0).contentWindow);
-    });
-
-    $(document).on('change', 'input[name="project_name"], input[name="hpcs_key"], input[name="hpcs_secret_key"]', function () {
-        if (credentialsChecked()) {
-            $('#play_btn').removeClass('disabled');
-        } else {
-            $('#play_btn').addClass('disabled');
+    $(document).bind('DOMSubtreeModified',function(e) {
+        if (e.target.id === 'play_btn') {
+            setEventHandling();
+            $(document).unbind('DOMSubtreeModified');
         }
     });
+
+    function setEventHandling() {
+        $('#play_btn').on('click', function() {
+            if (!credentialsChecked()) {
+                return;
+            }
+
+            var iframe = $('#iframe');
+            var postObj = {name: 'play_widget'};
+            if (getAdvanced().project !== '' && getAdvanced().key !== '' && getAdvanced().secretKey !== '') {
+                postObj.advanced = getAdvanced();
+            }
+
+            updateButtonState('play');
+
+            $('#iframe').trigger({type: "prolong"});
+            $.postMessage(JSON.stringify(postObj), postUrl, iframe.get(0).contentWindow);
+        });
+
+        $('#stop_btn').on('click', function () {
+            var iframe = $('#iframe');
+
+            updateButtonState('stop');
+
+            $.postMessage(JSON.stringify({name: 'stop_widget'}), postUrl, iframe.get(0).contentWindow);
+        });
+
+        $('input[name="project_name"], input[name="hpcs_key"], input[name="hpcs_secret_key"]').on('change', function () {
+            if (credentialsChecked()) {
+                $('#play_btn').removeClass('disabled');
+            } else {
+                $('#play_btn').addClass('disabled');
+            }
+        });
+    }
 
     function getAdvanced() {
         var $advanced = $('#advanced');
