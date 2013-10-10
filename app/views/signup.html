@@ -69,7 +69,7 @@
                     </tr>
                 </table>
                 <div id="switchToSignUpForm" class="formSwitch">Don't have activation code? <span class="clickText">Click here</span></div>
-                <button id="codeSubmitBtn" class="submitBtn">Activate</button>
+                <button id="codeSubmitBtn" class="submitBtn" ng-class="isValidating == true && 'submitBtnDisabled' || 'submitBtn'">Activate</button>
             </form>
         </div>
     </div>

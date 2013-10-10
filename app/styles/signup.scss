@@ -93,6 +93,20 @@
     font-size: 20px;
   }
 
+  .submitBtnDisabled {
+    position: relative;
+    right: 10px;
+    width: 100px;
+    height: 40px;
+    float: right;
+    background-color: #dcdcdc;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+    cursor: default;
+  }
+
   #formFooterText {
     position: absolute;
   }

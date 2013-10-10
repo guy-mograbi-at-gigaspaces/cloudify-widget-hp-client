@@ -3,7 +3,7 @@
 angular.module('cloudifyWidgetHpClientApp')
     .controller('SignupCtrl', function ($scope, $cookieStore, $location, widgetService) {
         $scope.currentStep = 3;
-
+        $scope.isValidating = false;
 
         $('#submitBtn').click(function() {
             var formData = {
@@ -47,15 +47,22 @@ angular.module('cloudifyWidgetHpClientApp')
         });
 
         $('#codeSubmitBtn').click(function() {
+            if ($scope.isValidating) {
+                return;
+            }
+
+            $scope.isValidating = true;
+
             var codeFormData = {
                 'code' : $.trim($('#code').val()),
                 'leadId' : $cookieStore.get('leadId')
             };
 
             widgetService.validateCode(codeFormData, function() {
-                $location.path('/registered');
-
+                $scope.isValidating = false;
             });
+
+            $location.path('/registered');
         });
 
         $('#switchToActivationForm, #switchToSignUpForm').click(function() {
