@@ -22,6 +22,7 @@ $HEADER_TOTAL_HEIGHT:$HEADER_PADDING + $HEADER_HEIGHT;
 
 html, body {
   height: 100%;
+  width: 100%;
 }
 
 .hp-header{
@@ -75,11 +76,13 @@ html, body {
   width: 100%;
   height: 115px;
   cursor: pointer;
+  min-width: 1290px;
 }
 
 #main-menu {
   position: relative;
   background: url(/images/navBG.png) repeat;
+  min-width: 1250px;
 
   .container {
     width: 900px;
