@@ -21,6 +21,7 @@ angular.module('cloudifyWidgetHpClientApp')
         $scope.widgetClick = function (widget) {
             $scope.widgetLog = [];
             $scope.selectedWidget = widget;
+            $('#iframe').trigger({type: 'widget_change'});
         };
 
         $scope.onTimeout = function() {
@@ -84,8 +85,6 @@ angular.module('cloudifyWidgetHpClientApp')
                 } else {
                     $scope.widgetLog.splice($scope.widgetLog.length - 2, 0, log.html);
                 }
-
-//                $scope.widgetLog.push(log.html);
             });
         });
 

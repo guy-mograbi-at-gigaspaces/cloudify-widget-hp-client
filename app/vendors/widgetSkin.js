@@ -13,6 +13,7 @@ $(function () {
     });
 
     function setEventHandling() {
+
         $('#play_btn').on('click', function() {
             if (!credentialsChecked()) {
                 return;
@@ -44,6 +45,10 @@ $(function () {
             } else {
                 $('#play_btn').addClass('disabled');
             }
+        });
+
+        $('#iframe').live('widget_change', function() {
+            updateButtonState('stop');
         });
     }
 
