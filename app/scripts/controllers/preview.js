@@ -5,6 +5,7 @@ angular.module('cloudifyWidgetHpClientApp')
 
         var timeout = 0;
         var milliseconds = 0;
+        var isNewWidgetSelected = false;
         $scope.currentStep = $location.path() === '/registered' ? 4 : 2;
         $scope.selectedWidget = {};
         $scope.widgetTime = '';
@@ -19,8 +20,11 @@ angular.module('cloudifyWidgetHpClientApp')
             });
 
         $scope.widgetClick = function (widget) {
-            $scope.widgetLog = [];
+            $scope.$apply(function() {
+                $scope.widgetLog = [];
+            });
             $scope.selectedWidget = widget;
+            isNewWidgetSelected = true;
             $('#iframe').trigger({type: 'widget_change'});
         };
 
@@ -38,6 +42,13 @@ angular.module('cloudifyWidgetHpClientApp')
                 $scope.manageUrl = 'http://' + e.status.publicIp + ':8099/';
             } else {
                 $scope.manageUrl = null;
+            }
+
+            if (isNewWidgetSelected) {
+                $scope.$apply(function() {
+                    $scope.widgetLog = e.status.output;
+                    isNewWidgetSelected = false;
+                });
             }
 
             _startTimer();
@@ -78,12 +89,15 @@ angular.module('cloudifyWidgetHpClientApp')
         });
 
         $('#iframe').live('widget_log', function(log) {
+            if (isNewWidgetSelected) {
+                return;
+            }
             $scope.$apply(function() {
                 if (log.html.charAt(0) === '.') {
                     $scope.widgetLog.pop();
                     $scope.widgetLog.push(log.html);
                 } else {
-                    $scope.widgetLog.splice($scope.widgetLog.length - 2, 0, log.html);
+                    $scope.widgetLog.splice($scope.widgetLog.length - 1, 0, log.html);
                 }
             });
         });
