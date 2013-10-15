@@ -20,9 +20,7 @@ angular.module('cloudifyWidgetHpClientApp')
             });
 
         $scope.widgetClick = function (widget) {
-            $scope.$apply(function() {
-                $scope.widgetLog = [];
-            });
+            $scope.widgetLog = [];
             $scope.selectedWidget = widget;
             isNewWidgetSelected = true;
             $('#iframe').trigger({type: 'widget_change'});
