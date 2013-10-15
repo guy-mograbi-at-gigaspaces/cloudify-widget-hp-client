@@ -13,7 +13,6 @@ $(function () {
     });
 
     $('#play_btn').live('click', function() {
-        alert('in live play click');
         if (!credentialsChecked()) {
             return;
         }
