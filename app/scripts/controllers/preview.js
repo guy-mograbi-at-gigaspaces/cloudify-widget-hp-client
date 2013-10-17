@@ -20,6 +20,8 @@ angular.module('cloudifyWidgetHpClientApp')
             });
 
         $scope.widgetClick = function (widget) {
+            $scope.manageUrl = null;
+            $scope.consoleUrl = null;
             $scope.widgetLog = [];
             $scope.selectedWidget = widget;
             isNewWidgetSelected = true;
@@ -40,6 +42,12 @@ angular.module('cloudifyWidgetHpClientApp')
                 $scope.manageUrl = 'http://' + e.status.publicIp + ':8099/';
             } else {
                 $scope.manageUrl = null;
+            }
+
+            if (e.status.instanceIsAvailable === true) {
+                $scope.consoleUrl = e.status.consoleLink.url;
+            } else {
+                $scope.consoleUrl = null;
             }
 
             if (isNewWidgetSelected) {

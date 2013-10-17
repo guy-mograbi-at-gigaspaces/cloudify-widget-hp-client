@@ -9,7 +9,7 @@
             <ul id="log">
                 <li ng-repeat="msg in widgetLog" ng-bind-html-unsafe="msg"></li>
             </ul>
-            <ul id="links"><li id="manageApp" ng-show="manageUrl != null"><a href="{{manageUrl}}" target="_blank">Manage your app</a></li><li ng-show="selectedWidget.productName != null"><div class="consoleManageArrow"></div>{{selectedWidget.productName}} Console</li></ul>
+            <ul id="links"><li id="manageApp" ng-show="manageUrl != null"><a href="{{manageUrl}}" target="_blank">Manage your app</a></li><li ng-show="consoleUrl != null"><div class="consoleManageArrow"></div><a href="{{consoleUrl}}" target="_blank">{{selectedWidget.productName}} Console</a></li></ul>
             <span id="time_left" ng-class="currentStep == '2' && 'visible' || 'hidden'">
                 Time left:
                 <span id="time_left_counter">{{widgetTime}}</span>
