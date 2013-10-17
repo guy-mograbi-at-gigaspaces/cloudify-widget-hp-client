@@ -29,15 +29,15 @@
                 <table>
                     <tr>
                         <td>First name <span class="requiredStar">*</span></td>
-                        <td><input type="text" id="fname" required autofocus></td>
+                        <td><input type="text" id="fname" ng-model="formData.fname" required autofocus></td>
                     </tr>
                     <tr>
                         <td>Last name <span class="requiredStar">*</span></td>
-                        <td><input type="text" id="lname" required></td>
+                        <td><input type="text" id="lname" ng-model="formData.lname" required></td>
                     </tr>
                     <tr>
                         <td>Email <span class="requiredStar">*</span></td>
-                        <td><input type="email" id="email" autocomplete="off" required></td>
+                        <td><input type="email" id="email" ng-model="formData.email" autocomplete="off" required></td>
                     </tr>
                     <tr>
                         <td>Phone</td>
@@ -63,6 +63,10 @@
                     From: Cloudify Player
                 </div>
                 <table>
+                    <tr>
+                        <td>Mail</td>
+                        <td><input type="text" id="activationMail" value="{{formData.email}}"></td>
+                    </tr>
                     <tr>
                         <td>Enter Code</td>
                         <td><input type="text" id="code" autofocus></td>

@@ -113,6 +113,7 @@ $(function () {
                     $key.val(msg.key);
                     $secretKey.val(msg.secretKey);
                 } else if (msg.name === 'widget_status') {
+                    console.log(msg.status);
                     $('#iframe').trigger({
                         type: "widget_status",
                         status: msg.status

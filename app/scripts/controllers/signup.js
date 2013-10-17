@@ -4,33 +4,27 @@ angular.module('cloudifyWidgetHpClientApp')
     .controller('SignupCtrl', function ($scope, $cookieStore, $location, widgetService) {
         $scope.currentStep = 3;
         $scope.isValidating = false;
+        $scope.formData = {};
 
         $('#submitBtn').click(function() {
-            var formData = {
-                'fname' : $('#fname').val(),
-                'lname' : $('#lname').val(),
-                'email' : $('#email').val()
-            };
-
-//            mixpanel.alias(formData.email);
-            mixpanel.identify(formData.email);
-            mixpanel.people.identify( formData.email );
+            mixpanel.identify($scope.formData.email);
+            mixpanel.people.identify( $scope.formData.email );
             mixpanel.people.set({
                 '$created': new Date(),
-                '$first_name':formData.fname,
-                '$last_name':formData.lname,
-                'First name': formData.fname,
-                'Last name': formData.lname,
+                '$first_name':$scope.formData.fname,
+                '$last_name':$scope.formData.lname,
+                'First name': $scope.formData.fname,
+                'Last name': $scope.formData.lname,
                 'Signup date': new Date(),
                 'resource':'appCatalogUser',
-                '$email': formData.email
+                '$email': $scope.formData.email
             });
             mixpanel.register({gender: 'male'});
-            mixpanel.track('Signup', formData );
+            mixpanel.track('Signup', $scope.formData );
 
-            $cookieStore.put('leadMail', formData.email);
+            $cookieStore.put('leadMail', $scope.formData.email);
 
-            widgetService.updateLead(formData)
+            widgetService.updateLead($scope.formData)
                 .then(function(data) {
                     $cookieStore.put('leadId', data.id);
                     $cookieStore.put('formSubmitted', true);
