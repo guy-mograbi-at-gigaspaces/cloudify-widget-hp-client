@@ -28,7 +28,8 @@ angular.module('cloudifyWidgetHpClientApp', ['ngCookies'])
                 controller: 'LearnCtrl'
             })
             .when('/support', {
-                templateUrl: 'views/support.html'
+                templateUrl: 'views/support.html',
+                controller: 'SupportCtrl'
             })
             .when('/landing', {
                 templateUrl: 'views/landing.html',

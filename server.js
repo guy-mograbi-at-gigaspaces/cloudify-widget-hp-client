@@ -14,6 +14,7 @@
  * Express Dependencies
  */
 var log4js = require('log4js');
+var nodemailer = require("nodemailer");
 var express = require('express');
 var ajax = require("http");
 var conf = require("./backend/appConf");
@@ -271,6 +272,35 @@ app.post('/backend/prolong', function(request, response) {
     req.write(post_data);
 
     req.end();
+});
+
+app.post('/backend/feedback', function(request, response) {
+
+    var smtpTransport = nodemailer.createTransport("SMTP", {
+        "host": "pod51010.outlook.com",
+        "port": "587",
+        "auth": {
+            user: conf.mailUser,
+            pass: conf.mailPass
+        }
+    });
+
+    var mailOptions = {
+        from: "Cloudifysource <noreply@cloudifysource.org>", // sender address
+        to: conf.feedbackMail, // list of receivers
+        subject: "Feedback from website", // Subject line
+        html: "Name:" + request.body.name + "<br>Email: " + request.body.email + "<br>Feedback: " + request.body.feedback// html body
+    }
+
+    // send mail with defined transport object
+    smtpTransport.sendMail(mailOptions, function(error, response){
+        if(error){
+            console.log(error);
+        }else{
+            console.log("Message sent: " + response.message);
+        }
+
+    });
 });
 
 app.post('/backend/reportError', function(request) {

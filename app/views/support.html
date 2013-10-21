@@ -15,4 +15,22 @@
             <li>Gigaspaces Cloudify <a href="#" target="_blank">terms of use</a></li>
         </ul>
     </div>
+    <div id="feedback">
+        <form>
+            <div class="feedbackTitle">Feedback</div>
+            <table>
+                <tr>
+                    <td>Name <span class="requiredStar">*</span></td>
+                    <td><input type="text" id="feedbackName" ng-model="feedbackData.name" required autofocus></td>
+                </tr>
+                <tr>
+                    <td>Email <span class="requiredStar">*</span></td>
+                    <td><input type="email" id="feedbackEmail" ng-model="feedbackData.email" autocomplete="off" required></td>
+                </tr>
+            </table>
+            Feedback
+            <textarea id="feedbackText" ng-model="feedbackData.feedback" required></textarea>
+            <button id="feedbackSubmitBtn" class="submitBtn" ng-click="sendFeedback()">Send</button>
+        </form>
+    </div>
 </div>

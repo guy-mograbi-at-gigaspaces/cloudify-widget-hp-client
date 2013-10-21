@@ -42,8 +42,8 @@
 
 var publicConfiguration = {
     widgetServer: "launch.cloudifysource.org",
-    mixpanelCode: null
-
+    mixpanelCode: null,
+    feedbackMail: "erez@gigaspaces.com"
 };
 
 var privateConfiguration = {

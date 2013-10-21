@@ -141,4 +141,7 @@ angular.module('cloudifyWidgetHpClientApp')
         }
 
         $('#selectedArrow').css({opacity: 0});
+        if ($location.path() === '/registered' && $cookieStore.get('leadId') === undefined) {
+            $location.path('/preview');
+        }
     });
