@@ -14,5 +14,5 @@ angular.module('cloudifyWidgetHpClientApp')
 
         $scope.sendFeedback = function() {
             $http.post('/backend/feedback', $scope.feedbackData);
-        }
+        };
     });
