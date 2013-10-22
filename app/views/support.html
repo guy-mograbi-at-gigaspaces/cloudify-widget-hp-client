@@ -1,35 +1,37 @@
-<div id="support-content">
-    <div id="supportText">
-        <ul>
-            <li>To create an HP Cloud Account: <a href="mailto:sales@hpcloud.com" target="_blank">sales@hpcloud.com</a> or <a href="http://www.hpcloud.com/free-trial" target="_blank">Click Here</a></li>
-            <li>For Cloudify support: <a href="#" target="_blank">Click Here</a></li>
-            <li>For HP Cloud support:
-                <ul>
-                    <li>Call 855-612-5683 US/Can +1 678-745-9010 from all other countries</li>
-                    <li>Email <a href="mailto:support@hpcloud.com">support@hpcloud.com</a> or <a href="http://www.hpcloud.com/about/contact" target="_blank">Click Here</a></li>
-                </ul>
-            </li>
-            <li>For GigaSpaces support <a href="https://cloudifysource.zendesk.com/forums" target="_blank">Click Here</a></li>
-            <li>HP Public Cloud <a href="http://www.hpcloud.com/legal-documents" target="_blank">Terms of Use</a></li>
-            <li>GigaSpaces Cloudify <a href="#" target="_blank">Terms of Use</a></li>
-        </ul>
-    </div>
-    <div id="feedback">
-        <form>
-            <div class="feedbackTitle">Feedback</div>
-            <table>
-                <tr>
-                    <td>Name <span class="requiredStar">*</span></td>
-                    <td><input type="text" id="feedbackName" ng-model="feedbackData.name" required autofocus></td>
-                </tr>
-                <tr>
-                    <td>Email <span class="requiredStar">*</span></td>
-                    <td><input type="email" id="feedbackEmail" ng-model="feedbackData.email" autocomplete="off" required></td>
-                </tr>
-            </table>
-            Feedback
-            <textarea id="feedbackText" ng-model="feedbackData.feedback" required></textarea>
-            <button id="feedbackSubmitBtn" class="submitBtn" ng-click="sendFeedback()">Send</button>
-        </form>
+<div layout show-steps="false">
+    <div id="support-content">
+        <div id="supportText">
+            <ul>
+                <li>To create an HP Cloud Account: <a href="mailto:sales@hpcloud.com" target="_blank">sales@hpcloud.com</a> or <a href="http://www.hpcloud.com/free-trial" target="_blank">Click Here</a></li>
+                <li>For Cloudify support: <a href="#" target="_blank">Click Here</a></li>
+                <li>For HP Cloud support:
+                    <ul>
+                        <li>Call 855-612-5683 US/Can +1 678-745-9010 from all other countries</li>
+                        <li>Email <a href="mailto:support@hpcloud.com">support@hpcloud.com</a> or <a href="http://www.hpcloud.com/about/contact" target="_blank">Click Here</a></li>
+                    </ul>
+                </li>
+                <li>For GigaSpaces support <a href="https://cloudifysource.zendesk.com/forums" target="_blank">Click Here</a></li>
+                <li>HP Public Cloud <a href="http://www.hpcloud.com/legal-documents" target="_blank">Terms of Use</a></li>
+                <li>GigaSpaces Cloudify <a href="#" target="_blank">Terms of Use</a></li>
+            </ul>
+        </div>
+        <div id="feedback">
+            <form>
+                <div class="feedbackTitle">Feedback</div>
+                <table>
+                    <tr>
+                        <td>Name <span class="requiredStar">*</span></td>
+                        <td><input type="text" id="feedbackName" ng-model="feedbackData.name" required autofocus></td>
+                    </tr>
+                    <tr>
+                        <td>Email <span class="requiredStar">*</span></td>
+                        <td><input type="email" id="feedbackEmail" ng-model="feedbackData.email" autocomplete="off" required></td>
+                    </tr>
+                </table>
+                Feedback
+                <textarea id="feedbackText" ng-model="feedbackData.feedback" required></textarea>
+                <button id="feedbackSubmitBtn" class="submitBtn" ng-click="sendFeedback()">Send</button>
+            </form>
+        </div>
     </div>
 </div>

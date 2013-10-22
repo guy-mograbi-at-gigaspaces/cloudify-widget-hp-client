@@ -135,6 +135,11 @@ $FOOTER_HEIGHT:80px;
 
 #footer{
   height:$FOOTER_HEIGHT;
+
+  &.hidden{
+    display:none;
+  }
+
   #stepsBar{
     height:$FOOTER_HEIGHT;
     .stepsWrapper{

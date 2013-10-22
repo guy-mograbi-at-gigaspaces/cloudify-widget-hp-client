@@ -93,6 +93,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 data.leadMail = $cookieStore.get('leadMail');
             }
 
+
             widgetService.reportError(data);
         });
 
