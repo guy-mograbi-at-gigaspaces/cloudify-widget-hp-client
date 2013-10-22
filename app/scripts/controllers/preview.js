@@ -93,6 +93,11 @@ angular.module('cloudifyWidgetHpClientApp')
                 data.leadMail = $cookieStore.get('leadMail');
             }
 
+            if (mixpanel.get_distinct_id() !== undefined) {
+                mixpanel.identify(data.leadMail);
+                mixpanel.people.identify(data.leadMail);
+                mixpanel.track('HP Widget error', data);
+            }
 
             widgetService.reportError(data);
         });
