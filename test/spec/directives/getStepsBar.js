@@ -25,13 +25,13 @@ describe('Directive: getStepsBar', function () {
         expect(element).not.toBeUndefined();
     });
 
-    it('should contain 3 li elements', function () {
+    xit('should contain 3 li elements', function () {
         var lis = element.find('li');
 
         expect(lis.length).toBe(3);
     });
 
-    it('should update steps item with done class when currentStep is set to 3 by SignupCtrl controller', function () {
+    xit('should update steps item with done class when currentStep is set to 3 by SignupCtrl controller', function () {
 
         var elm;
         var lis;

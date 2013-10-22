@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('cloudifyWidgetHpClientApp')
-    .controller('DemoCtrl', function ($scope,$location) {
+    .controller('DemoCtrl', function ($scope) {
         $scope.currentStep = 1;
     });

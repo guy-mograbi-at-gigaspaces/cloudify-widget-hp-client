@@ -5,8 +5,6 @@ angular.module('cloudifyWidgetHpClientApp')
         return {
             templateUrl: '/views/widgetSkin.html',
             restrict: 'A',
-            scope: false,
-            link: function postLink(scope, element, attrs) {
-            }
+            scope: false
         };
     });

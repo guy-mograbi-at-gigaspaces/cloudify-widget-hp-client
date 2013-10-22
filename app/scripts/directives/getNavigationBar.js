@@ -26,7 +26,7 @@ angular.module('cloudifyWidgetHpClientApp')
             scope.isActive = function( page ){
                 return page.path === scope.currentPath;
             };
-            scope.$watch(function(){ return $location.path() }, function(){
+            scope.$watch(function(){ return $location.path(); }, function(){
                 scope.currentPath = $location.path();
             });
 

@@ -10,7 +10,7 @@ angular.module('cloudifyWidgetHpClientApp')
             scope:{
                 currentStep:'='
             },
-            link: function(scope, element) {
+            link: function(scope) {
 
                 scope.steps = [
                     { 'index': '1', 'label': 'See the demo' },
