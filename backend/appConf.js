@@ -42,8 +42,7 @@
 
 var publicConfiguration = {
     widgetServer: "launch.cloudifysource.org",
-    mixpanelCode: null,
-    feedbackMail: exports.feedbackMail
+    mixpanelCode: null
 };
 
 var privateConfiguration = {
@@ -62,7 +61,10 @@ var privateConfiguration = {
             }
         ],
         replaceConsole: true
-    }
+    },
+    feedbackMail: exports.SMTP.feedbackMail,
+    mailUser: 'my@email.com',
+    mailPass: 'password123'
 }
 
 
