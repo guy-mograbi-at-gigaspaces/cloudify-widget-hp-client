@@ -20,19 +20,21 @@ $HEADER_HEIGHT:21px;
 
 $HEADER_TOTAL_HEIGHT:$HEADER_PADDING + $HEADER_HEIGHT;
 
-html, body {
+html, body, .body {
   height: 100%;
   width: 100%;
+  margin:0;
+  padding:0;
 }
 
-.hp-header{
+.hp-header {
 
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
 
-  height:$HEADER_HEIGHT;
+  height: $HEADER_HEIGHT;
   padding: 10px 20px 20px 20px;
 
   background-color: #f5f5f5;
@@ -41,29 +43,49 @@ html, body {
   -webkit-box-shadow: #909090 0 1px 8px;
   box-shadow: #909090 0 1px 8px;
 
-  .navigation {
 
-    ul {
-      margin:0;
-      padding:0;
-      list-style: none;
-      list-style-image: none;
+    position: relative;
+    background: url(/images/navBG.png) repeat;
+    min-width: 1250px;
 
-      li {
-        float:left;
-        position:relative;
+    .container {
+      width: 900px;
 
-        a {
-          display:block;
-          padding: 5px 30px;
-          float:left;
-          margin-right:5px;
-          text-decoration: none;
-          color: #414141;
+    .navigation {
+
+      width: 900px;
+      margin: 0 auto;
+      position: relative;
+
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        list-style-image: none;
+
+        li {
+          float: left;
+          position: relative;
+
+          &.active a, a:hover{
+              background-color: rgba(0, 0, 0, 0.3);
+              color: white
+          }
+
+          a {
+            display: block;
+            padding: 5px 30px;
+            float: left;
+            margin-right: 5px;
+            text-decoration: none;
+            color: #414141;
+
+            border-radius: 10px;
+          }
         }
       }
-    }
-  }
+    } }
+
 }
 
 #container.container{
@@ -71,34 +93,15 @@ html, body {
   background: url(/images/pageBG.png) repeat;
 }
 
+$LOGO_HEIGHT:115px;
 #main-header {
   background: #42bff4 url(/images/header.png) no-repeat center center;
   width: 100%;
-  height: 115px;
+  height: $LOGO_HEIGHT;
   cursor: pointer;
   min-width: 1290px;
 }
 
-#main-menu {
-  position: relative;
-  background: url(/images/navBG.png) repeat;
-  min-width: 1250px;
-
-  .container {
-    width: 900px;
-  }
-
-  .navigation {
-    width: 900px;
-    margin: 0 auto;
-    position: relative;
-
-    a:hover {
-      color: #0096d6;
-      text-shadow: none;
-    }
-  }
-}
 
 #main-content {
   width: 1290px;
@@ -116,84 +119,99 @@ html, body {
   background: url(/images/widgetBG.png) repeat;
 }
 
-$stepsBarHeight:80px;
+$FOOTER_HEIGHT:80px;
 
-#stepsBar{
-  height:$stepsBarHeight;
-  .stepsWrapper{
-    float: left;
-    cursor: auto;
-    position: fixed;
-    bottom: 0px;
-    height: $stepsBarHeight;
-    width: 100%;
-    overflow: hidden;
-    background-color: #dcdcdc;
+#content-wrapper{
+  min-height: 100%;
+  height: auto !important;
+  margin-bottom:-$FOOTER_HEIGHT;
+  height: 100%;
+  margin: 0 auto -$FOOTER_HEIGHT; /* the bottom margin is the negative value of the footer's height */
+}
+#push{
+  height:$FOOTER_HEIGHT;
 
-    ul {
-      width: 545px;
-      margin: 10px auto;
-      background: transparent url(/images/steps.png) no-repeat center 9px;
+}
 
-      .activeText {
-        color: #184155;
-      }
+#footer{
+  height:$FOOTER_HEIGHT;
+  #stepsBar{
+    height:$FOOTER_HEIGHT;
+    .stepsWrapper{
+      float: left;
+      cursor: auto;
 
-      li {
-        display: inline-block;
-        height: 30px;
-        line-height: 30px;
-        width: 180px;
-        margin: 5px 1px 0 0;
-        position: relative;
-        text-align: center;
-        color: #a6a6a6;
-        font-size: 14px;
-        word-wrap:normal;
+      height: $FOOTER_HEIGHT;
+      width: 100%;
+      overflow: hidden;
+      background-color: #dcdcdc;
 
-        .stepIcon {
-          width: 27px;
-          height: 27px;
-          margin-left: auto;
-          margin-right: auto;
-          font-size: 14px;
+      ul {
+        width: 545px;
+        margin: 10px auto;
+        background: transparent url(/images/steps.png) no-repeat center 9px;
+
+        .activeText {
+          color: #184155;
+        }
+
+        li {
+          display: inline-block;
+          height: 30px;
+          line-height: 30px;
+          width: 180px;
+          margin: 5px 1px 0 0;
+          position: relative;
+          text-align: center;
           color: #a6a6a6;
+          font-size: 14px;
+          word-wrap:normal;
+
+          .stepIcon {
+            width: 27px;
+            height: 27px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 14px;
+            color: #a6a6a6;
+          }
+
+          .activeStep {
+            position: relative;
+            top: 2px;
+            left: 1px;
+            width: 26px;
+            height: 28px;
+            background: url(/images/activeStep.png) no-repeat 0px 1px;
+            color: #fff;
+          }
+
+          .done {
+            position: relative;
+            top: 7px;
+            width: 16px;
+            height: 27px;
+            color: transparent;
+            background: url(/images/stepDone.png) no-repeat;
+          }
         }
 
-        .activeStep {
-          position: relative;
-          top: 2px;
+        .step1 {
+          left: -33px;
+        }
+
+        .step2 {
           left: 1px;
-          width: 26px;
-          height: 28px;
-          background: url(/images/activeStep.png) no-repeat 0px 1px;
-          color: #fff;
         }
 
-        .done {
-          position: relative;
-          top: 7px;
-          width: 16px;
-          height: 27px;
-          color: transparent;
-          background: url(/images/stepDone.png) no-repeat;
+        .step3 {
+          left: 38px;
         }
-      }
-
-      #step1 {
-        left: -33px;
-      }
-
-      #step2 {
-        left: 1px;
-      }
-
-      #step3 {
-        left: 38px;
       }
     }
   }
 }
+
 
 #mainText {
   position: relative;

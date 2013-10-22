@@ -4,41 +4,28 @@ angular.module('cloudifyWidgetHpClientApp')
   .directive('getStepsBar', function () {
         return {
             template: '<div class="stepsWrapper"><ul id="stepsList">' +
-                '<li id="step1">' +
-                    '<div class="stepIcon">1</div>' +
-                    'See the demo' +
-                '</li>' +
-                '<li id="step2">' +
-                    '<div class="stepIcon">2</div>' +
-                    'Start free 60 min. preview' +
-                '</li>' +
-                '<li id="step3">' +
-                    '<div class="stepIcon">3</div>' +
-                    'Signup for free 30 days trial' +
-                '</li>' +
+                '<li class="step{{step.index}}" ng-repeat="step in steps"><div class="stepIcon" ng-class="stepClass(step)">{{step.index}}</div>{{step.label}}</li>' +
               '</ul></div>',
             restrict: 'AE',
+            scope:{
+                currentStep:'='
+            },
             link: function(scope, element) {
-                var lis = $(element).find('li');
 
-                for(var i = 1; i <= lis.length; i++) {
-                    var elm = $(lis[i - 1]).find('div');
+                scope.steps = [
+                    { 'index': '1', 'label': 'See the demo' },
+                    { 'index': '2', 'label': 'Start free 60 min. preview' },
+                    { 'index': '3', 'label': 'Signup for free 30 days trial' }
+                ];
 
-                    if (i < scope.currentStep) {
-                        elm.addClass('done');
-                    } else if (i === scope.currentStep) {
-                        elm.addClass('activeStep');
-                        $(lis[i - 1]).toggleClass('activeText');
-                    } else {
-                        elm.removeClass('done');
+                scope.stepClass = function( step ){
+
+                    if ( step.index < scope.currentStep  ){
+                        return 'done';
+                    }else if ( step.index === scope.currentStep ){
+                        return 'activeStep activeText';
                     }
-                }
-
-                scope.$watch('currentStep', function() {
-                    if (scope.currentStep === 4) {
-                        $('#stepsBar').hide();
-                    }
-                });
+                };
             }
         };
     });

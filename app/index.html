@@ -35,9 +35,10 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div id="main-header" onclick="window.location = '/';"></div>
-    <div get-navigation-bar id="main-menu" class="hp-header"></div>
-    <div id="container" class="container" ng-view=""></div>
+    <!--<div id="main-header" onclick="window.location = '/';"></div>-->
+    <!--<div get-navigation-bar id="main-menu" class="hp-header"></div>-->
+    <div ng-view="" class="body"></div>
+    <!--<div get-steps-bar id="stepsBar" current-step="{{currentStep}}"></div>-->
     <!--<div get-steps-bar id="stepsBar" current-step=stepsService.currentStep></div>-->
 
     <script src="vendors/jquery.min.js"></script>
@@ -68,7 +69,6 @@
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="scripts/directives/getFooter.js"></script>
     <script src="scripts/directives/getNavigationBar.js"></script>
     <script src="scripts/directives/getStepsBar.js"></script>
     <script src="scripts/services/widgetService.js"></script>
@@ -78,6 +78,8 @@
     <script src="scripts/controllers/learn.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/support.js"></script>
+    <script src="scripts/directives/widget.js"></script>
+    <script src="scripts/directives/layout.js"></script>
     <!-- endbuild -->
 
 
