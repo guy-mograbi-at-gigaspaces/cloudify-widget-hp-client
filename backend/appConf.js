@@ -62,7 +62,7 @@ var privateConfiguration = {
         ],
         replaceConsole: true
     },
-    feedbackMail: exports.SMTP.feedbackMail,
+    feedbackMail: exports.feedbackMail,
     mailUser: 'my@email.com',
     mailPass: 'password123'
 }
