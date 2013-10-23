@@ -145,8 +145,4 @@ angular.module('cloudifyWidgetHpClientApp')
 
             return timeToDisplay;
         }
-
-        if ($location.path() === '/registered' && $cookieStore.get('leadId') === undefined) {
-            $location.path('/preview');
-        }
     });
