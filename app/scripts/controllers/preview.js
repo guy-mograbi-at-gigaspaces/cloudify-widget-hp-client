@@ -7,7 +7,7 @@ angular.module('cloudifyWidgetHpClientApp')
         var milliseconds = 0;
         var isNewWidgetSelected = false;
         $scope.currentStep = $location.path() === '/registered' ? 4 : 2;
-        $scope.selectedWidget = {};
+        $scope.selectedWidget = null;
         $scope.widgetTime = '';
         $scope.pageUrl = $location.protocol() +'://' + $location.host();
         $scope.conf = window.conf;
@@ -146,7 +146,6 @@ angular.module('cloudifyWidgetHpClientApp')
             return timeToDisplay;
         }
 
-        $('#selectedArrow').css({opacity: 0});
         if ($location.path() === '/registered' && $cookieStore.get('leadId') === undefined) {
             $location.path('/preview');
         }
