@@ -317,38 +317,51 @@ body {
   top: 37px;
   right: 230px;
   height: 100px;
+
+  .play{
+    #play_btn{display:none;}
+  }
+
+  .stop{
+
+
+    #stop_btn{ display:none;}
+  }
+
+  .button {
+    height: 80px;
+    width: 80px;
+    position: absolute;
+    top: 95px;
+    left: 40px;
+    background-color: #fff;
+    border-radius: 70px;
+    border: 8px double #dbdbdb;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  #play_btn {
+    width: 0px;
+    height: 0px;
+    top: 16px;
+    left: 32px;
+    position: relative;
+    border-radius: 5px;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-left: 30px solid #ff5a00;
+    &.disabled {
+      border-left: 30px solid #dbdbdb;
+    }
+  }
 }
 
-#controls .button {
-  height: 80px;
-  width: 80px;
-  position: absolute;
-  top: 95px;
-  left: 40px;
-  background-color: #fff;
-  border-radius: 70px;
-  border: 8px double #dbdbdb;
-}
 
-#controls .button:hover {
-  cursor: pointer;
-}
 
-#play_btn {
-  width: 0px;
-  height: 0px;
-  top: 16px;
-  left: 32px;
-  position: relative;
-  border-radius: 5px;
-  border-top: 25px solid transparent;
-  border-bottom: 25px solid transparent;
-  border-left: 30px solid #ff5a00;
-}
 
-#play_btn.disabled {
-  border-left: 30px solid #dbdbdb;
-}
+
 
 #stop_btn {
   background-color: #ff5a00;
@@ -358,7 +371,6 @@ body {
   top: 18px;
   position: relative;
   left: 18px;
-  display: none;
 }
 
 .form-footer-links {
