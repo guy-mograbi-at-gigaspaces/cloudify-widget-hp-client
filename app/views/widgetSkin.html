@@ -2,14 +2,17 @@
     <div id="widgetContainer">
 
         <div id="widget-header">
-            <div id="title">{{currentStep == '2' && selectedWidget.productName != undefined && "Launch " + selectedWidget.productName + " Now!"|| "Cloudify App Catalog" || "Cloudify App Catalog"}}</div>
+            <div id="title">{{currentStep == '2' && selectedWidget.productName != undefined && "Launch " + selectedWidget.productName + " Now!" || "Cloudify App Catalog" || "Cloudify App Catalog"}}</div>
         </div>
 
         <div id="logContainer">
             <ul id="log">
                 <li ng-repeat="msg in widgetLog" ng-bind-html-unsafe="msg"></li>
             </ul>
-            <ul id="links"><li id="manageApp" ng-show="manageUrl != null"><a href="{{manageUrl}}" target="_blank">Manage your app</a></li><li ng-show="consoleUrl != null"><div class="consoleManageArrow"></div><a href="{{consoleUrl}}" target="_blank">{{selectedWidget.productName}} Console</a></li></ul>
+            <ul id="links">
+                <li id="manageApp" ng-show="manageUrl != null"><a href="{{manageUrl}}" target="_blank">Manage your app</a></li>
+                <li ng-show="consoleUrl != null"><div class="consoleManageArrow"></div><a href="{{consoleUrl}}" target="_blank">{{selectedWidget.productName}} Console</a></li>
+            </ul>
             <span id="time_left" ng-class="currentStep == '2' && 'visible' || 'hidden'">
                 Time left:
                 <span id="time_left_counter">{{widgetTime}}</span>
@@ -17,22 +20,17 @@
         </div>
 
         <div id="controls">
-            <div class="button" ng-class="{'play':!!play, 'stop':!play}">
-                <div id="play_btn" ng-click="playWidget()" ng-class="{disabled: playDisabled()}"></div>
+            <div class="button" ng-class="{'play':!!play,'stop':!play}">
+                <div id="play_btn" ng-click="playWidget()" ng-class="{disabled: !playEnabled}"></div>
                 <div id="stop_btn" ng-click="stopWidget()"></div>
             </div>
         </div>
 
-        <div id="video_container" ng-class="hideAdvanced() && 'videoPreview' || 'videoRegistered'">
+        <div id="video_container" ng-class="isPreview() && 'videoPreview' && 'videoRegistered'">
             <iframe id="widgetVideo" ng-src="{{selectedWidget.youtubeVideoUrl}}" frameborder="0" allowfullscreen></iframe>
         </div>
 
-        <div ng-class="hideAdvanced() && 'hidden' || 'advanced_section'" id="advanced">
-            <div class="remember_creds">
-                <div class="remember_me_title">Remember me?</div>
-                <div class="remember_option"><button class="yes" onclick="$(this).trigger('yes');">Yes</button></div>
-                <div class="remember_option"><button class="no" onclick="$(this).trigger('no');">No</button></div>
-            </div>
+        <div ng-class="isPreview() && 'hidden' || 'advanced_section'" id="advanced">
             <div id="advancedHeader">
                 <div id="advancedTitle">HP Cloud Credentials</div>
             </div>
@@ -41,9 +39,9 @@
                 <a style="display:none" id="hp_console_link" class="form-footer-links" href="http://console.hpcloud.com" target="_blank">HP Console</a>
             </div>
             <form class="advanced_form" autocomplete="off">
-                <input name="project_name" autocomplete="off" placeholder="project"/>
-                <input name="hpcs_key" autocomplete="off" placeholder="HPCS Key"/>
-                <input name="hpcs_secret_key" placeholder="HPCS Secret Key" type="password"/>
+                <input name="project_name" autocomplete="off" placeholder="project" ng-model="advanced.project_name" ng-change="advancedChange()"/>
+                <input name="hpcs_key" autocomplete="off" placeholder="HPCS Key" ng-model="advanced.hpcs_key" ng-change="advancedChange()"/>
+                <input name="hpcs_secret_key" placeholder="HPCS Secret Key" type="password" ng-model="advanced.hpcs_secret_key" ng-change="advancedChange()"/>
                 <div id="createAccount"><a href="http://www.hpcloud.com/free-trial">Create HP Public Cloud account</a></div>
                 <input type="submit" class="hidden" value="submit"/>
             </form>
@@ -51,5 +49,5 @@
 
     </div>
 
-    <iframe id="iframe" ng-src="http://{{conf.widgetServer}}/widget/widget?apiKey={{selectedWidget.apiKey}}&origin_page_url={{pageUrl}}/{{selectedWidget.apiKey}}"></iframe>
+    <iframe id="iframe" ng-src="{{postUrl}}/widget/widget?apiKey={{selectedWidget.apiKey}}&origin_page_url={{pageUrl}}/{{selectedWidget.apiKey}}"></iframe>
 </div>

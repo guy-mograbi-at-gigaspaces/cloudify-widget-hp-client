@@ -318,14 +318,20 @@ body {
   right: 230px;
   height: 100px;
 
-  .play{
-    #play_btn{display:none;}
+  .play {
+    background-color: green;
+    #play_btn {
+      background-color: red;
+      display:none;
+    }
   }
 
-  .stop{
-
-
-    #stop_btn{ display:none;}
+  .stop {
+    background-color: yellow;
+    #stop_btn {
+      background-color: blue;
+      display:none;
+    }
   }
 
   .button {
