@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <div id="video_container" ng-class="isPreview() && 'videoPreview' && 'videoRegistered'">
+        <div id="video_container" ng-class="isPreview() && 'videoPreview' || 'videoRegistered'">
             <iframe id="widgetVideo" ng-src="{{selectedWidget.youtubeVideoUrl}}" frameborder="0" allowfullscreen></iframe>
         </div>
 
