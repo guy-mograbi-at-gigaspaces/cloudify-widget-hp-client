@@ -156,7 +156,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 };
 
                 $scope.advancedChange = function() {
-                    $scope.playEnabled = $scope.credentialsChecked() && $scope.currentStep === 4;
+                    $scope.playEnabled = $scope.credentialsChecked() && $scope.currentStep === 4 && $scope.selectedWidget !== null;
                 };
 
                 $scope.onTimeout = function() {
