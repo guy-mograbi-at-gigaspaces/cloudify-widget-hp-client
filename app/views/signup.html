@@ -21,7 +21,7 @@
 
     <div id="formContainer" class="linedContainer">
 
-        <div id="detailsForm">
+        <div id="detailsForm" ng-show="showDetailsForm == true">
             <div id="formRequiredText">
                 * Reqired field
             </div>
@@ -46,15 +46,15 @@
                     </tr>
                 </table>
                 <div id="formFooterText">
-                    <div id="switchToActivationForm" class="formSwitch">Already have activation code? <span class="clickText">Click here</span></div>
+                    <div id="switchToActivationForm" class="formSwitch">Already have activation code? <span class="clickText" ng-click="toggleForms()">Click here</span></div>
                     <div class="signupDisclaimer">By clicking Sign Up you agree to the <a href="#/support">Terms of Conditions</a> of the free trial</div>
                 </div>
-                <button id="submitBtn" class="submitBtn">Sign Up</button>
+                <button id="submitBtn" class="submitBtn" ng-click="signupSubmitClick()">Sign Up</button>
 
             </form>
         </div>
 
-        <div id="codeForm">
+        <div id="codeForm" ng-show="showDetailsForm == false">
             <form id="activationForm">
                 <div class="formTitle">Activate Trial</div>
                 <div id="activateText">Please check your email for link to activate Free Trial.</div>
@@ -73,13 +73,12 @@
                         <td><input type="text" id="code" autofocus></td>
                     </tr>
                 </table>
-                <div id="switchToSignUpForm" class="formSwitch">Don't have activation code? <span class="clickText">Click here</span></div>
-                <button id="codeSubmitBtn" class="submitBtn" ng-class="isValidating == true && 'submitBtnDisabled' || 'submitBtn'">Activate</button>
+                <div id="switchToSignUpForm" class="formSwitch">Don't have activation code? <span class="clickText" ng-click="toggleForms()">Click here</span></div>
+                <button id="codeSubmitBtn" class="submitBtn" ng-click="codeSubmitClick()" ng-class="isValidating == true && 'submitBtnDisabled' || 'submitBtn'">Activate</button>
+                <button id="codeSkipBtn" class="submitBtn" ng-click="codeSkipClick()" ng-disabled="!isSignedUp">Skip</button>
             </form>
         </div>
     </div>
 
 </div>
 </div>
-<!--<div get-steps-bar id="stepsBar" current-step="{{currentStep}}"></div>-->
-

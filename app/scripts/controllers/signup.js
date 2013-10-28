@@ -3,10 +3,13 @@
 angular.module('cloudifyWidgetHpClientApp')
     .controller('SignupCtrl', function ($scope, $cookieStore, $location, widgetService) {
         $scope.currentStep = 3;
+        $scope.showDetailsForm = true;
         $scope.isValidating = false;
+        $scope.isSignedUp = false;
+        $scope.activated = false;
         $scope.formData = {};
 
-        $('#submitBtn').click(function() {
+        $scope.signupSubmitClick = function() {
             mixpanel.identify($scope.formData.email);
             mixpanel.people.identify( $scope.formData.email );
             mixpanel.people.set({
@@ -23,6 +26,9 @@ angular.module('cloudifyWidgetHpClientApp')
             mixpanel.track('Signup', $scope.formData );
 
             $cookieStore.put('leadMail', $scope.formData.email);
+            $cookieStore.put('leadFName', $scope.formData.fname);
+            $cookieStore.put('leadLName', $scope.formData.lname);
+            $scope.isSignedUp = true;
 
             widgetService.updateLead($scope.formData)
                 .then(function(data) {
@@ -37,10 +43,10 @@ angular.module('cloudifyWidgetHpClientApp')
                     widgetService.prolong(userData);
                 });
 
-            toggleForms();
-        });
+            $scope.toggleForms();
+        };
 
-        $('#codeSubmitBtn').click(function() {
+        $scope.codeSubmitClick = function() {
             if ($scope.isValidating) {
                 return;
             }
@@ -54,21 +60,30 @@ angular.module('cloudifyWidgetHpClientApp')
 
             widgetService.validateCode(codeFormData, function() {
                 $scope.isValidating = false;
+                $scope.activated = true;
             });
 
             $location.path('/registered');
-        });
+        };
 
-        $('#switchToActivationForm, #switchToSignUpForm').click(function() {
-            toggleForms();
-        });
+        $scope.codeSkipClick = function() {
+            $location.path('/free');
+        };
 
-        function toggleForms() {
-            $('#detailsForm').toggle();
-            $('#codeForm').toggle();
-        }
+        $scope.toggleForms = function() {
+            $scope.showDetailsForm = $scope.showDetailsForm === true ? false : true;
+        };
 
         if ($cookieStore.get('formSubmitted') === true) {
-            toggleForms();
+            $scope.toggleForms();
+        }
+
+        if ($cookieStore.get('leadMail') !== undefined) {
+            $scope.formData = {
+                'fname':  $cookieStore.get('leadFName'),
+                'lname':  $cookieStore.get('leadLName'),
+                'email':  $cookieStore.get('leadMail')
+            }
+            $scope.isSignedUp = true;
         }
     });

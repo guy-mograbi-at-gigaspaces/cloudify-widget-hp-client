@@ -19,6 +19,10 @@ angular.module('cloudifyWidgetHpClientApp', ['ngCookies'])
                 templateUrl: 'views/signup.html',
                 controller: 'SignupCtrl'
             })
+            .when('/free', {
+                templateUrl: 'views/preview.html',
+                controller: 'PreviewCtrl'
+            })
             .when('/registered', {
                 templateUrl: 'views/preview.html',
                 controller: 'PreviewCtrl'

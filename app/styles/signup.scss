@@ -91,6 +91,11 @@
     border-radius: 10px;
     border: none;
     font-size: 20px;
+    margin-left: 5px;
+
+    &:disabled {
+      background-color: #e3e3e3;
+    }
   }
 
   .submitBtnDisabled {
@@ -160,7 +165,6 @@
     margin: auto;
     height: 312px;
     width: 452px;
-    display: none;
 
     #activateText {
       margin-top: 5px;
