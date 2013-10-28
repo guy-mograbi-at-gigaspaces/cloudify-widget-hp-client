@@ -11,11 +11,11 @@
 
     <div id="mainStepsContainer" class="linedContainer">
         <ul>
-            <li>Step 1<button id="mainStepSeeDemo" class="submitBtn">See Demo</button></li>
-            <li>Step 2<button id="mainStepRunPreview" class="submitBtn">Run Preview</button></li>
-            <li>Step 3<button id="mainStepSignup" class="submitBtn">Free Trial</button></li>
+            <li>Step 1<button id="mainStepSeeDemo" ng-click="redirectPage('demo')" class="submitBtn">See Demo</button></li>
+            <li>Step 2<button id="mainStepRunPreview" ng-click="redirectPage('preview')" class="submitBtn">Run Preview</button></li>
+            <li>Step 3<button id="mainStepSignup" ng-click="redirectPage('signup')" class="submitBtn">Free Trial</button></li>
             <li class="orSeperator">Or</li>
-            <li><button id="mainStepRegistered" class="submitBtn">Run Cloudify</button></li>
+            <li><button id="mainStepRegistered" ng-click="redirectPage('registered')" class="submitBtn">Run Cloudify</button></li>
         </ul>
     </div>
 </div>
