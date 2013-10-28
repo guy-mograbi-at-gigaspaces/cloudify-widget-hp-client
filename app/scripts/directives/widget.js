@@ -44,7 +44,10 @@ angular.module('cloudifyWidgetHpClientApp')
                             } else {
                                 $scope.widgetLog.splice($scope.widgetLog.length - 1, 0, msg.message);
                             }
-                            _scrollLog();
+
+                            if (msg.type === 'important') {
+                                $scope.widgetLog.pop();
+                            }
 
                             if (msg.type === 'error') {
                                 var data = {};
@@ -70,6 +73,7 @@ angular.module('cloudifyWidgetHpClientApp')
                                 widgetService.reportError(data);
                             }
                         });
+                        _scrollLog();
                     },
                     'set_advanced': function(e) {
                         var msg = JSON.parse(e.data);
@@ -223,8 +227,8 @@ angular.module('cloudifyWidgetHpClientApp')
                 }
 
                 function _scrollLog() {
-                    var log = $element.find('#log');
-                    log.scrollTop(log[0].scrollHeight);
+                    var log = $element.find('#log')[0];
+                    log.scrollTop = log.scrollHeight;
                 }
 
                 $.receiveMessage(function (e) {
