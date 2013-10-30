@@ -19,7 +19,9 @@ angular.module('cloudifyWidgetHpClientApp')
             });
 
         $scope.widgetClick = function (widget) {
-            if ($scope.currentStep === 4 && $cookieStore.get('instanceId') !== null && $cookieStore.get('instanceId') !== undefined) {
+            if ($scope.currentStep === 4 &&
+                $cookieStore.get('instanceId') !== null &&
+                $cookieStore.get('instanceId') !== undefined) {
                 return;
             }
             $scope.widgetTime = '';
