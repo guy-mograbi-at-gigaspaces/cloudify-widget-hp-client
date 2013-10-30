@@ -22,11 +22,12 @@ angular.module('cloudifyWidgetHpClientApp')
         };
 
         // load user data (and extended widget validation) from API
-        this.getLead = function() {
-            return $http.get('/backend/lead/list')
-                .then(function(data) {
-                    return data.data;
-                });
+        this.getLead = function(leadData) {
+            return $http({
+                url: '/backend/lead/list',
+                method: "GET",
+                params: leadData
+            });
         };
 
         // validate code

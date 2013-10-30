@@ -15,7 +15,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 $scope.postUrl = 'http://' + window.conf.widgetServer;
                 $scope.pageUrl = $location.protocol() +'://' + $location.host();
                 $scope.play = false;
-                $scope.playEnabled = $scope.currentStep === 2 && $scope.selectedWidget !== null;
+                $scope.playEnabled = $scope.currentStep !== 5 && $scope.selectedWidget !== null;
                 $scope.advanced = {
                     project_name: '',
                     hpcs_key: '',
@@ -98,10 +98,15 @@ angular.module('cloudifyWidgetHpClientApp')
                             $scope.consoleUrl = null;
                         }
 
+                        if (msg.status.instanceId !== null) {
+                            $cookieStore.put('instanceId', msg.status.instanceId);
+                        }
+
                         if (isNewWidgetSelected) {
                             $scope.$apply(function() {
                                 $scope.widgetLog = msg.status.output;
                                 isNewWidgetSelected = false;
+                                _sendProlong();
                             });
                         }
 
@@ -128,12 +133,12 @@ angular.module('cloudifyWidgetHpClientApp')
                     }
                     $scope.widgetLog = [];
 
-                    _sendProlong();
                     $.postMessage(JSON.stringify(postObj), $scope.postUrl, iframe.get(0).contentWindow);
                 };
 
                 $scope.stopWidget = function() {
                     $scope.play = false;
+                    $cookieStore.remove('instanceId');
                     var iframe = $element.find('#iframe');
 
                     $.postMessage(JSON.stringify({name: 'stop_widget'}), $scope.postUrl, iframe.get(0).contentWindow);
@@ -156,7 +161,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 };
 
                 $scope.advancedChange = function() {
-                    $scope.playEnabled = $scope.credentialsChecked() && $scope.currentStep === 4 && $scope.selectedWidget !== null;
+                    $scope.playEnabled = $scope.credentialsChecked() && $scope.currentStep === 5 && $scope.selectedWidget !== null;
                 };
 
                 $scope.onTimeout = function() {
@@ -168,7 +173,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 $scope.$watch('selectedWidget', function(newWidget) {
                     if (newWidget !== null) {
                         $scope.play = false;
-                        $scope.playEnabled = true;
+                        $scope.playEnabled = $scope.currentStep !== 5;
                         $scope.widgetTime = '';
                         $scope.manageUrl = null;
                         $scope.consoleUrl = null;

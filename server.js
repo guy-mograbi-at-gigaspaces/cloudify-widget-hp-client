@@ -18,6 +18,7 @@ var nodemailer = require("nodemailer");
 var express = require('express');
 var ajax = require("http");
 var conf = require("./backend/appConf");
+var url = require("url");
 var app = express();
 var port = conf.port || 9000;
 
@@ -100,6 +101,49 @@ app.get('/backend/widgetslist', function(request, response, next) {
     var options = {
         hostname: conf.widgetServer,
         path: '/api/user/'+ conf.userId +'/widgets?authToken=' + conf.authToken,
+        method: 'GET'
+    };
+
+    var data = '';
+
+    var callback = function(res) {
+        var result = '';
+
+        console.log('STATUS: ' + res.statusCode);
+
+        res.setEncoding('utf8');
+        res.on('data', function (chunk) {
+            result += chunk;
+        });
+
+        res.on('end', function () {
+            var jsonStr = JSON.stringify(result);
+            data = JSON.parse(jsonStr);
+
+            console.log('Request done, data: ' + data);
+
+            response.send(data);
+        });
+    }
+
+    var onError = function(e) {
+        console.log('problem with request: ' + e.message);
+        response.send(500);
+    };
+
+    var req = ajax.request(options, callback);
+    req.on('error', onError);
+
+    req.end();
+});
+
+app.get('/backend/lead/list', function(request, response, next) {
+    var url_parts = url.parse(request.url, true);
+    var query = url_parts.query;
+
+    var options = {
+        hostname: conf.widgetServer,
+        path: '/api/user/'+ conf.userId +'/lead/' + query.leadMail + '?authToken=' + conf.authToken,
         method: 'GET'
     };
 

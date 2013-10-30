@@ -3,7 +3,7 @@
 angular.module('cloudifyWidgetHpClientApp')
     .controller('SignupCtrl', function ($scope, $cookieStore, $location, widgetService) {
         $scope.currentStep = 3;
-        $scope.showDetailsForm = true;
+        $scope.showDetailsForm = $cookieStore.get('leadMail') !== undefined;
         $scope.isValidating = false;
         $scope.isSignedUp = false;
         $scope.activated = false;
@@ -11,7 +11,7 @@ angular.module('cloudifyWidgetHpClientApp')
 
         $scope.signupSubmitClick = function() {
             mixpanel.identify($scope.formData.email);
-            mixpanel.people.identify( $scope.formData.email );
+            mixpanel.people.identify($scope.formData.email);
             mixpanel.people.set({
                 '$created': new Date(),
                 '$first_name':$scope.formData.fname,
@@ -23,7 +23,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 '$email': $scope.formData.email
             });
             mixpanel.register({gender: 'male'});
-            mixpanel.track('Signup', $scope.formData );
+            mixpanel.track('Signup', $scope.formData);
 
             $cookieStore.put('leadMail', $scope.formData.email);
             $cookieStore.put('leadFName', $scope.formData.fname);
@@ -34,6 +34,10 @@ angular.module('cloudifyWidgetHpClientApp')
                 .then(function(data) {
                     $cookieStore.put('leadId', data.id);
                     $cookieStore.put('formSubmitted', true);
+
+                    if (data.widget !== null) {
+                        $cookieStore.put('leadWidget', data.widget);
+                    }
 
                     var userData = {
                         'leadId' : data.id,
@@ -83,7 +87,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 'fname':  $cookieStore.get('leadFName'),
                 'lname':  $cookieStore.get('leadLName'),
                 'email':  $cookieStore.get('leadMail')
-            }
+            };
             $scope.isSignedUp = true;
         }
     });
