@@ -25,7 +25,7 @@ angular.module('cloudifyWidgetHpClientApp')
         this.getLead = function(leadData) {
             return $http({
                 url: '/backend/lead/list',
-                method: "GET",
+                method: 'GET',
                 params: leadData
             });
         };

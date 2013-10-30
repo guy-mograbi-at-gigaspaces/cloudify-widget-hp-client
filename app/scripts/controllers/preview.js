@@ -3,12 +3,12 @@
 angular.module('cloudifyWidgetHpClientApp')
     .controller('PreviewCtrl', function ($scope, $location, $timeout, $cookieStore, widgetService) {
 
-        $scope.currentStep = _getStepNumber();
+        $scope.currentStep = 0;
         $scope.leadMail = $cookieStore.get('leadMail');
         $scope.selectedWidget = null;
         $scope.widgetTime = '';
         $scope.conf = window.conf;
-        $scope.widgetsList;
+        $scope.widgetsList = [];
 
         widgetService.getWidgetList()
             .then(function(data) {
@@ -49,11 +49,11 @@ angular.module('cloudifyWidgetHpClientApp')
 
         function _getStepNumber() {
             if ($location.path() === '/preview') {
-                return 2;
+                $scope.currentStep = 2;
             } else if ($location.path() === '/free') {
-                return 4;
+                $scope.currentStep = 4;
             } else if ($location.path() === '/registered') {
-                return 5;
+                $scope.currentStep = 5;
             }
         }
 
@@ -64,4 +64,6 @@ angular.module('cloudifyWidgetHpClientApp')
                 }
             }
         }
+
+        _getStepNumber();
     });
