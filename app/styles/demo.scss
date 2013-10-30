@@ -7,28 +7,51 @@
   left: 300px;
 }
 
+// http://stackoverflow.com/a/11083587
+@mixin rotate( $degrees ) {
+  -webkit-transform: rotate(#{$degrees}deg);
+  -moz-transform: rotate(#{$degrees}deg);
+  -ms-transform: rotate(#{$degrees}deg);
+  -o-transform: rotate(#{$degrees}deg);
+  transform: rotate(#{$degrees}deg);
+
+  filter:  progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=#{cos($degrees)}, M12=-#{sin($degrees)}, M21=#{sin($degrees)}, M22=#{cos($degrees)});
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=#{cos($degrees)}, M12=-#{sin($degrees)}, M21=#{sin($degrees)}, M22=#{cos($degrees)})";
+  zoom: 1;
+}
+
 #demoInstructions {
+
   position: relative;
   float: right;
   width: 330px;
   height: 435px;
   padding-top: 20px;
   display: inline-block;
-  background-color: #fff;
-  box-shadow: -10px 0px 15px rgba(144, 144, 144, 0.15);
-}
+  background:url('../images/sticky.png') no-repeat;
+  //box-shadow: -10px 0px 15px rgba(144, 144, 144, 0.15);
+  font-family: 'Fredericka the Great', cursive;
+  margin-top:20px;
+  .text {
+    @include rotate(-10);
+    width:220px;
+    margin-top:10px;
+    margin-left:10px;
+    li {
+      line-height: 30px;
+      margin-left: 15px;
 
-#demoInstructions li {
-  line-height: 30px;
-  margin-left: 15px;
+      a {
+        color: #42bff4;
+        text-decoration: none;
 
-  a {
-    color: #333;
-    text-decoration: none;
-
-    &:hover {
-      color: #444140;
+        &:hover {
+          color: #444140;
+        }
+      }
     }
   }
 }
+
+
 
