@@ -17,6 +17,12 @@ angular.module('cloudifyWidgetHpClientApp')
         }
 
         $scope.sendFeedback = function() {
+            if (mixpanel.get_distinct_id() !== undefined) {
+                mixpanel.identify($scope.feedbackData.leadMail);
+                mixpanel.people.identify($scope.feedbackData.leadMail);
+                mixpanel.track('HP Widget feedback', $scope.feedbackData);
+            }
+
             $http.post('/backend/feedback', $scope.feedbackData);
         };
     });

@@ -46,6 +46,9 @@ angular.module('cloudifyWidgetHpClientApp')
                         $cookieStore.put('leadWidget', data.widget);
                         $scope.selectedWidget = _findWidgetInList(data.widget);
                     }
+                    if (data.timeLeft !== null) {
+                        $cookieStore.put('leadTimeLeft', data.timeLeft);
+                    }
                 });
         }
 

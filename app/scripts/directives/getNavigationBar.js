@@ -7,7 +7,7 @@ angular.module('cloudifyWidgetHpClientApp')
             '<div class="navigation span8">' +
                 '<ul>' +
                     '<li ng-repeat="page in pages" ng-class="{\'active\':isActive(page)}">' +
-                        '<a href="#{{page.path}}">{{page.label}}</a>' +
+                        '<a href="#{{page.path[0]}}">{{page.label}}</a>' +
                     '</li>' +
                 '</ul>' +
             '</div>' +
@@ -16,15 +16,15 @@ angular.module('cloudifyWidgetHpClientApp')
         scope:true,
         link: function( scope ){
             scope.pages = [
-                { 'label':'Demo', 'path':'/demo' },
-                { 'label':'Preview Cloudify', 'path':'/preview' },
-                { 'label':'Free Trial', 'path':'/signup' },
-                { 'label':'Get Cloudify', 'path':'/registered' },
-                { 'label':'Learn More', 'path':'/learn' },
-                { 'label':'Support & Feedback', 'path':'/support' }
+                { 'label':'Demo', 'path':['/demo'] },
+                { 'label':'Preview Cloudify', 'path':['/preview'] },
+                { 'label':'Free Trial', 'path':['/signup', '/free'] },
+                { 'label':'Get Your Own Cloudify', 'path':['/registered'] },
+                { 'label':'Learn More', 'path':['/learn'] },
+                { 'label':'Support & Feedback', 'path':['/support'] }
             ];
             scope.isActive = function( page ){
-                return page.path === scope.currentPath;
+                return page.path.indexOf(scope.currentPath) >= 0;
             };
             scope.$watch(function(){ return $location.path(); }, function(){
                 scope.currentPath = $location.path();

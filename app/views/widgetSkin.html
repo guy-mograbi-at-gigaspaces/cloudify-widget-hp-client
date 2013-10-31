@@ -13,7 +13,7 @@
                 <li id="manageApp" ng-show="manageUrl != null"><a href="{{manageUrl}}" target="_blank">Manage your app</a></li>
                 <li ng-show="consoleUrl != null"><div class="consoleManageArrow"></div><a href="{{consoleUrl}}" target="_blank">{{selectedWidget.productName}} Console</a></li>
             </ul>
-            <span id="time_left" ng-class="currentStep == '2' && 'visible' || 'hidden'">
+            <span id="time_left" ng-class="currentStep != '5' && 'visible' || 'hidden'">
                 Time left:
                 <span id="time_left_counter">{{widgetTime}}</span>
             </span>
@@ -26,11 +26,11 @@
             </div>
         </div>
 
-        <div id="video_container" ng-class="isPreview() && 'videoPreview' || 'videoRegistered'">
+        <div id="video_container" ng-class="hideAdvanced() && 'videoPreview' || 'videoRegistered'">
             <iframe id="widgetVideo" ng-src="{{selectedWidget.youtubeVideoUrl}}" frameborder="0" allowfullscreen></iframe>
         </div>
 
-        <div ng-class="isPreview() && 'hidden' || 'advanced_section'" id="advanced">
+        <div ng-class="hideAdvanced() && 'hidden' || 'advanced_section'" id="advanced">
             <div id="advancedHeader">
                 <div id="advancedTitle">HP Cloud Credentials</div>
             </div>

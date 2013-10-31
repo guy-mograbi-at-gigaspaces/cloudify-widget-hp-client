@@ -28,6 +28,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 var currentView = $location.url().substr(1);
                 var timeout = 0;
                 var milliseconds = 0;
+                var leadTimeLeft = $cookieStore.get('leadTimeLeft');
                 var isNewWidgetSelected = false;
                 var handlers = {
                     'widget_log': function(e) {
@@ -121,7 +122,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 };
 
                 $scope.playWidget = function(){
-                    if (!$scope.credentialsChecked()) {
+                    if (!$scope.credentialsChecked() || leadTimeLeft === 0) {
                         return;
                     }
 
@@ -144,8 +145,8 @@ angular.module('cloudifyWidgetHpClientApp')
                     $.postMessage(JSON.stringify({name: 'stop_widget'}), $scope.postUrl, iframe.get(0).contentWindow);
                 };
 
-                $scope.isPreview = function() {
-                    return currentView === 'preview';
+                $scope.hideAdvanced = function() {
+                    return currentView === 'preview' || currentView === 'free';
                 };
 
                 $scope.credentialsChecked = function() {
@@ -171,7 +172,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 };
 
                 $scope.$watch('selectedWidget', function(newWidget) {
-                    if (newWidget !== null) {
+                    if (newWidget !== null && leadTimeLeft !== 0) {
                         $scope.play = false;
                         $scope.playEnabled = $scope.currentStep !== 5;
                         $scope.widgetTime = '';
@@ -236,6 +237,14 @@ angular.module('cloudifyWidgetHpClientApp')
                     log.scrollTop = log.scrollHeight;
                 }
 
+                function _checkLeadTime() {
+                    if (leadTimeLeft <= 0) {
+                        $scope.playEnabled = false;
+                        $scope.play = false;
+                        $scope.widgetLog.push('Your free trial is over. <a href="#/signup">Click here</a> to get Cloudify');
+                    }
+                }
+
                 $.receiveMessage(function (e) {
                     var msg = JSON.parse(e.data);
 
@@ -247,6 +256,8 @@ angular.module('cloudifyWidgetHpClientApp')
                         }
                     }
                 });
+
+                _checkLeadTime();
             }
         };
     });
