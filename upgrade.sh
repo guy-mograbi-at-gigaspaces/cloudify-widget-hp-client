@@ -3,8 +3,27 @@ SYSCONF_DEST=/etc/sysconfig/hpwidget
 
 echo "I am checking out revision $1" > upgrade.output
 
+
+
+# read git branch from input if available
+if [ ! -z $1 ]; then
+    GIT_BRANCH="$1"
+fi
+
+# check git branch if available
+if [ -z $GIT_BRANCH  ] || [ $GIT_BRANCH"xxx" = "xxx" ]; then
+        echo "no branch specified"
+        GIT_BRANCH="master"
+fi
+
+echo "checking out branch ${GIT_BRANCH}"
 echo "pulling from git"
-git pull origin master
+git checkout $GIT_BRANCH
+git pull origin $GIT_BRANCH
+git checkout $GIT_BRANCH
+
+
+
 
 echo "checking out $1"
 git checkout $1
