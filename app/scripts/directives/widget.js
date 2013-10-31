@@ -166,8 +166,13 @@ angular.module('cloudifyWidgetHpClientApp')
 
                 $scope.onTimeout = function() {
                     milliseconds -= 1000;
-                    $scope.widgetTime = _millisecondsToTime(milliseconds);
-                    timeout = $timeout($scope.onTimeout, 1000);
+
+                    if (milliseconds > 0) {
+                        $scope.widgetTime = _millisecondsToTime(milliseconds);
+                        timeout = $timeout($scope.onTimeout, 1000);
+                    } else {
+                        $scope.widgetTime = 'your free trial is over. click here to get cloudify';
+                    }
                 };
 
                 $scope.$watch('selectedWidget', function(newWidget) {

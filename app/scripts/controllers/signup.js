@@ -4,12 +4,15 @@ angular.module('cloudifyWidgetHpClientApp')
     .controller('SignupCtrl', function ($scope, $cookieStore, $location, widgetService) {
         $scope.currentStep = 3;
         $scope.showDetailsForm = $cookieStore.get('leadMail') !== undefined;
-        $scope.isValidating = false;
-        $scope.isSignedUp = false;
+        $scope.isSubmitActive = false;
         $scope.activated = false;
         $scope.formData = {};
 
         $scope.signupSubmitClick = function() {
+            if (!$scope.isSubmitActive()) {
+                return;
+            }
+
             mixpanel.identify($scope.formData.email);
             mixpanel.people.identify($scope.formData.email);
             mixpanel.people.set({
@@ -28,7 +31,6 @@ angular.module('cloudifyWidgetHpClientApp')
             $cookieStore.put('leadMail', $scope.formData.email);
             $cookieStore.put('leadFName', $scope.formData.fname);
             $cookieStore.put('leadLName', $scope.formData.lname);
-            $scope.isSignedUp = true;
 
             widgetService.updateLead($scope.formData)
                 .then(function(data) {
@@ -51,11 +53,9 @@ angular.module('cloudifyWidgetHpClientApp')
         };
 
         $scope.codeSubmitClick = function() {
-            if ($scope.isValidating) {
+            if (!$scope.isLoginActive()) {
                 return;
             }
-
-            $scope.isValidating = true;
 
             var codeFormData = {
                 'code' : $.trim($('#code').val()),
@@ -63,19 +63,25 @@ angular.module('cloudifyWidgetHpClientApp')
             };
 
             widgetService.validateCode(codeFormData, function() {
-                $scope.isValidating = false;
                 $scope.activated = true;
             });
 
-            $location.path('/registered');
-        };
-
-        $scope.codeSkipClick = function() {
             $location.path('/free');
         };
 
         $scope.toggleForms = function() {
-            $scope.showDetailsForm = $scope.showDetailsForm === true ? false : true;
+            $scope.showDetailsForm = !$scope.showDetailsForm;
+        };
+
+        $scope.isSubmitActive = function(){
+            return $scope.formData.fname !== undefined && $scope.formData.fname.length > 0 &&
+                $scope.formData.lname !== undefined && $scope.formData.lname.length > 0 &&
+                $scope.formData.email !== undefined && $scope.formData.email.length > 0;
+        };
+
+        $scope.isLoginActive = function(){
+            return $scope.formData.activationCode !== undefined && $scope.formData.activationCode.length > 0 && $scope.formData.email !== undefined && $scope.formData.email.length > 0;
+
         };
 
         if ($cookieStore.get('formSubmitted') === true) {
@@ -88,6 +94,5 @@ angular.module('cloudifyWidgetHpClientApp')
                 'lname':  $cookieStore.get('leadLName'),
                 'email':  $cookieStore.get('leadMail')
             };
-            $scope.isSignedUp = true;
         }
     });

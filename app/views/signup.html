@@ -49,7 +49,7 @@
                     <div id="switchToActivationForm" class="formSwitch">Already have activation code? <span class="clickText" ng-click="toggleForms()">Click here</span></div>
                     <div class="signupDisclaimer">By clicking Sign Up you agree to the <a href="#/support">Terms of Conditions</a> of the free trial</div>
                 </div>
-                <button id="submitBtn" class="submitBtn" ng-click="signupSubmitClick()">Sign Up</button>
+                <button id="submitBtn" ng-click="signupSubmitClick()" ng-class="{'submitBtnDisabled': !isSubmitActive(), 'submitBtn': isSubmitActive()}">Sign Up</button>
 
             </form>
         </div>
@@ -65,17 +65,16 @@
                 </div>
                 <table>
                     <tr>
-                        <td>Mail</td>
-                        <td><input type="text" id="activationMail" value="{{formData.email}}"></td>
+                        <td>Mail <span class="requiredStar">*</span></td>
+                        <td><input type="text" id="activationMail" ng-model="formData.email" required></td>
                     </tr>
                     <tr>
-                        <td>Enter Code</td>
-                        <td><input type="text" id="code" autofocus></td>
+                        <td>Enter Code <span class="requiredStar">*</span></td>
+                        <td><input type="text" id="code" ng-model="formData.activationCode" autofocus required></td>
                     </tr>
                 </table>
                 <div id="switchToSignUpForm" class="formSwitch">Don't have activation code? <span class="clickText" ng-click="toggleForms()">Click here</span></div>
-                <button id="codeSubmitBtn" class="submitBtn" ng-click="codeSubmitClick()" ng-class="isValidating == true && 'submitBtnDisabled' || 'submitBtn'">Activate</button>
-                <button id="codeSkipBtn" class="submitBtn" ng-click="codeSkipClick()" ng-disabled="!isSignedUp">Skip</button>
+                <button id="codeSubmitBtn" class="submitBtn" ng-click="codeSubmitClick()" ng-class="{'submitBtnDisabled': !isLoginActive(), 'submitBtn': isLoginActive()}">Login</button>
             </form>
         </div>
     </div>
