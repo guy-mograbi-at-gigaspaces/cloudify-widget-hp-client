@@ -26,11 +26,11 @@
             </div>
         </div>
 
-        <div id="video_container" ng-class="isPreview() && 'videoPreview' || 'videoRegistered'">
+        <div id="video_container" ng-class="hideAdvanced() && 'videoPreview' || 'videoRegistered'">
             <iframe id="widgetVideo" ng-src="{{selectedWidget.youtubeVideoUrl}}" frameborder="0" allowfullscreen></iframe>
         </div>
 
-        <div ng-class="isPreview() && 'hidden' || 'advanced_section'" id="advanced">
+        <div ng-class="hideAdvanced() && 'hidden' || 'advanced_section'" id="advanced">
             <div id="advancedHeader">
                 <div id="advancedTitle">HP Cloud Credentials</div>
             </div>

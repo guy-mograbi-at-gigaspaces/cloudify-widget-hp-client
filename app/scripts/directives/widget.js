@@ -145,8 +145,8 @@ angular.module('cloudifyWidgetHpClientApp')
                     $.postMessage(JSON.stringify({name: 'stop_widget'}), $scope.postUrl, iframe.get(0).contentWindow);
                 };
 
-                $scope.isPreview = function() {
-                    return currentView === 'preview';
+                $scope.hideAdvanced = function() {
+                    return currentView === 'preview' || currentView === 'free';
                 };
 
                 $scope.credentialsChecked = function() {
