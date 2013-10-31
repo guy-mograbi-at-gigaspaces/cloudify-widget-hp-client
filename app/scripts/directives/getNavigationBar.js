@@ -19,9 +19,9 @@ angular.module('cloudifyWidgetHpClientApp')
                 { 'label':'Demo', 'path':['/demo'] },
                 { 'label':'Preview Cloudify', 'path':['/preview'] },
                 { 'label':'Free Trial', 'path':['/signup', '/free'] },
-                { 'label':'Run Cloudify', 'path':['/registered'] },
+                { 'label':'Get Your Own Cloudify', 'path':['/registered'] },
                 { 'label':'Learn More', 'path':['/learn'] },
-                { 'label':'Get Support', 'path':['/support'] }
+                { 'label':'Support & Feedback', 'path':['/support'] }
             ];
             scope.isActive = function( page ){
                 return page.path.indexOf(scope.currentPath) >= 0;
