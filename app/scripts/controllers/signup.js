@@ -58,9 +58,11 @@ angular.module('cloudifyWidgetHpClientApp')
             }
 
             var codeFormData = {
-                'code' : $.trim($('#code').val()),
+                'code' : $.trim($scope.formData.activationCode),
                 'leadId' : $cookieStore.get('leadId')
             };
+
+            $cookieStore.put('activationCode', $scope.formData.activationCode);
 
             widgetService.validateCode(codeFormData, function() {
                 $scope.activated = true;
@@ -94,5 +96,8 @@ angular.module('cloudifyWidgetHpClientApp')
                 'lname':  $cookieStore.get('leadLName'),
                 'email':  $cookieStore.get('leadMail')
             };
+            if ($cookieStore.get('activationCode') !== undefined) {
+                $scope.formData.activationCode = $cookieStore.get('activationCode');
+            }
         }
     });
