@@ -110,13 +110,16 @@
       color: #3fb0e0;
       cursor: pointer;
     }
-
-    #userTimeLeft {
-      font-size: 14px;
-    }
   }
 
-
+  #userTimeLeft {
+    position: relative;
+    left: 100px;
+    top: 20px;
+    color: #222222;
+    font-size: 18px;
+    font-size: 14px;
+  }
 }
 
 .instructions {
