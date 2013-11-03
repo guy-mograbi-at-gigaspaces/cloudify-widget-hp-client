@@ -14,7 +14,7 @@
         <div id="userTitle" ng-show="leadMail != undefined && currentStep == 4">You are running as {{leadMail}} <span id="signout" ng-click="signout()">Sign out </span><span id="activate" ng-click="activate()" ng-show="!activated">| Activate</span></div>
         <div widget id="widgetSkin" selected-widget="selectedWidget" current-step='currentStep' widget-time='widgetTime'></div>
     </div>
-    <div id="instructions" class="instructions" ng-show="currentStep == '2'">
+    <div id="instructions" class="instructions" ng-show="currentStep == '2' || currentStep == '4'">
         <ol>
             <li>Select the service to run from panel on left</li>
             <li>Press the orange play button to start preview</li>
@@ -23,7 +23,7 @@
         </ol>
         <a href="#/registered" class="sign-up-now">sign up for free trial now</a>
     </div>
-    <div id="registeredInstructions" class="instructions" ng-show="currentStep == '4' || currentStep == '5'">
+    <div id="registeredInstructions" class="instructions" ng-show="currentStep == '5'">
         <ol>
             <li>Enter your HP Cloud credentials</li>
             <li>Select the service to run from panel on left</li>
