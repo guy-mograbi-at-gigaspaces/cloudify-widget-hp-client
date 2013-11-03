@@ -46,8 +46,8 @@ angular.module('cloudifyWidgetHpClientApp')
                         $cookieStore.put('leadWidget', data.widget);
                         $scope.selectedWidget = _findWidgetInList(data.widget);
                     }
-                    if (data.timeLeft !== null) {
-                        $cookieStore.put('leadTimeLeft', data.timeLeft);
+                    if (data.leadExtraTimeout !== null) {
+                        $cookieStore.put('leadTimeLeft', data.leadExtraTimeout);
                     }
                 });
         }
@@ -68,6 +68,20 @@ angular.module('cloudifyWidgetHpClientApp')
                     return $scope.widgetsList[i];
                 }
             }
+        }
+
+        $scope.parseTrialTime = function() {
+            var leadTimeLeft = $cookieStore.get('leadTimeLeft');
+            var days = Math.floor(leadTimeLeft / (1000 * 60 * 60 * 24));
+            var timeToDisplay = '';
+
+            if (days > 0) {
+                timeToDisplay = 'in ' + days + ' Days';
+            } else {
+                timeToDisplay = 'today';
+            }
+
+            return timeToDisplay;
         }
 
         _getStepNumber();

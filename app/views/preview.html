@@ -12,6 +12,7 @@
     </div>
     <div id="skin">
         <div id="userTitle" ng-show="leadMail != undefined && currentStep == 4">You are running as {{leadMail}} <span id="signout" ng-click="signout()">Sign out </span><span id="activate" ng-click="activate()" ng-show="!activated">| Activate</span></div>
+        <div id="userTitle" ng-show="leadMail != undefined && currentStep == 4">Your trial ends {{parseTrialTime(trialTimeLeft)}}</div>
         <div widget id="widgetSkin" selected-widget="selectedWidget" current-step='currentStep' widget-time='widgetTime'></div>
     </div>
     <div id="instructions" class="instructions" ng-show="currentStep == '2' || currentStep == '4'">
