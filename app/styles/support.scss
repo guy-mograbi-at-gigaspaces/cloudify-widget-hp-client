@@ -96,3 +96,19 @@
     }
   }
 }
+
+#terms-content {
+  width: 1260px;
+  margin-left: auto;
+  margin-right: auto;
+  background: url(/images/pageBG.png) repeat;
+
+  p {
+    width: 900px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    font-size: 14px;
+  }
+}

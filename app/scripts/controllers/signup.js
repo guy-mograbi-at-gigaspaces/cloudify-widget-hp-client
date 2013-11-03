@@ -31,6 +31,7 @@ angular.module('cloudifyWidgetHpClientApp')
             $cookieStore.put('leadMail', $scope.formData.email);
             $cookieStore.put('leadFName', $scope.formData.fname);
             $cookieStore.put('leadLName', $scope.formData.lname);
+            $cookieStore.put('agreeTerms', $scope.formData.agreeTerms);
 
             widgetService.updateLead($scope.formData)
                 .then(function(data) {

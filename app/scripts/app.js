@@ -35,9 +35,8 @@ angular.module('cloudifyWidgetHpClientApp', ['ngCookies'])
                 templateUrl: 'views/support.html',
                 controller: 'SupportCtrl'
             })
-            .when('/landing', {
-                templateUrl: 'views/landing.html',
-                controller: 'PreviewCtrl'
+            .when('/terms', {
+                templateUrl: 'views/terms.html'
             })
             .otherwise({
                 redirectTo: '/'
