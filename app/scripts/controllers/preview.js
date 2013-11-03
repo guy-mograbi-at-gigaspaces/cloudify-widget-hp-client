@@ -39,6 +39,20 @@ angular.module('cloudifyWidgetHpClientApp')
             $location.path('/signup');
         };
 
+        $scope.parseTrialTime = function() {
+            var leadTimeLeft = $cookieStore.get('leadTimeLeft');
+            var days = Math.floor(leadTimeLeft / (1000 * 60 * 60 * 24));
+            var timeToDisplay = '';
+
+            if (days > 0) {
+                timeToDisplay = 'in ' + days + ' Days';
+            } else {
+                timeToDisplay = 'today';
+            }
+
+            return timeToDisplay;
+        };
+
         function _loadLead() {
             widgetService.getLead({'leadMail' : $cookieStore.get('leadMail')})
                 .success(function(data) {
@@ -68,20 +82,6 @@ angular.module('cloudifyWidgetHpClientApp')
                     return $scope.widgetsList[i];
                 }
             }
-        }
-
-        $scope.parseTrialTime = function() {
-            var leadTimeLeft = $cookieStore.get('leadTimeLeft');
-            var days = Math.floor(leadTimeLeft / (1000 * 60 * 60 * 24));
-            var timeToDisplay = '';
-
-            if (days > 0) {
-                timeToDisplay = 'in ' + days + ' Days';
-            } else {
-                timeToDisplay = 'today';
-            }
-
-            return timeToDisplay;
         }
 
         _getStepNumber();
