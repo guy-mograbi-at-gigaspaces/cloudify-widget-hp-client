@@ -129,10 +129,16 @@
     }
   }
 
+  #signupCheckbox {
+    float: left;
+    position: relative;
+    top: -3px;
+    margin-right: 10px;
+  }
+
   .signupDisclaimer {
     position: relative;
     float: left;
-    left: 30px;
     top: 30px;
     font-size: 10px;
     color: rgba(24, 65, 85, 0.55);
@@ -180,6 +186,3 @@
   }
 }
 
-.requiredStar {
-  color: #a30000;
-}

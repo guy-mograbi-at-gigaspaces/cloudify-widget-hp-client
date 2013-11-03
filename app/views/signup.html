@@ -47,7 +47,7 @@
                 </table>
                 <div id="formFooterText">
                     <div id="switchToActivationForm" class="formSwitch">Already have activation code? <span class="clickText" ng-click="toggleForms()">Click here</span></div>
-                    <div class="signupDisclaimer">By clicking Sign Up you agree to the <a href="#/support">Terms of Conditions</a> of the free trial</div>
+                    <div class="signupDisclaimer"><input type="checkbox" id="signupCheckbox" ng-model="formData.agreeTerms">I agree to the <a href="#/support">Terms of Conditions</a> of the free trial</div>
                 </div>
                 <button id="submitBtn" ng-click="signupSubmitClick()" ng-class="{'submitBtnDisabled': !isSubmitActive(), 'submitBtn': isSubmitActive()}">Sign Up</button>
 

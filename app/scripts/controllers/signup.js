@@ -78,11 +78,12 @@ angular.module('cloudifyWidgetHpClientApp')
         $scope.isSubmitActive = function(){
             return $scope.formData.fname !== undefined && $scope.formData.fname.length > 0 &&
                 $scope.formData.lname !== undefined && $scope.formData.lname.length > 0 &&
-                $scope.formData.email !== undefined && $scope.formData.email.length > 0;
+                $scope.formData.email !== undefined && $scope.formData.email.length > 0 &&
+                $scope.formData.agreeTerms !== undefined && $scope.formData.agreeTerms;
         };
 
         $scope.isLoginActive = function(){
-            return $scope.formData.activationCode !== undefined && $scope.formData.activationCode.length > 0 && $scope.formData.email !== undefined && $scope.formData.email.length > 0;
+            return $scope.formData.activationCode !== undefined && $scope.formData.activationCode.length > 0 && $scope.formData.email !== undefined && $scope.formData.email.length > 0 && $scope.formData.agreeTerms;
 
         };
 
@@ -96,8 +97,13 @@ angular.module('cloudifyWidgetHpClientApp')
                 'lname':  $cookieStore.get('leadLName'),
                 'email':  $cookieStore.get('leadMail')
             };
+
             if ($cookieStore.get('activationCode') !== undefined) {
                 $scope.formData.activationCode = $cookieStore.get('activationCode');
+            }
+
+            if ($cookieStore.get('agreeTerms') !== undefined) {
+                $scope.formData.agreeTerms = $cookieStore.get('agreeTerms');
             }
         }
     });
