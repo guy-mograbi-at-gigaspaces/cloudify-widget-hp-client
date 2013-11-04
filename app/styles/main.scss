@@ -49,11 +49,11 @@ html, body, .body {
     min-width: 1250px;
 
     .container {
-      width: 1020px;
+      width: 1040px;
 
     .navigation {
 
-      width: 1020px;
+      width: 1040px;
       margin: 0 auto;
       position: relative;
 
@@ -147,6 +147,7 @@ $FOOTER_HEIGHT:80px;
       cursor: auto;
 
       height: $FOOTER_HEIGHT;
+      min-width: 1290px;
       width: 100%;
       overflow: hidden;
       background-color: #dcdcdc;

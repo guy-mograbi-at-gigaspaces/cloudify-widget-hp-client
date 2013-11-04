@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('cloudifyWidgetHpClientApp')
-    .controller('PreviewCtrl', function ($scope, $location, $timeout, $cookieStore, widgetService) {
+    .controller('PreviewCtrl', function ($scope, $location, $timeout, $cookieStore, widgetService, stepsService) {
 
-        $scope.currentStep = 0;
+        $scope.currentStep = stepsService.getStep($location.path());
         $scope.leadMail = $cookieStore.get('leadMail');
         $scope.selectedWidget = null;
         $scope.widgetTime = '';
@@ -66,16 +66,6 @@ angular.module('cloudifyWidgetHpClientApp')
                 });
         }
 
-        function _getStepNumber() {
-            if ($location.path() === '/preview') {
-                $scope.currentStep = 2;
-            } else if ($location.path() === '/free') {
-                $scope.currentStep = 4;
-            } else if ($location.path() === '/registered') {
-                $scope.currentStep = 5;
-            }
-        }
-
         function _findWidgetInList(widgetToFind) {
             for (var i = 0; i < $scope.widgetsList.length; i++ ) {
                 if ($scope.widgetsList[i].id === widgetToFind.id) {
@@ -83,6 +73,4 @@ angular.module('cloudifyWidgetHpClientApp')
                 }
             }
         }
-
-        _getStepNumber();
     });
