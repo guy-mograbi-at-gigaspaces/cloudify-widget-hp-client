@@ -2,8 +2,7 @@
 
 angular.module('cloudifyWidgetHpClientApp')
     .controller('SignupCtrl', function ($scope, $cookieStore, $location, widgetService) {
-        $scope.currentStep = 3;
-        $scope.showDetailsForm = $cookieStore.get('leadMail') !== undefined;
+        $scope.showDetailsForm = $cookieStore.get('leadMail') === undefined;
         $scope.isSubmitActive = false;
         $scope.activated = false;
         $scope.formData = {};
