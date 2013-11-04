@@ -19,7 +19,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 { 'label':'Demo', 'path':['/demo'] },
                 { 'label':'Preview Cloudify', 'path':['/preview'] },
                 { 'label':'Free Trial', 'path':['/signup', '/free'] },
-                { 'label':'Get Your Own Cloudify', 'path':['/registered'] },
+                { 'label':'Run Cloudify on HP Cloud', 'path':['/registered'] },
                 { 'label':'Learn More', 'path':['/learn'] },
                 { 'label':'Support & Feedback', 'path':['/support', '/terms'] }
             ];
