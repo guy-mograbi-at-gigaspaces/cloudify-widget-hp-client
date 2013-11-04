@@ -8,7 +8,7 @@ angular.module('cloudifyWidgetHpClientApp')
               '</ul></div>',
             restrict: 'AE',
             scope:{
-                currentStep:'='
+                currentStep:'@'
             },
             link: function(scope) {
 

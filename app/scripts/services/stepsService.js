@@ -1,21 +1,47 @@
 'use strict';
 
 angular.module('cloudifyWidgetHpClientApp')
-    .service('stepsService', function stepsService() {
+    .service('stepsService', function stepsService(  $location ) {
         var currentStep = 0;
 
+
+        var steps = [
+            {
+                'url':'/demo',
+                'number':1
+            },
+            {
+                'url':'/preview',
+                'number': 2
+
+            },
+            {
+                'url':'/signup',
+                'number':3
+            },
+            {
+                'url':'/free',
+                'number':3
+
+            },
+            {
+                'url':'/registered',
+                'number': 5,
+                'showSteps':false
+            }
+        ];
+
         this.getStep = function(path) {
-            this.updateStep(path);
-            return currentStep;
+            var currentStep = this.currentStep();
+            if ( !!currentStep ){
+                return currentStep.number;
+            }
         };
 
-        this.updateStep = function(path) {
-            if (path === '/preview') {
-                currentStep = 2;
-            } else if (path === '/free') {
-                currentStep = 4;
-            } else if (path === '/registered') {
-                currentStep = 5;
-            }
+        this.currentStep = function() {
+            var matchingSteps = $.grep(steps,function(step){
+                return  step.url == $location.path();
+            });
+            return  matchingSteps.length > 0 ? matchingSteps[0] : null;
         };
     });

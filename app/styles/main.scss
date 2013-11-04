@@ -27,6 +27,11 @@ html, body, .body {
   padding:0;
 }
 
+body{
+  overflow:auto;
+  background: url(/images/pageBG.png) repeat;
+}
+
 .hp-header {
 
   position: fixed;
@@ -103,9 +108,13 @@ $LOGO_HEIGHT:115px;
 }
 
 
+#content{
+  padding-bottom:100px;
+}
 #main-content {
   width: 1290px;
   height: 100%;
+
   margin-right: auto;
   margin-left: auto;
   background: url(/images/pageBG.png) repeat;

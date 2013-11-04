@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cloudifyWidgetHpClientApp')
-    .directive('layout', function () {
+    .directive('layout', function ( stepsService) {
         return {
             template: '<div class="body">'+
                         '<div id="content-wrapper" class="body" >' +
@@ -12,15 +12,22 @@ angular.module('cloudifyWidgetHpClientApp')
                             '<div id="content" ng-transclude></div>' +
                             '<div id="push"></div>' +
                         '</div>' +
-                        '<div id="footer" ng-class="{\'hidden\':showSteps == \'false\'}">' +
-                        '<div id="stepsBar" current-step="currentStep" get-steps-bar></div>' +
+                        '<div id="footer" ng-class="{\'hidden\':showSteps == false}">' +
+                        '<div id="stepsBar" current-step="{{currentStep}}" get-steps-bar></div>' +
                        '</div></div>',
             restrict: 'A',
             replace:true,
             transclude: true,
-            scope:{
-                currentStep:'@',
-                showSteps:'@' // default is true
+            controller: function($scope){
+                var currentStep = stepsService.currentStep();
+                if ( !!currentStep ){
+                    $scope.showSteps = currentStep.showSteps;
+                    $scope.currentStep = currentStep.number;
+                }else{
+                    $scope.showSteps = false;
+                }
+
             }
+
         };
     });
