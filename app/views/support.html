@@ -23,6 +23,7 @@
         <div id="feedback">
             <form>
                 <div class="feedbackTitle">Feedback</div>
+                <div ng-class="{'feedbackResult sent':  feedbackSent, 'feedbackResult error': feedbackSentError}" ng-show="feedbackSent">{{feedbackSent == true && feedbackSentError == true && "Error sending feedback" || "Feedback sent successfully" || ""}}</div>
                 <table>
                     <tr>
                         <td>Name <span class="requiredStar">*</span></td>
@@ -35,7 +36,7 @@
                 </table>
                 Feedback
                 <textarea id="feedbackText" ng-model="feedbackData.feedback" required></textarea>
-                <button id="feedbackSubmitBtn" class="submitBtn" ng-click="sendFeedback()">Send</button>
+                <button id="feedbackSubmitBtn" ng-class="{'submitBtnDisabled': !isSendActive(), 'submitBtn': isSendActive()}" ng-click="sendFeedback()">Send</button>
             </form>
         </div>
     </div>

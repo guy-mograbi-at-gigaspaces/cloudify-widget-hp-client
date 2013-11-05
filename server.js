@@ -269,7 +269,7 @@ app.post('/backend/validate', function(request, response) {
     req.end();
 });
 
-app.get('/backend/conf', conf.sendPublicConfiguration );
+app.get('/backend/conf', conf.sendPublicConfiguration);
 
 app.post('/backend/prolong', function(request, response) {
 
@@ -319,6 +319,7 @@ app.post('/backend/prolong', function(request, response) {
 });
 
 app.post('/backend/feedback', function(request, response) {
+    console.log("Sending feedback");
 
     var smtpTransport = nodemailer.createTransport("SMTP", {
         "host": "pod51010.outlook.com",
@@ -337,14 +338,17 @@ app.post('/backend/feedback', function(request, response) {
     }
 
     // send mail with defined transport object
-    smtpTransport.sendMail(mailOptions, function(error, response){
+    smtpTransport.sendMail(mailOptions, function(error, res){
         if(error){
             console.log(error);
+            response.send("feedbackError");
         }else{
-            console.log("Message sent: " + response.message);
+            console.log("Message sent: " + res.message);
+            response.send("feedbackSent");
         }
-
     });
+
+
 });
 
 app.post('/backend/reportError', function(request) {
