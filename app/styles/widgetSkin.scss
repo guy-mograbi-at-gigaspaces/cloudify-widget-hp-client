@@ -283,6 +283,29 @@ body {
   border: 1px inset;
 }
 
+.advanced_section .advanced_form input.ie_project_name {
+  width: 170px;
+  left: 20px;
+}
+
+.advanced_section .advanced_form input.ie_hpcs_key {
+  width: 148px;
+  left: 20px;
+}
+
+.advanced_section .advanced_form input.ie_hpcs_secret_key {
+  width: 110px;
+  left: 13px;
+}
+
+.advanced_section .advanced_form .ieFormFieldText {
+  float: left;
+  left: 10px;
+  position: relative;
+  top: 5px;
+  font-size: 14px;
+}
+
 .remember_creds {
   z-index: 2;
   background: #ECECEC;
