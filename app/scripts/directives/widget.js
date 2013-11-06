@@ -7,15 +7,14 @@ angular.module('cloudifyWidgetHpClientApp')
             restrict: 'A',
             scope: {
                 selectedWidget: '=',
-                currentStep: '=',
+                requireAdvanced: '@',
                 widgetTime: '='
             },
-            controller:function($scope, $element, $location, $cookieStore, $timeout, widgetService){
+            controller:function($scope, $element, $location, $timeout, widgetService, SessionService, LeadService ){
 
                 $scope.postUrl = 'http://' + window.conf.widgetServer;
                 $scope.pageUrl = $location.protocol() +'://' + $location.host();
                 $scope.play = false;
-                $scope.playEnabled = $scope.currentStep !== 5 && $scope.selectedWidget !== null;
                 $scope.advanced = {
                     project_name: '',
                     hpcs_key: '',
@@ -28,7 +27,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 var currentView = $location.url().substr(1);
                 var timeout = 0;
                 var milliseconds = 0;
-                var leadTimeLeft = $cookieStore.get('leadTimeLeft');
+                var leadTimeLeft = LeadService.getTimeLeft();
                 var isNewWidgetSelected = false;
                 var handlers = {
                     'widget_log': function(e) {
@@ -51,19 +50,9 @@ angular.module('cloudifyWidgetHpClientApp')
                             }
 
                             if (msg.type === 'error') {
-                                var data = {};
+                                var data = SessionService.getSessionData();
 
-                                if ($cookieStore.get('leadId') !== undefined) {
-                                    data.leadId = $cookieStore.get('leadId');
-                                }
 
-                                if ($cookieStore.get('instanceId') !== undefined) {
-                                    data.instanceId = $cookieStore.get('instanceId');
-                                }
-
-                                if ($cookieStore.get('leadMail') !== undefined) {
-                                    data.leadMail = $cookieStore.get('leadMail');
-                                }
 
                                 if (mixpanel.get_distinct_id() !== undefined) {
                                     mixpanel.identify(data.leadMail);
@@ -85,7 +74,9 @@ angular.module('cloudifyWidgetHpClientApp')
                     'widget_status': function(e) {
                         var msg = JSON.parse(e.data);
                         milliseconds = msg.status.timeleftMillis;
-                        $cookieStore.put('instanceId', msg.status.instanceId);
+                        SessionService.setInstanceId( msg.status.instanceId);
+                        SessionService.setWidgetId( $scope.selectedWidget.id );
+
 
                         if (msg.status.publicIp !== null) {
                             $scope.manageUrl = 'http://' + msg.status.publicIp + ':8099/';
@@ -99,10 +90,6 @@ angular.module('cloudifyWidgetHpClientApp')
                             $scope.consoleUrl = null;
                         }
 
-                        if (msg.status.instanceId !== null) {
-                            $cookieStore.put('instanceId', msg.status.instanceId);
-                        }
-
                         if (isNewWidgetSelected) {
                             $scope.$apply(function() {
                                 $scope.widgetLog = msg.status.output;
@@ -111,7 +98,7 @@ angular.module('cloudifyWidgetHpClientApp')
                             });
                         }
 
-                        $scope.play = msg.status.state === 'STOPPED' ? false : true;
+                        $scope.play = msg.status.state !== 'STOPPED';
 
                         _startTimer();
                     },
@@ -139,7 +126,7 @@ angular.module('cloudifyWidgetHpClientApp')
 
                 $scope.stopWidget = function() {
                     $scope.play = false;
-                    $cookieStore.remove('instanceId');
+                    SessionService.removeInstanceId();
                     var iframe = $element.find('#iframe');
 
                     $.postMessage(JSON.stringify({name: 'stop_widget'}), $scope.postUrl, iframe.get(0).contentWindow);
@@ -161,9 +148,19 @@ angular.module('cloudifyWidgetHpClientApp')
                     }
                 };
 
-                $scope.advancedChange = function() {
-                    $scope.playEnabled = $scope.credentialsChecked() && $scope.currentStep === 5 && $scope.selectedWidget !== null;
+
+                $scope.playEnabled = function(){
+                    if ( $scope.selectedWidget === null ){
+                        return false;
+                    }
+                    else if ( !$scope.requireAdvanced ){
+                        return true;
+                    }else if ( $scope.credentialsChecked() ){
+                        return true;
+                    }
+                    return false;
                 };
+
 
                 $scope.onTimeout = function() {
                     milliseconds -= 1000;
@@ -174,7 +171,6 @@ angular.module('cloudifyWidgetHpClientApp')
                 $scope.$watch('selectedWidget', function(newWidget) {
                     if (newWidget !== null && leadTimeLeft !== 0) {
                         $scope.play = false;
-                        $scope.playEnabled = $scope.currentStep !== 5;
                         $scope.widgetTime = '';
                         $scope.manageUrl = null;
                         $scope.consoleUrl = null;
@@ -223,8 +219,8 @@ angular.module('cloudifyWidgetHpClientApp')
 
                 function _sendProlong() {
                     var data = {
-                        'leadId' : $cookieStore.get('leadId'),
-                        'instanceId' : $cookieStore.get('instanceId')
+                        'leadId' : LeadService.getLead().id,
+                        'instanceId' : SessionService.getInstanceId()
                     };
 
                     if (data.leadId !== undefined && data.instanceId !== undefined) {

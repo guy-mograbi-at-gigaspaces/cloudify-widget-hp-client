@@ -2,7 +2,7 @@
     <div id="widgetContainer">
 
         <div id="widget-header">
-            <div id="title">{{currentStep == '2' && selectedWidget.productName != undefined && "Launch " + selectedWidget.productName + " Now!" || "Cloudify App Catalog" || "Cloudify App Catalog"}}</div>
+            <div id="title">{{!!selectedWidget && "Launch " + selectedWidget.productName + " Now!" || "Cloudify App Catalog" }}</div>
         </div>
 
         <div id="logContainer">
@@ -13,7 +13,7 @@
                 <li id="manageApp" ng-show="manageUrl != null"><a href="{{manageUrl}}" target="_blank">Manage your app</a></li>
                 <li ng-show="consoleUrl != null"><div class="consoleManageArrow"></div><a href="{{consoleUrl}}" target="_blank">{{selectedWidget.productName}} Console</a></li>
             </ul>
-            <span id="time_left" ng-class="currentStep != '5' && 'visible' || 'hidden'">
+            <span id="time_left" ng-class="!!widgetTime && !currentStep.unlimited && 'visible' || 'hidden'">
                 Time left:
                 <span id="time_left_counter">{{widgetTime}}</span>
             </span>
@@ -21,7 +21,7 @@
 
         <div id="controls">
             <div class="button" ng-class="{'play':!!play,'stop':!play}">
-                <div id="play_btn" ng-click="playWidget()" ng-class="{disabled: !playEnabled}"></div>
+                <div id="play_btn" ng-click="playWidget()" ng-class="{disabled: !playEnabled()}"></div>
                 <div id="stop_btn" ng-click="stopWidget()"></div>
             </div>
         </div>

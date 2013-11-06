@@ -1,4 +1,4 @@
-<div layout current-step="2">
+<div layout >
     <div id="widget-content">
     <div id="widgets">
         <ul>
@@ -11,20 +11,22 @@
         </ul>
     </div>
     <div id="skin">
-        <div id="userTitle" ng-show="leadMail != undefined && currentStep == 4">You are running as {{leadMail}} <span id="signout" ng-click="signout()">Sign out </span><span id="activate" ng-click="activate()" ng-show="!activated">| Activate</span></div>
-        <div id="userTimeLeft" ng-show="leadMail != undefined && currentStep == 4">Your trial ends {{parseTrialTime(trialTimeLeft)}}</div>
-        <div widget id="widgetSkin" selected-widget="selectedWidget" current-step='currentStep' widget-time='widgetTime'></div>
+        <div id="userTitle" ng-show="showLeadEmail()">You are running as {{leadMail}} <span id="signout" ng-click="signout()">Sign out </span></div>
+        <div id="userTimeLeft" ng-show="showLeadEmail()">Your trial ends {{parseTrialTime(trialTimeLeft)}}</div>
+        <div widget id="widgetSkin" selected-widget="selectedWidget" widget-time='widgetTime'></div>
     </div>
-    <div id="instructions" class="instructions" ng-show="currentStep == '2' || currentStep == '4'">
+    <div id="instructions" class="instructions" ng-show="showInstructions()">
         <ol>
             <li>Select the service to run from panel on left</li>
             <li>Press the orange play button to start preview</li>
             <li>Click "Manage your app" to monitor the service deployment</li>
-            <li>Service deployment may takes 2-5 minutes</li>
+            Note : Service deployment may takes 2-5 minutes
         </ol>
-        <a href="#/registered" class="sign-up-now">sign up for free trial now</a>
+        <span ng-show="showSignupLink()">
+            <a href="#/signup" class="sign-up-now">sign up for free trial now</a>
+        </span>
     </div>
-    <div id="registeredInstructions" class="instructions" ng-show="currentStep == '5'">
+    <div id="registeredInstructions" class="instructions" ng-show="showAdvancedInstructions()">
         <ol>
             <li>Enter your HP Cloud credentials</li>
             <li>Select the service to run from panel on left</li>

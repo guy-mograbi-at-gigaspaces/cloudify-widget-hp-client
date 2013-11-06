@@ -21,7 +21,7 @@
 
     <div id="formContainer" class="linedContainer">
 
-        <div id="detailsForm" ng-show="showDetailsForm == true">
+        <div id="detailsForm" ng-show="showDetailsForm()">
             <div id="formRequiredText">
                 * Reqired field
             </div>
@@ -46,7 +46,7 @@
                     </tr>
                 </table>
                 <div id="formFooterText">
-                    <div id="switchToActivationForm" class="formSwitch">Already have activation code? <span class="clickText" ng-click="toggleForms()">Click here</span></div>
+                    <div id="switchToActivationForm" class="formSwitch">Already have activation code? <span class="clickText" ng-click="alreadyHasActivationCode(true)">Click here</span></div>
                     <div class="signupDisclaimer"><input type="checkbox" id="signupCheckbox" ng-model="formData.agreeTerms">I agree to the <a href="#/support">Terms of Conditions</a> of the free trial</div>
                 </div>
                 <button id="submitBtn" ng-click="signupSubmitClick()" ng-class="{'submitBtnDisabled': !isSubmitActive(), 'submitBtn': isSubmitActive()}">Sign Up</button>
@@ -54,7 +54,7 @@
             </form>
         </div>
 
-        <div id="codeForm" ng-show="showDetailsForm == false">
+        <div id="codeForm" ng-show="!showDetailsForm()">
             <form id="activationForm">
                 <div class="formTitle">Activate Trial</div>
                 <div id="activateText">Please check your email for link to activate Free Trial.</div>
@@ -70,10 +70,10 @@
                     </tr>
                     <tr>
                         <td>Enter Code <span class="requiredStar">*</span></td>
-                        <td><input type="text" id="code" ng-model="formData.activationCode" autofocus required></td>
+                        <td><input type="password" id="code"  ng-model="formData.activationCode" autofocus required></td>
                     </tr>
                 </table>
-                <div id="switchToSignUpForm" class="formSwitch">Don't have activation code? <span class="clickText" ng-click="toggleForms()">Click here</span></div>
+                <div id="switchToSignUpForm" class="formSwitch">Don't have activation code? <span class="clickText" ng-click="alreadyHasActivationCode(false)">Click here</span></div>
                 <button id="codeSubmitBtn" class="submitBtn" ng-click="codeSubmitClick()" ng-class="{'submitBtnDisabled': !isLoginActive(), 'submitBtn': isLoginActive()}">Login</button>
             </form>
         </div>

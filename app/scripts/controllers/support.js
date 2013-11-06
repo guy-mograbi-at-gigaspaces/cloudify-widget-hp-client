@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cloudifyWidgetHpClientApp')
-    .controller('SupportCtrl', function ($scope, $cookieStore, $http) {
+    .controller('SupportCtrl', function ($scope, $http, LeadService) {
 
         $scope.feedbackSent = false;
         $scope.feedbackSentError = false;
@@ -9,17 +9,18 @@ angular.module('cloudifyWidgetHpClientApp')
 
         $scope.feedbackData = {
             name: '',
-            email: '',
+            email:'',
             feedback: ''
         };
 
-        if ($cookieStore.get('leadMail') !== undefined) {
-            $scope.feedbackData.email = $cookieStore.get('leadMail');
+        function updateLead(){
+            $scope.feedbackData = {
+                name: LeadService.getName() ,
+                email: LeadService.getEmail()
+            }
         }
 
-        if ($cookieStore.get('leadFName') !== undefined && $cookieStore.get('leadLName') !== undefined) {
-            $scope.feedbackData.name = $cookieStore.get('leadFName') + ' ' + $cookieStore.get('leadLName');
-        }
+        LeadService.loadLeadFromSessionAsync().then( updateLead );
 
         $scope.sendFeedback = function() {
             $scope.feedbackSent = false;
@@ -46,10 +47,14 @@ angular.module('cloudifyWidgetHpClientApp')
                 });
         };
 
+        function _notEmptyString( str ){
+            return str !== undefined && str !== null && $.trim(str.length) > 0;
+        }
+
         $scope.isSendActive = function() {
-            return $scope.feedbackData.name !== undefined && $scope.feedbackData.name.length > 0 &&
-                $scope.feedbackData.email !== undefined && $scope.feedbackData.email.length > 0 &&
-                $scope.feedbackData.feedback !== undefined && $scope.feedbackData.feedback.length > 0 &&
-                $scope.feedbackSendProccess === false;
+            return _notEmptyString($scope.feedbackData.name) &&
+                _notEmptyString($scope.feedbackData.email) &&
+                _notEmptyString($scope.feedbackData.feedback) &&
+                !$scope.feedbackSendProccess === false;
         };
     });

@@ -1,11 +1,17 @@
 'use strict';
 
 angular.module('cloudifyWidgetHpClientApp')
-    .controller('SignupCtrl', function ($scope, $cookieStore, $location, widgetService) {
-        $scope.showDetailsForm = $cookieStore.get('leadMail') === undefined;
+    .controller('SignupCtrl', function ($scope, $location, widgetService, LeadService, SessionService, $q ) {
+        $scope.hasActivationCode = false; // todo : replace this with simple "phase" : signup, activate, loggedin
         $scope.isSubmitActive = false;
         $scope.activated = false;
+        $scope.loginError = null;
+        $scope.loginInProgress = false; // todo : use this to show the user we are thinking
         $scope.formData = {};
+
+        $scope.alreadyHasActivationCode = function( value ){
+            $scope.hasActivationCode = value;
+        };
 
         $scope.signupSubmitClick = function() {
             if (!$scope.isSubmitActive()) {
@@ -27,83 +33,93 @@ angular.module('cloudifyWidgetHpClientApp')
             mixpanel.register({gender: 'male'});
             mixpanel.track('Signup', $scope.formData);
 
-            $cookieStore.put('leadMail', $scope.formData.email);
-            $cookieStore.put('leadFName', $scope.formData.fname);
-            $cookieStore.put('leadLName', $scope.formData.lname);
-            $cookieStore.put('agreeTerms', $scope.formData.agreeTerms);
 
-            widgetService.updateLead($scope.formData)
-                .then(function(data) {
-                    $cookieStore.put('leadId', data.id);
-                    $cookieStore.put('formSubmitted', true);
 
-                    if (data.widget !== null) {
-                        $cookieStore.put('leadWidget', data.widget);
-                    }
+            LeadService.signup( $scope.formData).then(function( lead ){
+                SessionService.setLeadId( lead.id );
+            });
 
-                    var userData = {
-                        'leadId' : data.id,
-                        'instanceId' : $cookieStore.get('instanceId')
-                    };
-
-                    widgetService.prolong(userData);
-                });
-
-            $scope.toggleForms();
+            // now the user should have an activation code
+            $scope.hasActivationCode = true;
         };
+
+
 
         $scope.codeSubmitClick = function() {
             if (!$scope.isLoginActive()) {
                 return;
             }
 
-            var codeFormData = {
-                'code' : $.trim($scope.formData.activationCode),
-                'leadId' : $cookieStore.get('leadId')
-            };
 
-            $cookieStore.put('activationCode', $scope.formData.activationCode);
+            LeadService.getLeadIdAsync( $scope.formData.email ).then(
+                function( leadId ){
+                    if ( leadId === null ){
+                       $scope.loginError = "unknown email"; // TODO : handle error no such lead
+                    }else{
 
-            widgetService.validateCode(codeFormData, function() {
-                $scope.activated = true;
-            });
 
-            $location.path('/free');
+                        var codeFormData = {
+                            'code' : $.trim($scope.formData.activationCode),
+                            'leadId' : leadId
+                        };
+
+                        $scope.loginInProgress = true;
+                        widgetService.validateCode(codeFormData).then( function( success /* true/false */ ) {
+                            if ( !!success ){
+                                SessionService.setActivationCode( $.trim($scope.formData.activationCode) );
+                                $scope.loginInProgress = false;
+                                $location.path('/free');
+                            }else {
+                                // TODO : handle error - code invalid
+                            }
+
+                        });
+                    }
+                }
+            );
+
+
+
+
+
+
+
         };
 
-        $scope.toggleForms = function() {
-            $scope.showDetailsForm = !$scope.showDetailsForm;
+        $scope.showDetailsForm = function(){
+               return !$scope.hasActivationCode;
         };
 
-        $scope.isSubmitActive = function(){
-            return $scope.formData.fname !== undefined && $scope.formData.fname.length > 0 &&
-                $scope.formData.lname !== undefined && $scope.formData.lname.length > 0 &&
-                $scope.formData.email !== undefined && $scope.formData.email.length > 0 &&
-                $scope.formData.agreeTerms !== undefined && $scope.formData.agreeTerms;
+
+        $scope.isSubmitActive = function () {
+            return _isNotEmptyString($scope.formData.fname) &&
+                _isNotEmptyString($scope.formData.lname) &&
+                _isNotEmptyString($scope.formData.email) && !!$scope.formData.agreeTerms;
         };
 
+        function _isNotEmptyString( str ){
+            return str !== undefined && str !== null && $.trim(str).length > 0;
+        }
         $scope.isLoginActive = function(){
-            return $scope.formData.activationCode !== undefined && $scope.formData.activationCode.length > 0 && $scope.formData.email !== undefined && $scope.formData.email.length > 0 && $scope.formData.agreeTerms;
+            return  _isNotEmptyString( $scope.formData.activationCode) && _isNotEmptyString($scope.formData.email);
 
         };
 
-        if ($cookieStore.get('formSubmitted') === true) {
-            $scope.toggleForms();
-        }
 
-        if ($cookieStore.get('leadMail') !== undefined) {
-            $scope.formData = {
-                'fname':  $cookieStore.get('leadFName'),
-                'lname':  $cookieStore.get('leadLName'),
-                'email':  $cookieStore.get('leadMail')
-            };
-
-            if ($cookieStore.get('activationCode') !== undefined) {
-                $scope.formData.activationCode = $cookieStore.get('activationCode');
-            }
-
-            if ($cookieStore.get('agreeTerms') !== undefined) {
-                $scope.formData.agreeTerms = $cookieStore.get('agreeTerms');
+        function updateLead() {
+            if (LeadService.isExists()) {
+                var lead = LeadService.getLead();
+                $scope.formData = {
+                    'fname': lead.firstName,
+                    'lname': lead.lasName,
+                    'email': lead.email,
+                    'activationCode': SessionService.getActivationCode()
+                };
+                $scope.hasActivationCode = true;
             }
         }
+
+        updateLead();
+
+
     });
