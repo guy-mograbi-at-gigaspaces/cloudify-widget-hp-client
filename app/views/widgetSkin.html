@@ -15,7 +15,7 @@
             </ul>
             <span id="time_left" ng-class="!!widgetTime && !currentStep.unlimited && 'visible' || 'hidden'">
                 Time left:
-                <span id="time_left_counter">{{widgetTime}}</span>
+                <span id="time_left_counter">{{widgetTime | timeFilter}}</span>
             </span>
         </div>
 
@@ -39,9 +39,16 @@
                 <a style="display:none" id="hp_console_link" class="form-footer-links" href="http://console.hpcloud.com" target="_blank">HP Console</a>
             </div>
             <form class="advanced_form" autocomplete="off">
-                <input name="project_name" autocomplete="off" placeholder="project" ng-model="advanced.project_name" ng-change="advancedChange()"/>
+                <!--[if IE]>
+                <div class="ieFormFieldText">Project:</div><input name="project_name" class="ie_project_name" autocomplete="off" ng-model="advanced.project_name" ng-change="advancedChange()"/>
+                <div class="ieFormFieldText">HPCS Key:</div><input name="hpcs_key" class="ie_hpcs_key" autocomplete="off" ng-model="advanced.hpcs_key" ng-change="advancedChange()"/>
+                <div class="ieFormFieldText">HPCS Secret Key:</div><input name="hpcs_secret_key" class="ie_hpcs_secret_key" type="password" ng-model="advanced.hpcs_secret_key" ng-change="advancedChange()"/>
+                <![endif]-->
+                <!--[if !IE]><!-->
+                <input name="project_name" autocomplete="off" placeholder="Project" ng-model="advanced.project_name" ng-change="advancedChange()"/>
                 <input name="hpcs_key" autocomplete="off" placeholder="HPCS Key" ng-model="advanced.hpcs_key" ng-change="advancedChange()"/>
                 <input name="hpcs_secret_key" placeholder="HPCS Secret Key" type="password" ng-model="advanced.hpcs_secret_key" ng-change="advancedChange()"/>
+                <!--<![endif]-->
                 <div id="createAccount"><a href="http://www.hpcloud.com/free-trial" target="_blank">Create HP Public Cloud account</a></div>
                 <input type="submit" class="hidden" value="submit"/>
             </form>

@@ -1,4 +1,4 @@
-<div layout >
+<div layout current-step="2">
     <div id="widget-content">
     <div id="widgets">
         <ul>
@@ -15,18 +15,16 @@
         <div id="userTimeLeft" ng-show="showLeadEmail()">Your trial ends {{parseTrialTime(trialTimeLeft)}}</div>
         <div widget id="widgetSkin" selected-widget="selectedWidget" widget-time='widgetTime'></div>
     </div>
-    <div id="instructions" class="instructions" ng-show="showInstructions()">
+    <div id="instructions" class="instructions" ng-show="currentStep == '2' || currentStep == '4'">
         <ol>
             <li>Select the service to run from panel on left</li>
             <li>Press the orange play button to start preview</li>
             <li>Click "Manage your app" to monitor the service deployment</li>
-            Note : Service deployment may takes 2-5 minutes
+            <li>Service deployment may takes 2-5 minutes</li>
         </ol>
-        <span ng-show="showSignupLink()">
-            <a href="#/signup" class="sign-up-now">sign up for free trial now</a>
-        </span>
+        <a href="#/registered" class="sign-up-now">sign up for free trial now</a>
     </div>
-    <div id="registeredInstructions" class="instructions" ng-show="showAdvancedInstructions()">
+    <div id="registeredInstructions" class="instructions" ng-show="currentStep == '5'">
         <ol>
             <li>Enter your HP Cloud credentials</li>
             <li>Select the service to run from panel on left</li>

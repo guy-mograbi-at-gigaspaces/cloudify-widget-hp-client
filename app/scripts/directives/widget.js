@@ -164,7 +164,7 @@ angular.module('cloudifyWidgetHpClientApp')
 
                 $scope.onTimeout = function() {
                     milliseconds -= 1000;
-                    $scope.widgetTime = _millisecondsToTime(milliseconds);
+                    $scope.widgetTime = milliseconds;
                     timeout = $timeout($scope.onTimeout, 1000);
                 };
 
@@ -195,26 +195,6 @@ angular.module('cloudifyWidgetHpClientApp')
 
                 function _stopTimer() {
                     $timeout.cancel(timeout);
-                }
-
-                function _millisecondsToTime(milli) {
-                    var seconds = Math.floor((milli / 1000) % 60);
-                    var minutes = Math.floor((milli / (60 * 1000)) % 60);
-                    var days = Math.floor(milli / (1000 * 60 * 60 * 24));
-                    var timeToDisplay = '';
-
-                    if (seconds < 0 || minutes < 0) {
-                        seconds = '--';
-                        minutes = '--';
-                    }
-
-                    if (days > 0) {
-                        timeToDisplay = days + ' Days';
-                    } else {
-                        timeToDisplay = minutes + ':' + (seconds < 10 ? '0' : '') + seconds + ' Min.';
-                    }
-
-                    return timeToDisplay;
                 }
 
                 function _sendProlong() {
