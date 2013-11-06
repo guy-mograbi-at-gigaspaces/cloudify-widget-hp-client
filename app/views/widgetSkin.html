@@ -15,7 +15,7 @@
             </ul>
             <span id="time_left" ng-class="currentStep != '5' && 'visible' || 'hidden'">
                 Time left:
-                <span id="time_left_counter">{{widgetTime}}</span>
+                <span id="time_left_counter">{{widgetTime | timeFilter}}</span>
             </span>
         </div>
 
