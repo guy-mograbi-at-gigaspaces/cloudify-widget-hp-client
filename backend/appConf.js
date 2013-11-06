@@ -43,6 +43,8 @@
 var publicConfiguration = {
     widgetServer: "launch.cloudifysource.org",
     mixpanelCode: null,
+    googleAnalyticsCode: null,
+    googleAnalyticsDomain: null
 };
 
 var privateConfiguration = {
