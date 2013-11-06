@@ -11,28 +11,25 @@ angular.module('cloudifyWidgetHpClientApp')
 
 
         function _getCookieData(){
-            cookieData['currentStep'] = StepsService.currentStep();
+            cookieData.currentStep = StepsService.currentStep();
             return cookieData;
         }
 
-        function _save(){
-
+        function _save() {
             var cookieData = _getCookieData();
-            console.log(["saving", cookieData]);
+            console.log(['saving', cookieData]);
             $cookieStore.put( cookieName, cookieData );
-
         }
 
         function _load(){
             return $cookieStore.get( cookieName ) || {};
         }
         cookieData = _load();
-        console.log(["cookieData initialized to ", cookieData]);
+        console.log(['cookieData initialized to ', cookieData]);
 
         function _has( key ){
             return cookieData.hasOwnProperty(key) && cookieData[key] !== undefined && cookieData[key] !== null;
         }
-
 
         function _getSessionData(){
             return _getCookieData;
@@ -71,36 +68,35 @@ angular.module('cloudifyWidgetHpClientApp')
             return _has( _getInstanceIdKey() );
         }
 
-        function _clearSession(){
-            cookieData = {};
-            _save();
-        }
+//        function _clearSession(){
+//            cookieData = {};
+//            _save();
+//        }
 
         function _remove( key ){
             try{
                 delete cookieData[key];
             }catch(e){
-                console.log(["unable to delete instanceId", e]);
+                console.log(['unable to delete instanceId', e]);
             }
             _save();
         }
 
-
         function _removeInstanceId(){
-            _remove( _getInstanceIdKey() );
+            _remove(_getInstanceIdKey());
         }
 
-        function _removeLeadMail(){
-            _remove( leadMailKey );
-        }
-        function _removeLeadDetails(){
-            _removeLeadMail();
-        }
+//        function _removeLeadMail(){
+//            _remove( leadMailKey );
+//        }
+
+//        function _removeLeadDetails(){
+//            _removeLeadMail();
+//        }
 
         function _setActivationCode( activationCode ){
             _set( activationCodeKey , activationCode );
         }
-
 
         function _hasWidgetId(){
             return _has(_getWidgetIdKey());
@@ -154,4 +150,4 @@ angular.module('cloudifyWidgetHpClientApp')
 
         this.getActivationCode = _getActivationCode;
         this.setActivationCode = _setActivationCode;
-  });
+    });

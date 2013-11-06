@@ -17,7 +17,7 @@ angular.module('cloudifyWidgetHpClientApp')
             $scope.feedbackData = {
                 name: LeadService.getName() ,
                 email: LeadService.getEmail()
-            }
+            };
         }
 
         LeadService.loadLeadFromSessionAsync().then( updateLead );
@@ -55,6 +55,6 @@ angular.module('cloudifyWidgetHpClientApp')
             return _notEmptyString($scope.feedbackData.name) &&
                 _notEmptyString($scope.feedbackData.email) &&
                 _notEmptyString($scope.feedbackData.feedback) &&
-                !$scope.feedbackSendProccess === false;
+                $scope.feedbackSendProccess === false;
         };
     });

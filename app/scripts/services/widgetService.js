@@ -34,7 +34,7 @@ angular.module('cloudifyWidgetHpClientApp')
         this.validateCode = function(code) {
             return $http.post('/backend/validate', code)
                 .then(function(data) {
-                    console.log(["after validating",data]); // lets leave this print..
+                    console.log(['after validating',data]); // lets leave this print..
                     return data.data.hasOwnProperty('email'); // we will get
                 });
         };

@@ -4,7 +4,6 @@ angular.module('cloudifyWidgetHpClientApp')
     .controller('PreviewCtrl', function ($scope, $location, $timeout, widgetService, stepsService, LeadService, SessionService  ) {
         var StepsService = stepsService;
         var currentStep = stepsService.currentStep();
-        var currentInstanceId = SessionService.getInstanceId();
 
         $scope.leadMail = LeadService.getEmail();
         $scope.selectedWidget = null;
@@ -60,7 +59,7 @@ angular.module('cloudifyWidgetHpClientApp')
 
         $scope.showSignupLink=function(){
             return !!currentStep.showSignupLink;
-        }
+        };
 
         $scope.activate = function() {
             $location.path('/signup');

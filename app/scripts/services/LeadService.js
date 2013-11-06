@@ -6,29 +6,25 @@ angular.module('cloudifyWidgetHpClientApp')
         var lead = {};
         var leadLoadedEvent = 'leadLoaded';
 
-
         function _alreadyLoaded(){
-            return lead.hasOwnProperty("id");
+            return lead.hasOwnProperty('id');
         }
 
         function _loadLeadFromSession(){
             if ( SessionService.hasLeadEmail() ){
 
                 // check if already loaded
-                if ( _alreadyLoaded() && lead.hasOwnProperty("email") && lead.email == SessionService.getLeadEmail() ){
+                if ( _alreadyLoaded() && lead.hasOwnProperty('email') && lead.email === SessionService.getLeadEmail()) {
                     var deferred = $q.defer();
                     deferred.resolve( _getLead() );
                     return deferred.promise;
-                }else{ // not loaded, need to load first
-                    lead['email'] = SessionService.getLeadEmail();
-                    return _loadLeadByEmail( SessionService.getLeadEmail()).then(function(){ $rootScope.$broadcast(leadLoadedEvent)});
+                } else { // not loaded, need to load first
+                    lead.email = SessionService.getLeadEmail();
+                    return _loadLeadByEmail( SessionService.getLeadEmail()).then(function(){$rootScope.$broadcast(leadLoadedEvent);});
                 }
             }
             return null;
         }
-
-        _loadLeadFromSession();
-
 
         function _getName(){
             return lead && lead.extra && lead.extra.fname + ' ' + lead.extra.lname || null;
@@ -42,14 +38,13 @@ angular.module('cloudifyWidgetHpClientApp')
             return lead.email;
         }
 
-        function _needsToSignup(){
-            return !lead.hasOwnProperty('id');
-        }
+//        function _needsToSignup(){
+//            return !lead.hasOwnProperty('id');
+//        }
 
         function _getTimeLeft(){
             return lead.leadExtraTimeout;
         }
-
 
         function _getLead(){
             return lead;
@@ -58,8 +53,6 @@ angular.module('cloudifyWidgetHpClientApp')
         function _setLead( _lead ){
             lead = _lead;
         }
-
-
 
         function _isLoaded(){
             return lead.hasOwnProperty('email');
@@ -77,43 +70,38 @@ angular.module('cloudifyWidgetHpClientApp')
             return deferred.promise;
         }
 
-
         function _loadLeadFromSessionAsync(){
             var deferred = $q.defer();
             var loader = _loadLeadFromSession();
-            if ( loader == null ){
+            if ( loader === null ){
                 deferred.reject('no lead in session');
-            }else{
-                loader.then(function(d){
-                    debugger;
-                    deferred.resolve( _getLead() );
-                })
+            } else {
+                loader.then(function(){
+                    deferred.resolve( _getLead());
+                });
             }
             return deferred.promise;
         }
 
-        function _getLeadIdAsync( email ){
+        function _getLeadIdAsync(email){
             var deferred = $q.defer();
 
-            if ( _isLoaded && $.trim(_getEmail()) === $.trim(email) ){
+            if (_isLoaded && $.trim(_getEmail()) === $.trim(email)) {
                 deferred.resolve( lead.id );
-            }else{
-               _loadLeadByEmail( email).then(function( lead ){
-                   // todo :handle error
-                   deferred.resolve(lead.id);
-
-               })
+            } else {
+                _loadLeadByEmail( email).then(function( lead ){
+                    // todo :handle error
+                    deferred.resolve(lead.id);
+                });
             }
             return deferred.promise;
         }
 
-        function _signup( formData ){
-            return widgetService.updateLead( formData).then( function( _lead ){
+        function _signup(formData) {
+            return widgetService.updateLead( formData).then(function(_lead){
                 lead = _lead;
             });
         }
-
-
 
         this.leadLoadedEvent = leadLoadedEvent;
         this.isExists = _isLoaded;
@@ -126,5 +114,5 @@ angular.module('cloudifyWidgetHpClientApp')
         this.loadLeadFromSessionAsync = _loadLeadFromSessionAsync;
         this.signout = _signout;
 
-
-  });
+        _loadLeadFromSession();
+    });
