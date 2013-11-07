@@ -42,7 +42,14 @@ body {
 
 #widget-header {
   width: 630px;
-  height: 46px;
+
+  .subtitles{
+    margin-top:10px;
+
+    font-size:10px;
+    padding-bottom:10px;
+  }
+
 
   #title {
     color: #222222;
@@ -50,16 +57,14 @@ body {
     position: relative;
     font-weight: bold;
     top: 5px;
-    float: left;
   }
 }
 
 #logContainer {
   color: #000;
-  position: relative;
   height: 170px;
   width: 542px;
-  top: 5px;
+  margin-top: 5px;
   overflow-y: hidden;
   border-radius: 10px;
   background-color: #fff;

@@ -9,13 +9,16 @@
                     <div id="widgetName">{{widget.productName}}</div>
             </li>
         </ul>
+
     </div>
     <div id="skin">
         <div id="userTitle" ng-show="showLeadEmail()">You are running as {{leadMail}} <span id="signout" ng-click="signout()">Sign out </span></div>
         <div id="userTimeLeft" ng-show="showLeadEmail()">Your trial ends {{parseTrialTime(trialTimeLeft)}}</div>
-        <div widget id="widgetSkin" selected-widget="selectedWidget" require-advanced="{{requireAdvanced()}}" widget-time='widgetTime'></div>
+
+        <div widget id="widgetSkin" selected-widget="selectedWidget" subtitles="getSubtitles()" require-advanced="{{requireAdvanced()}}" widget-time='widgetTime'></div>
     </div>
     <div id="instructions" class="instructions" ng-show="showInstructions()">
+
         <ol>
             <li>Select the service to run from panel on left</li>
             <li>Press the orange play button to start preview</li>

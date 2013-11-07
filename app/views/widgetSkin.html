@@ -3,6 +3,11 @@
 
         <div id="widget-header">
             <div id="title">{{!!selectedWidget && "Launch " + selectedWidget.productName + " Now!" || "Cloudify App Catalog" }}</div>
+            <div class="subtitles">
+                <div class="subtitle" ng-repeat="subtitle in subtitles">
+                    {{subtitle}}
+                </div>
+            </div>
         </div>
 
         <div id="logContainer">
@@ -49,7 +54,7 @@
                 <input name="hpcs_key" autocomplete="off" placeholder="HPCS Key" ng-model="advanced.hpcs_key" ng-change="advancedChange()"/>
                 <input name="hpcs_secret_key" placeholder="HPCS Secret Key" type="password" ng-model="advanced.hpcs_secret_key" ng-change="advancedChange()"/>
                 <!--<![endif]-->
-                <div id="createAccount"><a href="http://www.hpcloud.com/free-trial" target="_blank">Create HP Public Cloud account</a></div>
+                <div id="createAccount"><a href="https://account.hpcloud.com/signup" target="_blank">Create HP Public Cloud account</a></div>
                 <input type="submit" class="hidden" value="submit"/>
             </form>
         </div>

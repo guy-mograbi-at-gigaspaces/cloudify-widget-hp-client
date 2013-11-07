@@ -22,6 +22,10 @@ angular.module('cloudifyWidgetHpClientApp')
         };
 
 
+        $scope.getSubtitles= function(){
+            return !currentStep.subtitles ? [] : currentStep.subtitles;
+        };
+
         $scope.requireAdvanced = function(){
             return !!currentStep.requireAdvancedCredentials;
         };

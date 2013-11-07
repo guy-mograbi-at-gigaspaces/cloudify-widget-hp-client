@@ -8,9 +8,11 @@ angular.module('cloudifyWidgetHpClientApp')
             scope: {
                 selectedWidget: '=',
                 requireAdvanced:'@',
-                widgetTime: '='
+                widgetTime: '=',
+                subtitles:'='
             },
             controller: function ($scope, $element, $location, $timeout, widgetService, SessionService, LeadService) {
+
 
                 $scope.postUrl = 'http://' + window.conf.widgetServer;
                 $scope.pageUrl = $location.protocol() + '://' + $location.host();
@@ -103,6 +105,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 };
 
                 function isRequireAdvanced(){
+                    debugger;
                     return $scope.requireAdvanced === 'true';
                 }
 
