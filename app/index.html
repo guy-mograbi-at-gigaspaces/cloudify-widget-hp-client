@@ -82,6 +82,7 @@
     <script src="scripts/filters/timeFilter.js"></script>
     <script src="scripts/services/SessionService.js"></script>
     <script src="scripts/services/LeadService.js"></script>
+    <script src="scripts/services/MixpanelService.js"></script>
     <!-- endbuild -->
 
 
@@ -101,7 +102,7 @@
                     a._i.push([b,c,f])};a.__SV=1.1;})(document,window.mixpanel||[]);
             mixpanel.init( window.conf.mixpanelCode );
         }else{
-            mixpanel = { track:function(){},  people : { set : function(){}, identify:function(){} }, alias : function(){}, identify: function(){}, register:function(){}, get_distinct_id: function(){}}
+            mixpanel = { track:function(){},  people : { set_once: function(){}, set : function(){}, identify:function(){} }, alias : function(){}, identify: function(){}, register:function(){}, get_distinct_id: function(){}}
         }
     </script>
     <script type="text/javascript">

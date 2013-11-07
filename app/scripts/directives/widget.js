@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cloudifyWidgetHpClientApp')
-    .directive('widget', function () {
+    .directive('widget', function ( MixpanelService ) {
         return {
             templateUrl: '/views/widgetSkin.html',
             restrict: 'A',
@@ -52,11 +52,7 @@ angular.module('cloudifyWidgetHpClientApp')
                                 var data = SessionService.getSessionData();
 
 
-                                if (mixpanel.get_distinct_id() !== undefined) {
-                                    mixpanel.identify(data.leadMail);
-                                    mixpanel.people.identify(data.leadMail);
-                                    mixpanel.track('HP Widget error', data);
-                                }
+                                MixpanelService.trackWidgetError( data );
 
                                 widgetService.reportError(data);
                             }
@@ -111,9 +107,20 @@ angular.module('cloudifyWidgetHpClientApp')
                 }
 
                 $scope.playWidget = function () {
+
+
+                    if ( isRequireAdvanced() && $scope.credentialsChecked() ){
+
+                        MixpanelService.setPropertyOnce('hpSiteUserAdvanced','true');
+                    }else{
+                        MixpanelService.setPropertyOnce('hpSiteUserSimple','true');
+                    }
+
                     if (!$scope.credentialsChecked() || leadTimeLeft === 0) {
                         return;
                     }
+
+
 
                     $scope.play = true;
                     var iframe = $element.find('#iframe');
