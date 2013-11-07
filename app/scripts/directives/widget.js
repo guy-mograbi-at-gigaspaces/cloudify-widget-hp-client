@@ -105,7 +105,6 @@ angular.module('cloudifyWidgetHpClientApp')
                 };
 
                 function isRequireAdvanced(){
-                    debugger;
                     return $scope.requireAdvanced === 'true';
                 }
 
