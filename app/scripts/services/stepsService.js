@@ -55,7 +55,8 @@ angular.module('cloudifyWidgetHpClientApp')
                 'showSteps':false ,
                 'unlimited':true,
                 'id':5,
-                'showAdvancedInstructions':true
+                'showAdvancedInstructions':true,
+                'requireAdvancedCredentials':true
             }
         ];
 

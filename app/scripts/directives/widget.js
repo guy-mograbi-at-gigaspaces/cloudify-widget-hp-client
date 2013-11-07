@@ -7,13 +7,13 @@ angular.module('cloudifyWidgetHpClientApp')
             restrict: 'A',
             scope: {
                 selectedWidget: '=',
-                requireAdvanced: '@',
+                requireAdvanced:'@',
                 widgetTime: '='
             },
-            controller:function($scope, $element, $location, $timeout, widgetService, SessionService, LeadService ){
+            controller: function ($scope, $element, $location, $timeout, widgetService, SessionService, LeadService) {
 
                 $scope.postUrl = 'http://' + window.conf.widgetServer;
-                $scope.pageUrl = $location.protocol() +'://' + $location.host();
+                $scope.pageUrl = $location.protocol() + '://' + $location.host();
                 $scope.play = false;
                 $scope.advanced = {
                     project_name: '',
@@ -24,18 +24,17 @@ angular.module('cloudifyWidgetHpClientApp')
                 $scope.consoleUrl = null;
                 $scope.widgetLog = [];
 
-                var currentView = $location.url().substr(1);
                 var timeout = 0;
                 var milliseconds = 0;
                 var leadTimeLeft = LeadService.getTimeLeft();
                 var isNewWidgetSelected = false;
                 var handlers = {
-                    'widget_log': function(e) {
+                    'widget_log': function (e) {
                         if (isNewWidgetSelected) {
                             return;
                         }
 
-                        $scope.$apply(function() {
+                        $scope.$apply(function () {
                             var msg = JSON.parse(e.data);
 
                             if (msg.message.charAt(0) === '.') {
@@ -53,7 +52,6 @@ angular.module('cloudifyWidgetHpClientApp')
                                 var data = SessionService.getSessionData();
 
 
-
                                 if (mixpanel.get_distinct_id() !== undefined) {
                                     mixpanel.identify(data.leadMail);
                                     mixpanel.people.identify(data.leadMail);
@@ -65,17 +63,17 @@ angular.module('cloudifyWidgetHpClientApp')
                         });
                         _scrollLog();
                     },
-                    'set_advanced': function(e) {
+                    'set_advanced': function (e) {
                         var msg = JSON.parse(e.data);
                         $scope.advanced.project_name = msg.project;
                         $scope.advanced.hpcs_key = msg.key;
                         $scope.advanced.hpcs_secret_key = msg.secretKey;
                     },
-                    'widget_status': function(e) {
+                    'widget_status': function (e) {
                         var msg = JSON.parse(e.data);
                         milliseconds = msg.status.timeleftMillis;
-                        SessionService.setInstanceId( msg.status.instanceId);
-                        SessionService.setWidgetId( $scope.selectedWidget.id );
+                        SessionService.setInstanceId(msg.status.instanceId);
+                        SessionService.setWidgetId($scope.selectedWidget.id);
 
 
                         if (msg.status.publicIp !== null) {
@@ -91,7 +89,7 @@ angular.module('cloudifyWidgetHpClientApp')
                         }
 
                         if (isNewWidgetSelected) {
-                            $scope.$apply(function() {
+                            $scope.$apply(function () {
                                 $scope.widgetLog = msg.status.output;
                                 isNewWidgetSelected = false;
                                 _sendProlong();
@@ -102,13 +100,17 @@ angular.module('cloudifyWidgetHpClientApp')
 
                         _startTimer();
                     },
-                    'stop_widget': function() {
+                    'stop_widget': function () {
                         $scope.widgetTime = '';
                         _stopTimer();
                     }
                 };
 
-                $scope.playWidget = function(){
+                function isRequireAdvanced(){
+                    return $scope.requireAdvanced === 'true';
+                }
+
+                $scope.playWidget = function () {
                     if (!$scope.credentialsChecked() || leadTimeLeft === 0) {
                         return;
                     }
@@ -124,7 +126,7 @@ angular.module('cloudifyWidgetHpClientApp')
                     $.postMessage(JSON.stringify(postObj), $scope.postUrl, iframe.get(0).contentWindow);
                 };
 
-                $scope.stopWidget = function() {
+                $scope.stopWidget = function () {
                     $scope.play = false;
                     SessionService.removeInstanceId();
                     var iframe = $element.find('#iframe');
@@ -132,43 +134,47 @@ angular.module('cloudifyWidgetHpClientApp')
                     $.postMessage(JSON.stringify({name: 'stop_widget'}), $scope.postUrl, iframe.get(0).contentWindow);
                 };
 
-                $scope.hideAdvanced = function() {
-                    return currentView === 'preview' || currentView === 'free';
+                $scope.hideAdvanced = function () {
+                    return !isRequireAdvanced();
                 };
 
-                $scope.credentialsChecked = function() {
-                    if ((currentView === 'registered' &&
-                        $scope.advanced.project_name.length > 0 &&
-                        $scope.advanced.hpcs_key.length > 0 &&
-                        $scope.advanced.hpcs_secret_key.length > 0) ||
-                        currentView !== 'registered' && !$scope.play) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                function _isNotEmptyString(str) {
+                    return str !== undefined && str !== null && $.trim(str).length > 0;
+                }
+
+                function hasAdvancedCredentials() {
+                    return _isNotEmptyString($scope.advanced.project_name) &&
+                        _isNotEmptyString($scope.advanced.hpcs_key) &&
+                        _isNotEmptyString($scope.advanced.hpcs_secret_key);
+                }
+
+                $scope.credentialsChecked = function () {
+                    return  !isRequireAdvanced() || hasAdvancedCredentials();
+
+
                 };
 
 
-                $scope.playEnabled = function(){
-                    if ( $scope.selectedWidget === null ){
+                $scope.playEnabled = function () {
+                    if ($scope.selectedWidget === null) {
                         return false;
                     }
-                    else if ( !$scope.requireAdvanced ){
+                    else if (!$scope.requireAdvanced) {
                         return true;
-                    }else if ( $scope.credentialsChecked() ){
+                    } else if ($scope.credentialsChecked()) {
                         return true;
                     }
                     return false;
                 };
 
 
-                $scope.onTimeout = function() {
+                $scope.onTimeout = function () {
                     milliseconds -= 1000;
                     $scope.widgetTime = milliseconds;
                     timeout = $timeout($scope.onTimeout, 1000);
                 };
 
-                $scope.$watch('selectedWidget', function(newWidget) {
+                $scope.$watch('selectedWidget', function (newWidget) {
                     if (newWidget !== null && leadTimeLeft !== 0) {
                         $scope.play = false;
                         $scope.widgetTime = '';
@@ -199,8 +205,8 @@ angular.module('cloudifyWidgetHpClientApp')
 
                 function _sendProlong() {
                     var data = {
-                        'leadId' : LeadService.getLead().id,
-                        'instanceId' : SessionService.getInstanceId()
+                        'leadId': LeadService.getLead().id,
+                        'instanceId': SessionService.getInstanceId()
                     };
 
                     if (data.leadId !== undefined && data.instanceId !== undefined) {
