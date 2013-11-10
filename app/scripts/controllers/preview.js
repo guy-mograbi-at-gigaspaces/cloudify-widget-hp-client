@@ -22,8 +22,10 @@ angular.module('cloudifyWidgetHpClientApp')
         };
 
 
+        // return same object each time. otherwise angular will digest every time we return [] as it does "new".
         var emptySubtitles = [];
         $scope.getSubtitles= function(){
+
             return !currentStep.subtitles ? emptySubtitles : currentStep.subtitles;
         };
 
