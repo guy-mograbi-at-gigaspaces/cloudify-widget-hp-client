@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cloudifyWidgetHpClientApp')
-    .controller('SignupCtrl', function ($scope, $location, widgetService, LeadService, SessionService) {
+    .controller('SignupCtrl', function ($scope, $location, widgetService, LeadService, SessionService, MixpanelService ) {
         $scope.hasActivationCode = false; // todo : replace this with simple "phase" : signup, activate, loggedin
         $scope.isSubmitActive = false;
         $scope.activated = false;
@@ -18,23 +18,20 @@ angular.module('cloudifyWidgetHpClientApp')
                 return;
             }
 
-            mixpanel.identify($scope.formData.email);
-            mixpanel.people.identify($scope.formData.email);
-            mixpanel.people.set({
-                '$created': new Date(),
-                '$first_name':$scope.formData.fname,
-                '$last_name':$scope.formData.lname,
-                'First name': $scope.formData.fname,
-                'Last name': $scope.formData.lname,
-                'Signup date': new Date(),
-                'resource':'appCatalogUser',
-                '$email': $scope.formData.email
-            });
-            mixpanel.register({gender: 'male'});
-            mixpanel.track('Signup', $scope.formData);
-
             LeadService.signup( $scope.formData).then(function( lead ){
                 SessionService.setLeadId( lead.id );
+
+                MixpanelService.setProperty( '$created', new Date() );
+                MixpanelService.setProperty( '$first_name', $scope.formData.fname );
+                MixpanelService.setProperty( 'First Name', $scope.formData.fname );
+                MixpanelService.setProperty( '$last_name', $scope.formData.lname );
+                MixpanelService.setProperty( 'Last Name', $scope.formData.lname );
+                MixpanelService.setProperty( 'Signup date', $scope.formData.lname );
+                MixpanelService.setPropertyOnce( 'resource', 'appCatalogUser' );
+                MixpanelService.setPropertyOnce( '$email', $scope.formData.email );
+                MixpanelService.track('Signup', $scope.formData);
+
+
             });
 
             // now the user should have an activation code

@@ -260,7 +260,7 @@ $FOOTER_HEIGHT:80px;
 
 #mainStepsContainer {
   height: 110px;
-  width: 840px;
+  width: 970px;
   margin-left: auto;
   margin-right: auto;
   float: none;
@@ -279,12 +279,19 @@ $FOOTER_HEIGHT:80px;
       width: 160px;
       height: 50px;
 
+      &.run-cloudify{
+        margin-left:130px;
+      }
+
       button {
         width: 140px;
         height: 50px;
         font-size: 22px;
         margin-top: 10px;
         position: relative;
+        &.run-cloudify{
+          width:280px;
+        }
       }
 
       #mainStepRegistered {
@@ -303,3 +310,5 @@ $FOOTER_HEIGHT:80px;
 .sign-up-now{
   text-transform: uppercase; display:inline-block; margin-left:20px; text-align: center;
 }
+
+
