@@ -36,7 +36,7 @@
                 </table>
                 Feedback
                 <textarea id="feedbackText" ng-model="feedbackData.feedback" required></textarea>
-                <button id="feedbackSubmitBtn" ng-class="{'submitBtnDisabled': !isSendActive(), 'submitBtn': isSendActive()}" ng-click="sendFeedback()">Send</button>
+                <button id="feedbackSubmitBtn" ng-class="{'submitBtnDisabled': !isSendActive(), 'submitBtn': isSendActive() }" ng-click="sendFeedback()">{{getSendButtonText()}}</button>
             </form>
         </div>
     </div>
