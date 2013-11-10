@@ -103,7 +103,9 @@ angular.module('cloudifyWidgetHpClientApp')
 
                         if (firstPlayTick) {
                             firstPlayTick = false;
-                            SessionService.updateWidgetStatusTime('start', new Date().getTime());
+                            if ( SessionService.hasInstanceId() ){
+                                SessionService.updateTimeUsed( SessionService.getInstanceId(), 'start', new Date().getTime());
+                            }
                         }
                         $scope.play = msg.status.state !== 'STOPPED';
 
@@ -162,7 +164,9 @@ angular.module('cloudifyWidgetHpClientApp')
 
                 $scope.stopWidget = function() {
                     $scope.play = false;
-                    SessionService.updateWidgetStatusTime('stop', new Date().getTime());
+                    if ( SessionService.hasInstanceId() ){
+                        SessionService.updateTimeUsed( SessionService.getInstanceId(), 'stop', new Date().getTime());
+                    }
                     SessionService.removeInstanceId();
                     var iframe = $element.find('#iframe');
 
