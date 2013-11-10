@@ -4,8 +4,7 @@
         <div id="widget-header">
             <div id="title">{{!!selectedWidget && "Launch " + selectedWidget.productName + " Now!" || "Cloudify App Catalog" }}</div>
             <div class="subtitles">
-                <div class="subtitle" ng-repeat="subtitle in subtitles">
-                    {{subtitle}}
+                <div class="subtitle" ng-repeat="subtitle in subtitles" ng-bind-html-unsafe="subtitle">
                 </div>
             </div>
         </div>

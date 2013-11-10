@@ -34,7 +34,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 'showSignupLink':true,
                 'subtitles' :[
                     'Run one service to preview the Catalog on HP Cloud',
-                    'To run additional services, please use your HP Cloud account here. (link to Run Cloudify page)'
+                    'To run additional services, please use your HP Cloud account <a href="#/registered">here</a>. '
                 ]
 
             },
@@ -55,7 +55,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 'subtitles': [
                     'Run one service from the left panel - FREE for 30 days',
                     'To try a different service, you must first close the running service before spinning up the new instance',
-                    'To run multiple services, please use your HP Cloud account here. (link to Run Cloudify page)'
+                    'To run multiple services, please use your HP Cloud account <a href="#/registered">here</a>.'
                 ]
 
             },
