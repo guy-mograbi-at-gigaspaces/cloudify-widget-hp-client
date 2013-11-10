@@ -23,12 +23,14 @@ angular.module('cloudifyWidgetHpClientApp')
                 $scope.manageUrl = null;
                 $scope.consoleUrl = null;
                 $scope.widgetLog = [];
+                $scope.widgetTimeExpired = false;
 
                 var currentView = $location.url().substr(1);
                 var timeout = 0;
                 var milliseconds = 0;
                 var leadTimeLeft = LeadService.getTimeLeft();
                 var isNewWidgetSelected = false;
+                var firstPlayTick = true;
                 var handlers = {
                     'widget_log': function(e) {
                         if (isNewWidgetSelected) {
@@ -51,8 +53,6 @@ angular.module('cloudifyWidgetHpClientApp')
 
                             if (msg.type === 'error') {
                                 var data = SessionService.getSessionData();
-
-
 
                                 if (mixpanel.get_distinct_id() !== undefined) {
                                     mixpanel.identify(data.leadMail);
@@ -98,18 +98,28 @@ angular.module('cloudifyWidgetHpClientApp')
                             });
                         }
 
+                        if (firstPlayTick) {
+                            firstPlayTick = false;
+                            SessionService.updateWidgetStatusTime('start', new Date().getTime());
+                        }
                         $scope.play = msg.status.state !== 'STOPPED';
 
                         _startTimer();
                     },
                     'stop_widget': function() {
                         $scope.widgetTime = '';
+                        firstPlayTick = true;
                         _stopTimer();
                     }
                 };
 
                 $scope.playWidget = function(){
                     if (!$scope.credentialsChecked() || leadTimeLeft === 0) {
+                        return;
+                    }
+
+                    if (SessionService.getWidgetTimeUsed($scope.selectedWidget.id) >= 3600000) {
+                        $scope.widgetLog = [$scope.selectedWidget.productName + ' widget free trial time expired'];
                         return;
                     }
 
@@ -126,6 +136,7 @@ angular.module('cloudifyWidgetHpClientApp')
 
                 $scope.stopWidget = function() {
                     $scope.play = false;
+                    SessionService.updateWidgetStatusTime('stop', new Date().getTime());
                     SessionService.removeInstanceId();
                     var iframe = $element.find('#iframe');
 
