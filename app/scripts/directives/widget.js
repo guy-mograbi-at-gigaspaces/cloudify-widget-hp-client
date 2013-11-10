@@ -143,12 +143,17 @@ angular.module('cloudifyWidgetHpClientApp')
                         name: 'play_widget'
                     };
 
-                    if (_getAdvanced().project_name !== '' && _getAdvanced().hpcs_key !== '' && _getAdvanced().hpcs_secret_key !== '') {
-                        postObj.advanced = _getAdvanced();
+                    // translate advanced to whatever the postMessage to give the widget.
+                    if ( hasAdvancedCredentials() ) {
+                        postObj.advanced = { 'project' : $scope.advanced.project_name, 'key' : $scope.advanced.hpcs_key ,'secretKey' : $scope.advanced.hpcs_secret_key};
                         //SessionService.setAdvancedData(_getAdvanced());
+                    }else if ( isRequireAdvanced() ){
+                        console.log(['error, require advanced, but no advanced data, and still running play function.. wat?', $scope.advanced]);
+                        return;
                     }
                     $scope.widgetLog = [];
 
+                    console.log(['posting', postObj ]);
                     $.postMessage(JSON.stringify(postObj), $scope.postUrl, iframe.get(0).contentWindow);
                 };
 
@@ -210,13 +215,6 @@ angular.module('cloudifyWidgetHpClientApp')
                     }
                 });
 
-                function _getAdvanced() {
-                    return {
-                        project_name: $scope.advanced.project_name,
-                        hpcs_key: $scope.advanced.hpcs_key,
-                        hpcs_secret_key: $scope.advanced.hpcs_secret_key
-                    };
-                }
 
                 function _startTimer() {
                     _stopTimer();
@@ -264,7 +262,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 });
 
                 _checkLeadTime();
-//                if (SessionService.getAdvancedData() !== undefined) {
+//                if (SessionService.hasAdvancedData() !== undefined) {
 //                    $scope.advanced = SessionService.getAdvancedData();
 //                }
             }
