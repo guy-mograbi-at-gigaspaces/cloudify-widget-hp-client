@@ -169,6 +169,9 @@ angular.module('cloudifyWidgetHpClientApp')
             return _get(advancedData);
         }
 
+        function _clearAdvancedData(){
+            return _remove(advancedData);
+        }
 
         this.getSessionData = _getSessionData;
 
@@ -190,6 +193,7 @@ angular.module('cloudifyWidgetHpClientApp')
 
         this.setAdvancedData = _setAdvancedData;
         this.getAdvancedData = _getAdvancedData;
+        this.clearAdvancedData = _clearAdvancedData;
 
         this.getActivationCode = _getActivationCode;
         this.setActivationCode = _setActivationCode;

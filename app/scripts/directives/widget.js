@@ -145,7 +145,7 @@ angular.module('cloudifyWidgetHpClientApp')
 
                     if (_getAdvanced().project_name !== '' && _getAdvanced().hpcs_key !== '' && _getAdvanced().hpcs_secret_key !== '') {
                         postObj.advanced = _getAdvanced();
-                        SessionService.setAdvancedData(_getAdvanced());
+                        //SessionService.setAdvancedData(_getAdvanced());
                     }
                     $scope.widgetLog = [];
 
@@ -264,9 +264,9 @@ angular.module('cloudifyWidgetHpClientApp')
                 });
 
                 _checkLeadTime();
-                if (SessionService.getAdvancedData() !== undefined) {
-                    $scope.advanced = SessionService.getAdvancedData();
-                }
+//                if (SessionService.getAdvancedData() !== undefined) {
+//                    $scope.advanced = SessionService.getAdvancedData();
+//                }
             }
         };
     });

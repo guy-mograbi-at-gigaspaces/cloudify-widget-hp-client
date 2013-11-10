@@ -54,6 +54,7 @@ angular.module('cloudifyWidgetHpClientApp')
         $scope.signout = function() {
             LeadService.signout();
             SessionService.removeLeadEmail();
+            SessionService.clearAdvancedData();
 
             $location.path('/signup');
         };
