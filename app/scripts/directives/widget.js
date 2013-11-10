@@ -1,14 +1,15 @@
 'use strict';
 
 angular.module('cloudifyWidgetHpClientApp')
-    .directive('widget', function () {
+    .directive('widget', function ( MixpanelService ) {
         return {
             templateUrl: '/views/widgetSkin.html',
             restrict: 'A',
             scope: {
                 selectedWidget: '=',
                 requireAdvanced: '@',
-                widgetTime: '='
+                widgetTime: '=',
+                subtitles:'='
             },
             controller:function($scope, $element, $location, $timeout, widgetService, SessionService, LeadService ){
 
@@ -60,6 +61,8 @@ angular.module('cloudifyWidgetHpClientApp')
                                     mixpanel.people.identify(data.leadMail);
                                     mixpanel.track('HP Widget error', data);
                                 }
+
+                                MixpanelService.trackWidgetError( data );
 
                                 widgetService.reportError(data);
                             }
@@ -114,7 +117,20 @@ angular.module('cloudifyWidgetHpClientApp')
                     }
                 };
 
+                function isRequireAdvanced(){
+                    return $scope.requireAdvanced === 'true';
+                }
+
                 $scope.playWidget = function(){
+
+
+                    if ( isRequireAdvanced() && $scope.credentialsChecked() ){
+
+                        MixpanelService.setPropertyOnce('hpSiteUserAdvanced','true');
+                    }else{
+                        MixpanelService.setPropertyOnce('hpSiteUserSimple','true');
+                    }
+
                     if (!$scope.credentialsChecked() || leadTimeLeft === 0) {
                         return;
                     }
@@ -149,21 +165,22 @@ angular.module('cloudifyWidgetHpClientApp')
                 };
 
                 $scope.hideAdvanced = function() {
-                    return currentView === 'preview' || currentView === 'free';
+                    return !isRequireAdvanced();
                 };
+
+                function _isNotEmptyString(str) {
+                    return str !== undefined && str !== null && $.trim(str).length > 0;
+                }
+
+                function hasAdvancedCredentials() {
+                    return _isNotEmptyString($scope.advanced.project_name) &&
+                        _isNotEmptyString($scope.advanced.hpcs_key) &&
+                        _isNotEmptyString($scope.advanced.hpcs_secret_key);
+                }
 
                 $scope.credentialsChecked = function() {
-                    if ((currentView === 'registered' &&
-                        $scope.advanced.project_name.length > 0 &&
-                        $scope.advanced.hpcs_key.length > 0 &&
-                        $scope.advanced.hpcs_secret_key.length > 0) ||
-                        currentView !== 'registered' && !$scope.play) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    return  !isRequireAdvanced() || hasAdvancedCredentials();
                 };
-
 
                 $scope.playEnabled = function(){
                     if ( $scope.selectedWidget === null ){
