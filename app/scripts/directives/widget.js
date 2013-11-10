@@ -126,7 +126,10 @@ angular.module('cloudifyWidgetHpClientApp')
 
                     $scope.play = true;
                     var iframe = $element.find('#iframe');
-                    var postObj = {name: 'play_widget'};
+                    var postObj = {
+                        name: 'play_widget'
+                    };
+
                     if (_getAdvanced().project_name !== '' && _getAdvanced().hpcs_key !== '' && _getAdvanced().hpcs_secret_key !== '') {
                         postObj.advanced = _getAdvanced();
                         SessionService.setAdvancedData(_getAdvanced());
