@@ -25,7 +25,6 @@ angular.module('cloudifyWidgetHpClientApp')
                 $scope.consoleUrl = null;
                 $scope.widgetLog = [];
 
-                var currentView = $location.url().substr(1);
                 var timeout = 0;
                 var milliseconds = 0;
                 var leadTimeLeft = LeadService.getTimeLeft();
