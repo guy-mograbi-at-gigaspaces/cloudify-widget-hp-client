@@ -56,7 +56,7 @@ angular.module('cloudifyWidgetHpClientApp')
 
 
         $scope.getSendButtonText = function(){
-            return $scope.feedbackSendProccess ? "Sending..." : "Send";
+            return $scope.feedbackSendProccess ? 'Sending...' : 'Send';
         };
 
         $scope.isSendActive = function() {
