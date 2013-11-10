@@ -42,7 +42,6 @@ angular.module('cloudifyWidgetHpClientApp')
                         $scope.feedbackData.feedback = '';
                     } else if (result.data === 'feedbackError') {
                         $scope.feedbackSentError = true;
-                        $scope.feedbackData.feedback = '';
                     }
                 });
         };
@@ -50,6 +49,15 @@ angular.module('cloudifyWidgetHpClientApp')
         function _notEmptyString( str ){
             return str !== undefined && str !== null && $.trim(str.length) > 0;
         }
+
+        $scope.isCurrentlySending = function(){
+            return $scope.feedbackSendProcess;
+        };
+
+
+        $scope.getSendButtonText = function(){
+            return $scope.feedbackSendProccess ? "Sending..." : "Send";
+        };
 
         $scope.isSendActive = function() {
             return _notEmptyString($scope.feedbackData.name) &&
