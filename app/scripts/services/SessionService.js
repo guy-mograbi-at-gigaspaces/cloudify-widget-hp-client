@@ -8,6 +8,7 @@ angular.module('cloudifyWidgetHpClientApp')
         var cookieData = {};
         var leadMailKey = 'leadMail';
         var activationCodeKey = 'activationCode';
+        var advancedData = {};
         var timeUsedByWidgetId = {};
 
         function _getCookieData(){
@@ -130,7 +131,7 @@ angular.module('cloudifyWidgetHpClientApp')
             return _remove(leadMailKey);
         }
 
-        function updateWidgetStatusTime(status, time) {
+        function _updateWidgetStatusTime(status, time) {
             var widgetId = _getWidgetId();
             if (cookieData.timeUsedByWidgetId !== undefined) {
                 timeUsedByWidgetId = cookieData.timeUsedByWidgetId;
@@ -156,9 +157,18 @@ angular.module('cloudifyWidgetHpClientApp')
             timeUsedByWidgetId[widgetId].timeUsed += timeUsedByWidgetId[widgetId].stop - timeUsedByWidgetId[widgetId].start;
         }
 
-        function getWidgetTimeUsed(widgetId) {
+        function _getWidgetTimeUsed(widgetId) {
             return timeUsedByWidgetId[widgetId] !== undefined ? timeUsedByWidgetId[widgetId].timeUsed : 0;
         }
+
+        function _setAdvancedData( data ){
+            return  _set(advancedData, data);
+        }
+
+        function _getAdvancedData(){
+            return _get(advancedData);
+        }
+
 
         this.getSessionData = _getSessionData;
 
@@ -178,9 +188,12 @@ angular.module('cloudifyWidgetHpClientApp')
         this.getLeadEmail = _getLeadEmail;
         this.removeLeadEmail = _removeLeadEmail;
 
+        this.setAdvancedData = _setAdvancedData;
+        this.getAdvancedData = _getAdvancedData;
+
         this.getActivationCode = _getActivationCode;
         this.setActivationCode = _setActivationCode;
 
-        this.updateWidgetStatusTime = updateWidgetStatusTime;
-        this.getWidgetTimeUsed = getWidgetTimeUsed;
+        this.updateWidgetStatusTime = _updateWidgetStatusTime;
+        this.getWidgetTimeUsed = _getWidgetTimeUsed;
     });

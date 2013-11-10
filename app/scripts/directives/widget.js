@@ -13,7 +13,7 @@ angular.module('cloudifyWidgetHpClientApp')
             controller:function($scope, $element, $location, $timeout, widgetService, SessionService, LeadService ){
 
                 $scope.postUrl = 'http://' + window.conf.widgetServer;
-                $scope.pageUrl = $location.protocol() +'://' + $location.host();
+                $scope.pageUrl = $location.protocol() + '://' + $location.host();
                 $scope.play = false;
                 $scope.advanced = {
                     project_name: '',
@@ -127,8 +127,9 @@ angular.module('cloudifyWidgetHpClientApp')
                     $scope.play = true;
                     var iframe = $element.find('#iframe');
                     var postObj = {name: 'play_widget'};
-                    if (_getAdvanced().project !== '' && _getAdvanced().key !== '' && _getAdvanced().secretKey !== '') {
+                    if (_getAdvanced().project_name !== '' && _getAdvanced().hpcs_key !== '' && _getAdvanced().hpcs_secret_key !== '') {
                         postObj.advanced = _getAdvanced();
+                        SessionService.setAdvancedData(_getAdvanced());
                     }
                     $scope.widgetLog = [];
 
@@ -194,9 +195,9 @@ angular.module('cloudifyWidgetHpClientApp')
 
                 function _getAdvanced() {
                     return {
-                        project: $scope.advanced.project_name,
-                        key: $scope.advanced.hpcs_key,
-                        secretKey: $scope.advanced.hpcs_secret_key
+                        project_name: $scope.advanced.project_name,
+                        hpcs_key: $scope.advanced.hpcs_key,
+                        hpcs_secret_key: $scope.advanced.hpcs_secret_key
                     };
                 }
 
@@ -246,6 +247,9 @@ angular.module('cloudifyWidgetHpClientApp')
                 });
 
                 _checkLeadTime();
+                if (SessionService.getAdvancedData() !== undefined) {
+                    $scope.advanced = SessionService.getAdvancedData();
+                }
             }
         };
     });
