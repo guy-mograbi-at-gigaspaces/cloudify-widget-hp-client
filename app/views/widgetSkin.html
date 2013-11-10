@@ -17,7 +17,8 @@
                 <li id="manageApp" ng-show="manageUrl != null"><a href="{{manageUrl}}" target="_blank">Manage your app</a></li>
                 <li ng-show="consoleUrl != null"><div class="consoleManageArrow"></div><a href="{{consoleUrl}}" target="_blank">{{selectedWidget.productName}} Console</a></li>
             </ul>
-            <span id="time_left" ng-class="!!widgetTime && !currentStep.unlimited && 'visible' || 'hidden'">
+
+            <span id="time_left" ng-class="!!widgetTime && !unlimited && 'visible' || 'hidden'">
                 Time left:
                 <span id="time_left_counter">{{widgetTime | timeFilter}}</span>
             </span>
@@ -60,5 +61,5 @@
 
     </div>
 
-    <iframe id="iframe" ng-src="{{postUrl}}/widget/widget?apiKey={{selectedWidget.apiKey}}&origin_page_url={{pageUrl}}/{{selectedWidget.apiKey}}_{{currentStep}}"></iframe>
+    <iframe id="iframe" ng-src="{{postUrl}}/widget/widget?apiKey={{selectedWidget.apiKey}}&origin_page_url={{pageUrl}}/{{selectedWidget.apiKey}}_{{upid}}"></iframe>
 </div>

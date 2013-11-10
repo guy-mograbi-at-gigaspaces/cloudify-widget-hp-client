@@ -29,6 +29,14 @@ angular.module('cloudifyWidgetHpClientApp')
             return !currentStep.subtitles ? emptySubtitles : currentStep.subtitles;
         };
 
+        $scope.isUnlimited = function(){
+            return !!currentStep.unlimited;
+        };
+
+        $scope.getUpid = function(){
+            return currentStep.id;
+        };
+
         $scope.requireAdvanced = function(){
             return !!currentStep.requireAdvancedCredentials;
         };

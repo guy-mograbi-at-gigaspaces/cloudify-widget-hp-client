@@ -5,11 +5,14 @@ angular.module('cloudifyWidgetHpClientApp')
         var StepsService = stepsService;
     // AngularJS will instantiate a singleton by calling "new" on this function
         var cookieName = 'hpwidgetsession';
-        var cookieData = {};
         var leadMailKey = 'leadMail';
         var activationCodeKey = 'activationCode';
-        var advancedData = {};
-        var timeUsedByWidgetId = {};
+        var timeUsedByInstanceIdKey = 'timeUsedByInstanceId';
+        var advancedDataKey = 'advancedData';
+        var statusStop = 'stop';
+        var statusStart = 'start';
+        var cookieData = {};
+
 
         function _getCookieData(){
             cookieData.currentStep = StepsService.currentStep();
@@ -34,6 +37,11 @@ angular.module('cloudifyWidgetHpClientApp')
 
         function _getSessionData(){
             return _getCookieData;
+        }
+
+
+        function _getTimeKey( instanceId ){
+            return 'time_for_instance_' + instanceId;
         }
 
         function _getWidgetIdKey(){
@@ -131,46 +139,69 @@ angular.module('cloudifyWidgetHpClientApp')
             return _remove(leadMailKey);
         }
 
-        function _updateWidgetStatusTime(status, time) {
-            var widgetId = _getWidgetId();
-            if (cookieData.timeUsedByWidgetId !== undefined) {
-                timeUsedByWidgetId = cookieData.timeUsedByWidgetId;
+        // safely get entry for time used by instanceId
+        function _getTimeUsedByInstanceId( instanceId ){
+            if (!cookieData.hasOwnProperty(timeUsedByInstanceIdKey)){
+                cookieData[timeUsedByInstanceIdKey] = {};
             }
 
-            if (timeUsedByWidgetId[widgetId] === undefined) {
-                timeUsedByWidgetId[widgetId] = {
-                    'start': 0,
-                    'stop': 0,
-                    'timeUsed': 0
-                };
+            if (!cookieData[timeUsedByInstanceIdKey].hasOwnProperty(_getTimeKey(instanceId))) {
+                cookieData[timeUsedByInstanceIdKey][_getTimeKey(instanceId)] = { };
             }
 
-            timeUsedByWidgetId[widgetId][status] = time;
+            return cookieData[timeUsedByInstanceIdKey][_getTimeKey(instanceId)];
+        }
 
-            if (status === 'stop') {
-                updateWidgetTimeUsed(widgetId);
-                cookieData.timeUsedByWidgetId = timeUsedByWidgetId;
+        function _updateTimeUsed( instanceId, status, time) {
+
+            var data =  _getTimeUsedByInstanceId( instanceId );
+            if ( status === 'start' || status === 'stop' ){
+                data[status] = time;
+            }else{
+                console.log(['unknown status', status]);
             }
+            _save();
         }
 
-        function updateWidgetTimeUsed(widgetId) {
-            timeUsedByWidgetId[widgetId].timeUsed += timeUsedByWidgetId[widgetId].stop - timeUsedByWidgetId[widgetId].start;
+        function _getTimeUsed() {
+            try {
+
+                var timeUsed = 0;
+                var startTime = 0;
+                var stopTime = 0;
+                var timeUsedIndex = null;
+                var timeUsedItem = null;
+                for (timeUsedIndex in cookieData[timeUsedByInstanceIdKey]) {
+                    if (cookieData[timeUsedByInstanceIdKey].hasOwnProperty(timeUsedIndex)) {
+                        timeUsedItem = cookieData[timeUsedByInstanceIdKey][timeUsedIndex];
+                        if (timeUsedItem.hasOwnProperty(statusStart) && timeUsedItem.hasOwnProperty(statusStop)) {
+                            startTime = timeUsedItem[statusStart];
+                            stopTime = timeUsedItem[statusStop];
+                            if (stopTime > startTime) {
+                                timeUsed = timeUsed + stopTime - startTime;
+                            }
+                        }
+                    }
+                }
+                return timeUsed;
+
+            } catch (e) {
+                console.log(['unable to calculate time used', e]);
+            }
+            return 0;
         }
 
-        function _getWidgetTimeUsed(widgetId) {
-            return timeUsedByWidgetId[widgetId] !== undefined ? timeUsedByWidgetId[widgetId].timeUsed : 0;
-        }
 
         function _setAdvancedData( data ){
-            return  _set(advancedData, data);
+            return  _set(advancedDataKey, data);
         }
 
         function _getAdvancedData(){
-            return _get(advancedData);
+            return _get(advancedDataKey);
         }
 
         function _clearAdvancedData(){
-            return _remove(advancedData);
+            return _remove(advancedDataKey);
         }
 
         this.getSessionData = _getSessionData;
@@ -198,6 +229,6 @@ angular.module('cloudifyWidgetHpClientApp')
         this.getActivationCode = _getActivationCode;
         this.setActivationCode = _setActivationCode;
 
-        this.updateWidgetStatusTime = _updateWidgetStatusTime;
-        this.getWidgetTimeUsed = _getWidgetTimeUsed;
+        this.updateTimeUsed = _updateTimeUsed;
+        this.getTimeUsed = _getTimeUsed;
     });

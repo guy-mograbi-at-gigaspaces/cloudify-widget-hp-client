@@ -9,9 +9,11 @@ angular.module('cloudifyWidgetHpClientApp')
                 selectedWidget: '=',
                 requireAdvanced: '@',
                 widgetTime: '=',
-                subtitles:'='
+                subtitles:'=',
+                unlimited:'=',
+                upid:'=' // unique page id - for widget caching, we want each page to have a separate cookie, otherwise they will share sessions.
             },
-            controller:function($scope, $element, $location, $timeout, widgetService, SessionService, LeadService, stepsService ){
+            controller:function($scope, $element, $location, $timeout, widgetService, SessionService, LeadService ){
 
                 $scope.postUrl = 'http://' + window.conf.widgetServer;
                 $scope.pageUrl = $location.protocol() + '://' + $location.host();
@@ -24,7 +26,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 $scope.manageUrl = null;
                 $scope.consoleUrl = null;
                 $scope.widgetLog = [];
-                $scope.currentStep = stepsService.getStep();
+
 
                 var timeout = 0;
                 var milliseconds = 0;
@@ -132,8 +134,9 @@ angular.module('cloudifyWidgetHpClientApp')
                         return;
                     }
 
-                    if (SessionService.getWidgetTimeUsed($scope.selectedWidget.id) >= 3600000) {
-                        $scope.widgetLog = [$scope.selectedWidget.productName + ' widget free trial time expired'];
+                    var oneHour = 1000 * 60 * 60; // our timelimit;
+                    if (SessionService.getTimeUsed() >= oneHour ) {
+                        $scope.widgetLog = ['You have used the 60 minutes preview time.'];
                         return;
                     }
 
