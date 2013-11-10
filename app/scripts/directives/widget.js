@@ -11,7 +11,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 widgetTime: '=',
                 subtitles:'='
             },
-            controller:function($scope, $element, $location, $timeout, widgetService, SessionService, LeadService ){
+            controller:function($scope, $element, $location, $timeout, widgetService, SessionService, LeadService, stepsService ){
 
                 $scope.postUrl = 'http://' + window.conf.widgetServer;
                 $scope.pageUrl = $location.protocol() + '://' + $location.host();
@@ -24,6 +24,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 $scope.manageUrl = null;
                 $scope.consoleUrl = null;
                 $scope.widgetLog = [];
+                $scope.currentStep = stepsService.getStep();
 
                 var timeout = 0;
                 var milliseconds = 0;
