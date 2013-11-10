@@ -54,8 +54,6 @@ angular.module('cloudifyWidgetHpClientApp')
                             if (msg.type === 'error') {
                                 var data = SessionService.getSessionData();
 
-
-
                                 if (mixpanel.get_distinct_id() !== undefined) {
                                     mixpanel.identify(data.leadMail);
                                     mixpanel.people.identify(data.leadMail);
@@ -63,11 +61,10 @@ angular.module('cloudifyWidgetHpClientApp')
                                 }
 
                                 MixpanelService.trackWidgetError( data );
-
                                 widgetService.reportError(data);
                             }
+                            _scrollLog();
                         });
-                        _scrollLog();
                     },
                     'set_advanced': function(e) {
                         var msg = JSON.parse(e.data);
