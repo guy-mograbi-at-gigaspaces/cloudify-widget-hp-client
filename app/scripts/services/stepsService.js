@@ -51,6 +51,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 'requiresLogin': true,
                 'id':4,
                 'showInstructions':true ,
+                'showSignupLink':false ,
                 'subtitles': [
                     'Run one service from the left panel - FREE for 30 days',
                     'To try a different service, you must first close the running service before spinning up the new instance',

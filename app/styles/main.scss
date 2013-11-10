@@ -54,11 +54,11 @@ body{
     min-width: 1250px;
 
     .container {
-      width: 1040px;
+      width: 920px;
 
     .navigation {
 
-      width: 1040px;
+      width: 920px;
       margin: 0 auto;
       position: relative;
 
@@ -79,12 +79,12 @@ body{
 
           a {
             display: block;
-            padding: 5px 30px;
+            padding: 5px 20px;
             float: left;
             margin-right: 5px;
             text-decoration: none;
             color: #414141;
-
+            font-size: 16px;
             border-radius: 10px;
           }
         }

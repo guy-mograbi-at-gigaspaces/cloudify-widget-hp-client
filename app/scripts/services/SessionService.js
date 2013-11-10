@@ -8,7 +8,8 @@ angular.module('cloudifyWidgetHpClientApp')
         var cookieData = {};
         var leadMailKey = 'leadMail';
         var activationCodeKey = 'activationCode';
-
+        var advancedData = {};
+        var timeUsedByWidgetId = {};
 
         function _getCookieData(){
             cookieData.currentStep = StepsService.currentStep();
@@ -130,6 +131,45 @@ angular.module('cloudifyWidgetHpClientApp')
             return _remove(leadMailKey);
         }
 
+        function _updateWidgetStatusTime(status, time) {
+            var widgetId = _getWidgetId();
+            if (cookieData.timeUsedByWidgetId !== undefined) {
+                timeUsedByWidgetId = cookieData.timeUsedByWidgetId;
+            }
+
+            if (timeUsedByWidgetId[widgetId] === undefined) {
+                timeUsedByWidgetId[widgetId] = {
+                    'start': 0,
+                    'stop': 0,
+                    'timeUsed': 0
+                };
+            }
+
+            timeUsedByWidgetId[widgetId][status] = time;
+
+            if (status === 'stop') {
+                updateWidgetTimeUsed(widgetId);
+                cookieData.timeUsedByWidgetId = timeUsedByWidgetId;
+            }
+        }
+
+        function updateWidgetTimeUsed(widgetId) {
+            timeUsedByWidgetId[widgetId].timeUsed += timeUsedByWidgetId[widgetId].stop - timeUsedByWidgetId[widgetId].start;
+        }
+
+        function _getWidgetTimeUsed(widgetId) {
+            return timeUsedByWidgetId[widgetId] !== undefined ? timeUsedByWidgetId[widgetId].timeUsed : 0;
+        }
+
+        function _setAdvancedData( data ){
+            return  _set(advancedData, data);
+        }
+
+        function _getAdvancedData(){
+            return _get(advancedData);
+        }
+
+
         this.getSessionData = _getSessionData;
 
         this.hasInstanceId = _hasInstanceId;
@@ -148,6 +188,12 @@ angular.module('cloudifyWidgetHpClientApp')
         this.getLeadEmail = _getLeadEmail;
         this.removeLeadEmail = _removeLeadEmail;
 
+        this.setAdvancedData = _setAdvancedData;
+        this.getAdvancedData = _getAdvancedData;
+
         this.getActivationCode = _getActivationCode;
         this.setActivationCode = _setActivationCode;
+
+        this.updateWidgetStatusTime = _updateWidgetStatusTime;
+        this.getWidgetTimeUsed = _getWidgetTimeUsed;
     });

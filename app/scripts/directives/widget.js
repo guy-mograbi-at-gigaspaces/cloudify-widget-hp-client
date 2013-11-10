@@ -7,12 +7,11 @@ angular.module('cloudifyWidgetHpClientApp')
             restrict: 'A',
             scope: {
                 selectedWidget: '=',
-                requireAdvanced:'@',
+                requireAdvanced: '@',
                 widgetTime: '=',
                 subtitles:'='
             },
-            controller: function ($scope, $element, $location, $timeout, widgetService, SessionService, LeadService) {
-
+            controller:function($scope, $element, $location, $timeout, widgetService, SessionService, LeadService ){
 
                 $scope.postUrl = 'http://' + window.conf.widgetServer;
                 $scope.pageUrl = $location.protocol() + '://' + $location.host();
@@ -30,13 +29,14 @@ angular.module('cloudifyWidgetHpClientApp')
                 var milliseconds = 0;
                 var leadTimeLeft = LeadService.getTimeLeft();
                 var isNewWidgetSelected = false;
+                var firstPlayTick = true;
                 var handlers = {
-                    'widget_log': function (e) {
+                    'widget_log': function(e) {
                         if (isNewWidgetSelected) {
                             return;
                         }
 
-                        $scope.$apply(function () {
+                        $scope.$apply(function() {
                             var msg = JSON.parse(e.data);
 
                             if (msg.message.charAt(0) === '.') {
@@ -54,6 +54,13 @@ angular.module('cloudifyWidgetHpClientApp')
                                 var data = SessionService.getSessionData();
 
 
+
+                                if (mixpanel.get_distinct_id() !== undefined) {
+                                    mixpanel.identify(data.leadMail);
+                                    mixpanel.people.identify(data.leadMail);
+                                    mixpanel.track('HP Widget error', data);
+                                }
+
                                 MixpanelService.trackWidgetError( data );
 
                                 widgetService.reportError(data);
@@ -61,17 +68,17 @@ angular.module('cloudifyWidgetHpClientApp')
                         });
                         _scrollLog();
                     },
-                    'set_advanced': function (e) {
+                    'set_advanced': function(e) {
                         var msg = JSON.parse(e.data);
                         $scope.advanced.project_name = msg.project;
                         $scope.advanced.hpcs_key = msg.key;
                         $scope.advanced.hpcs_secret_key = msg.secretKey;
                     },
-                    'widget_status': function (e) {
+                    'widget_status': function(e) {
                         var msg = JSON.parse(e.data);
                         milliseconds = msg.status.timeleftMillis;
-                        SessionService.setInstanceId(msg.status.instanceId);
-                        SessionService.setWidgetId($scope.selectedWidget.id);
+                        SessionService.setInstanceId( msg.status.instanceId);
+                        SessionService.setWidgetId( $scope.selectedWidget.id );
 
 
                         if (msg.status.publicIp !== null) {
@@ -87,19 +94,24 @@ angular.module('cloudifyWidgetHpClientApp')
                         }
 
                         if (isNewWidgetSelected) {
-                            $scope.$apply(function () {
+                            $scope.$apply(function() {
                                 $scope.widgetLog = msg.status.output;
                                 isNewWidgetSelected = false;
                                 _sendProlong();
                             });
                         }
 
+                        if (firstPlayTick) {
+                            firstPlayTick = false;
+                            SessionService.updateWidgetStatusTime('start', new Date().getTime());
+                        }
                         $scope.play = msg.status.state !== 'STOPPED';
 
                         _startTimer();
                     },
-                    'stop_widget': function () {
+                    'stop_widget': function() {
                         $scope.widgetTime = '';
+                        firstPlayTick = true;
                         _stopTimer();
                     }
                 };
@@ -108,7 +120,7 @@ angular.module('cloudifyWidgetHpClientApp')
                     return $scope.requireAdvanced === 'true';
                 }
 
-                $scope.playWidget = function () {
+                $scope.playWidget = function(){
 
 
                     if ( isRequireAdvanced() && $scope.credentialsChecked() ){
@@ -122,28 +134,36 @@ angular.module('cloudifyWidgetHpClientApp')
                         return;
                     }
 
-
+                    if (SessionService.getWidgetTimeUsed($scope.selectedWidget.id) >= 3600000) {
+                        $scope.widgetLog = [$scope.selectedWidget.productName + ' widget free trial time expired'];
+                        return;
+                    }
 
                     $scope.play = true;
                     var iframe = $element.find('#iframe');
-                    var postObj = {name: 'play_widget'};
-                    if (_getAdvanced().project !== '' && _getAdvanced().key !== '' && _getAdvanced().secretKey !== '') {
+                    var postObj = {
+                        name: 'play_widget'
+                    };
+
+                    if (_getAdvanced().project_name !== '' && _getAdvanced().hpcs_key !== '' && _getAdvanced().hpcs_secret_key !== '') {
                         postObj.advanced = _getAdvanced();
+                        SessionService.setAdvancedData(_getAdvanced());
                     }
                     $scope.widgetLog = [];
 
                     $.postMessage(JSON.stringify(postObj), $scope.postUrl, iframe.get(0).contentWindow);
                 };
 
-                $scope.stopWidget = function () {
+                $scope.stopWidget = function() {
                     $scope.play = false;
+                    SessionService.updateWidgetStatusTime('stop', new Date().getTime());
                     SessionService.removeInstanceId();
                     var iframe = $element.find('#iframe');
 
                     $.postMessage(JSON.stringify({name: 'stop_widget'}), $scope.postUrl, iframe.get(0).contentWindow);
                 };
 
-                $scope.hideAdvanced = function () {
+                $scope.hideAdvanced = function() {
                     return !isRequireAdvanced();
                 };
 
@@ -157,33 +177,30 @@ angular.module('cloudifyWidgetHpClientApp')
                         _isNotEmptyString($scope.advanced.hpcs_secret_key);
                 }
 
-                $scope.credentialsChecked = function () {
+                $scope.credentialsChecked = function() {
                     return  !isRequireAdvanced() || hasAdvancedCredentials();
-
-
                 };
 
-
-                $scope.playEnabled = function () {
-                    if ($scope.selectedWidget === null) {
+                $scope.playEnabled = function(){
+                    if ( $scope.selectedWidget === null ){
                         return false;
                     }
-                    else if (!$scope.requireAdvanced) {
+                    else if ( !$scope.requireAdvanced ){
                         return true;
-                    } else if ($scope.credentialsChecked()) {
+                    }else if ( $scope.credentialsChecked() ){
                         return true;
                     }
                     return false;
                 };
 
 
-                $scope.onTimeout = function () {
+                $scope.onTimeout = function() {
                     milliseconds -= 1000;
                     $scope.widgetTime = milliseconds;
                     timeout = $timeout($scope.onTimeout, 1000);
                 };
 
-                $scope.$watch('selectedWidget', function (newWidget) {
+                $scope.$watch('selectedWidget', function(newWidget) {
                     if (newWidget !== null && leadTimeLeft !== 0) {
                         $scope.play = false;
                         $scope.widgetTime = '';
@@ -197,9 +214,9 @@ angular.module('cloudifyWidgetHpClientApp')
 
                 function _getAdvanced() {
                     return {
-                        project: $scope.advanced.project_name,
-                        key: $scope.advanced.hpcs_key,
-                        secretKey: $scope.advanced.hpcs_secret_key
+                        project_name: $scope.advanced.project_name,
+                        hpcs_key: $scope.advanced.hpcs_key,
+                        hpcs_secret_key: $scope.advanced.hpcs_secret_key
                     };
                 }
 
@@ -214,8 +231,8 @@ angular.module('cloudifyWidgetHpClientApp')
 
                 function _sendProlong() {
                     var data = {
-                        'leadId': LeadService.getLead().id,
-                        'instanceId': SessionService.getInstanceId()
+                        'leadId' : LeadService.getLead().id,
+                        'instanceId' : SessionService.getInstanceId()
                     };
 
                     if (data.leadId !== undefined && data.instanceId !== undefined) {
@@ -249,6 +266,9 @@ angular.module('cloudifyWidgetHpClientApp')
                 });
 
                 _checkLeadTime();
+                if (SessionService.getAdvancedData() !== undefined) {
+                    $scope.advanced = SessionService.getAdvancedData();
+                }
             }
         };
     });
