@@ -232,7 +232,10 @@ app.post('/backend/validate', function(request, response) {
     var options = {
         hostname: conf.widgetServer,
         path: '/api/user/' + conf.userId + '/lead/' + request.body.leadId + '/validate?authToken=' + conf.authToken + '&confirmationCode=' + request.body.code,
-        method: 'POST'
+        method: 'POST',
+        headers: {
+            'Content-Length': 0
+        }
     };
 
     var data = '';
