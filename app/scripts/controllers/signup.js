@@ -57,6 +57,7 @@ angular.module('cloudifyWidgetHpClientApp')
                         widgetService.validateCode(codeFormData).then( function( success /* true/false */ ) {
                             if ( !!success ){
                                 SessionService.setActivationCode( $.trim($scope.formData.activationCode) );
+                                LeadService.updateLead();
                                 $scope.loginInProgress = false;
                                 $location.path('/free');
                             } else {

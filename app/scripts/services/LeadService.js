@@ -103,6 +103,10 @@ angular.module('cloudifyWidgetHpClientApp')
             });
         }
 
+        function _updateLead() {
+            _loadLeadByEmail(lead.email);
+        }
+
         this.leadLoadedEvent = leadLoadedEvent;
         this.isExists = _isLoaded;
         this.getEmail =_getEmail;
@@ -113,6 +117,7 @@ angular.module('cloudifyWidgetHpClientApp')
         this.getName = _getName;
         this.loadLeadFromSessionAsync = _loadLeadFromSessionAsync;
         this.signout = _signout;
+        this.updateLead = _updateLead;
 
         _loadLeadFromSession();
     });
