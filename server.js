@@ -335,7 +335,8 @@ app.post('/backend/feedback', function(request, response) {
 
     var mailOptions = {
         from: "Cloudifysource <noreply@cloudifysource.org>", // sender address
-        to: conf.feedbackMail, // list of receivers
+        to: request.body.email,
+        bcc: conf.feedbackMail, // list of receivers
         subject: "Feedback from website", // Subject line
         html: "Name:" + request.body.name + "<br>Email: " + request.body.email + "<br>Feedback: " + request.body.feedback// html body
     }
