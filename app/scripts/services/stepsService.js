@@ -53,7 +53,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 'showInstructions':true ,
                 'showSignupLink':false ,
                 'subtitles': [
-                    'Run one service from the left panel - FREE for 30 days',
+                    'Run one service from the left panel - FREE for 7 days',
                     'To try a different service, you must first close the running service before spinning up the new instance',
                     'To run multiple services, please use your HP Cloud account <a href="#/registered">here</a>.'
                 ]

@@ -15,7 +15,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 scope.steps = [
                     { 'index': '1', 'label': 'See the demo' },
                     { 'index': '2', 'label': 'Start free 60 min. preview' },
-                    { 'index': '3', 'label': 'Signup for free 30 days trial' }
+                    { 'index': '3', 'label': 'Signup for free 7 days trial' }
                 ];
 
                 scope.stepClass = function( step ){
