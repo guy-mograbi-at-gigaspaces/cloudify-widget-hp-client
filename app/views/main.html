@@ -8,17 +8,6 @@
                 <li>No download, no installation needed to start</li>
             </ul>
         </div>
-
-        <div id="logosBar">
-            <ul>
-                <li id="logo{{widget.id}}" ng-repeat="widget in widgetsList">
-                    <div id="widgetIcon">
-                        <img ng-src="http://{{conf.widgetServer}}/widget/icon?apiKey={{widget.apiKey}}" />
-                    </div>
-                </li>
-            </ul>
-        </div>
-
         <div id="mainStepsContainer" class="linedContainer">
             <ul>
                 <li>Step 1<button id="mainStepSeeDemo" ng-click="redirectPage('demo')" class="submitBtn">See Demo</button></li>
@@ -28,5 +17,14 @@
                 <li class="run-cloudify"><button id="mainStepRegistered" ng-click="redirectPage('registered')" class="run-cloudify submitBtn">Run Cloudify on HP Cloud</button></li>
             </ul>
         </div>
+    </div>
+    <div id="logosBar">
+        <ul>
+            <li id="logo{{widget.id}}" ng-repeat="widget in widgetsList">
+                <div id="widgetIcon">
+                    <img ng-src="http://{{conf.widgetServer}}/widget/icon?apiKey={{widget.apiKey}}" />
+                </div>
+            </li>
+        </ul>
     </div>
 </div>
