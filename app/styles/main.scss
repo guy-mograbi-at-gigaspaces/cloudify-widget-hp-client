@@ -89,8 +89,8 @@ body{
           }
         }
       }
-    } }
-
+    }
+  }
 }
 
 #container.container{
@@ -311,4 +311,26 @@ $FOOTER_HEIGHT:80px;
   text-transform: uppercase; display:inline-block; margin-left:20px; text-align: center;
 }
 
+#logosBar {
+  height: 50px;
+  width: 740px;
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+  right: 0px;
 
+  ul {
+    list-style: none;
+
+    li {
+      float: left;
+      display: inline;
+      text-align: center;
+      font-size: 20px;
+      padding-right: 20px;
+      padding-top: 10px;
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
