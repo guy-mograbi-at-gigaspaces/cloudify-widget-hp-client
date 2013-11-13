@@ -100,6 +100,7 @@ angular.module('cloudifyWidgetHpClientApp')
         function _signup(formData) {
             return widgetService.updateLead( formData).then(function(_lead){
                 lead = _lead;
+                return _lead;
             });
         }
 

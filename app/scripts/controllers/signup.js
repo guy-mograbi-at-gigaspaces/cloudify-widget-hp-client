@@ -19,8 +19,7 @@ angular.module('cloudifyWidgetHpClientApp')
             }
 
             LeadService.signup( $scope.formData).then(function( lead ){
-                SessionService.setLeadId( lead.id );
-
+                SessionService.setLeadEmail( lead.email );
                 MixpanelService.setProperty( '$created', new Date() );
                 MixpanelService.setProperty( '$first_name', $scope.formData.fname );
                 MixpanelService.setProperty( 'First Name', $scope.formData.fname );

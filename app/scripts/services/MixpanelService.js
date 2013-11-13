@@ -20,7 +20,8 @@ angular.module('cloudifyWidgetHpClientApp')
                 if ( !!once ){
                     mixpanel.people.set( key , value );
                 }else{
-                    mixpanel.people.set_once( key , value );
+                    // set_once was only introduced after 2.1.. even though the documentation does not specify this
+                    mixpanel.people.set( key , value );
                 }
             }
         }
