@@ -11,8 +11,4 @@ describe('Service: LeadService', function () {
     LeadService = _LeadService_;
   }));
 
-  it('should do something', function () {
-    expect(!!LeadService).toBe(true);
-  });
-
 });

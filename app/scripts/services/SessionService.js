@@ -53,7 +53,7 @@ angular.module('cloudifyWidgetHpClientApp')
             if (useCookieStore) {
                 return $cookieStore.get( cookieName ) || {};
             } else {
-                return eval("(" + $.cookie(cookieName) + ")");
+                return eval('(' + $.cookie(cookieName) + ')');
             }
         }
 
@@ -108,7 +108,7 @@ angular.module('cloudifyWidgetHpClientApp')
             _save();
         }
 
-        function setUseCookieStore(use) {
+        function _setUseCookieStore(use) {
             useCookieStore = use;
         }
 
@@ -252,4 +252,6 @@ angular.module('cloudifyWidgetHpClientApp')
 
         this.updateTimeUsed = _updateTimeUsed;
         this.getTimeUsed = _getTimeUsed;
+
+        this.setUseCookieStore = _setUseCookieStore;
     });
