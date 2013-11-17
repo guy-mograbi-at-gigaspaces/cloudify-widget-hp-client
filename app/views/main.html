@@ -19,7 +19,7 @@
         </div>
     </div>
     <div id="logosBar">
-        <ul>
+        <ul ng-style="{width: iconsBarWidth}">
             <li id="logo{{widget.id}}" ng-repeat="widget in widgetsList">
                 <div id="widgetIcon">
                     <img ng-src="http://{{conf.widgetServer}}/widget/icon?apiKey={{widget.apiKey}}" />
