@@ -12,7 +12,9 @@ angular.module('cloudifyWidgetHpClientApp')
         var statusStop = 'stop';
         var statusStart = 'start';
         var cookieData = {};
+        var useCookieStore = false;
 
+        var COOKIE_EXPIRATION = 7;
 
         function _getCookieData(){
             cookieData.currentStep = StepsService.currentStep();
@@ -22,11 +24,11 @@ angular.module('cloudifyWidgetHpClientApp')
         function _save() {
             var cookieData = _getCookieData();
             console.log(['saving', cookieData]);
-            $cookieStore.put( cookieName, cookieData );
+            _saveCookie(cookieName, cookieData);
         }
 
         function _load(){
-            return $cookieStore.get( cookieName ) || {};
+            return _loadCookie( cookieName ) || {};
         }
         cookieData = _load();
         console.log(['cookieData initialized to ', cookieData]);
@@ -36,9 +38,24 @@ angular.module('cloudifyWidgetHpClientApp')
         }
 
         function _getSessionData(){
-            return _getCookieData;
+            return _getCookieData();
         }
 
+        function _saveCookie(cookieName, cookieData) {
+            if (useCookieStore) {
+                $cookieStore.put( cookieName, cookieData );
+            } else {
+                $.cookie(cookieName, JSON.stringify(cookieData), {expires: COOKIE_EXPIRATION});
+            }
+        }
+
+        function _loadCookie() {
+            if (useCookieStore) {
+                return $cookieStore.get( cookieName ) || {};
+            } else {
+                return eval("(" + $.cookie(cookieName) + ")");
+            }
+        }
 
         function _getTimeKey( instanceId ){
             return 'time_for_instance_' + instanceId;
@@ -89,6 +106,10 @@ angular.module('cloudifyWidgetHpClientApp')
                 console.log(['unable to delete instanceId', e]);
             }
             _save();
+        }
+
+        function setUseCookieStore(use) {
+            useCookieStore = use;
         }
 
         function _removeInstanceId(){
