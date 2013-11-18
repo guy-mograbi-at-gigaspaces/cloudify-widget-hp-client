@@ -147,6 +147,14 @@ $FOOTER_HEIGHT:80px;
   background: #42bff4 url(/images/beta.png) no-repeat center center;
 }
 
+#disclaimer {
+  width: 900px;
+  height: 100px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #footer{
   height:$FOOTER_HEIGHT;
 
