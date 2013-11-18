@@ -14,7 +14,8 @@ angular.module('cloudifyWidgetHpClientApp')
         var cookieData = {};
         var useCookieStore = false;
 
-        var COOKIE_EXPIRATION = 7;
+        var COOKIE_EXPIRATION = 100;
+        var COOKIE_PATH = '/';
 
         function _getCookieData(){
             cookieData.currentStep = StepsService.currentStep();
@@ -45,7 +46,7 @@ angular.module('cloudifyWidgetHpClientApp')
             if (useCookieStore) {
                 $cookieStore.put( cookieName, cookieData );
             } else {
-                $.cookie(cookieName, JSON.stringify(cookieData), {expires: COOKIE_EXPIRATION});
+                $.cookie(cookieName, JSON.stringify(cookieData), {expires: COOKIE_EXPIRATION, path:COOKIE_PATH});
             }
         }
 
