@@ -33,8 +33,9 @@ body{
 }
 
 .hp-header {
-
-  position: fixed;
+  position: relative;
+  background: url(/images/navBG.png) repeat;
+  min-width: 1250px;
   top: 0;
   left: 0;
   z-index: 100;
@@ -47,11 +48,6 @@ body{
   background-repeat: repeat-x;
   -webkit-box-shadow: #909090 0 1px 8px;
   box-shadow: #909090 0 1px 8px;
-
-
-    position: relative;
-    background: url(/images/navBG.png) repeat;
-    min-width: 1250px;
 
     .container {
       width: 920px;
@@ -313,14 +309,14 @@ $FOOTER_HEIGHT:80px;
 
 #logosBar {
   height: 75px;
-  width: 100%;
+  min-width: 1250px;
   margin-left: auto;
   margin-right: auto;
   float: none;
-  right: 0px;
   background: rgba(220, 220, 220, 0.5);
-  position: absolute;
-  bottom: 10px;
+  position: relative;
+  top: 110px;
+  padding: 0px 20px 0px 20px;
 
   ul {
     list-style: none;
@@ -328,7 +324,6 @@ $FOOTER_HEIGHT:80px;
     margin-right: auto;
     margin-top: 3px;
     position: relative;
-    //width: 810px;
 
     li {
       float: left;
