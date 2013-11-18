@@ -42,7 +42,6 @@ angular.module('cloudifyWidgetHpClientApp')
         };
 
         $scope.requireLead = function(){
-            debugger;
             return !!currentStep.requiresLogin;
         };
 

@@ -218,7 +218,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 };
 
                 $scope.$watch('selectedWidget', function(newWidget) {
-                    if (newWidget !== null && leadTimeLeft !== 0) {
+                    if (newWidget !== null && !_isLeadTimeExpired()) {
                         $scope.play = false;
                         $scope.widgetTime = '';
                         $scope.manageUrl = null;
