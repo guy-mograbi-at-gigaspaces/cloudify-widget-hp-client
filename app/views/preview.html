@@ -14,8 +14,7 @@
     <div id="skin">
         <div id="userTitle" ng-show="showLeadEmail()">You are running as {{leadMail}} <span id="signout" ng-click="signout()">Sign out </span></div>
         <div id="userTimeLeft" ng-show="showLeadEmail()">Your trial ends {{parseTrialTime(trialTimeLeft)}}</div>
-
-        <div widget id="widgetSkin" selected-widget="selectedWidget" subtitles="getSubtitles()" require-advanced="{{requireAdvanced()}}" unlimited="isUnlimited()" upid="getUpid()" widget-time='widgetTime'></div>
+        <div widget id="widgetSkin" selected-widget="selectedWidget" subtitles="getSubtitles()" require-lead="{{requireLead()}}" require-advanced="{{requireAdvanced()}}" unlimited="isUnlimited()" upid="getUpid()" widget-time='widgetTime'></div>
     </div>
     <div id="instructions" class="instructions" ng-show="showInstructions()">
 

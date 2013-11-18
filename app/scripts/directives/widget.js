@@ -10,6 +10,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 requireAdvanced: '@',
                 widgetTime: '=',
                 subtitles:'=',
+                requireLead:'@',
                 unlimited:'=',
                 upid:'=' // unique page id - for widget caching, we want each page to have a separate cookie, otherwise they will share sessions.
             },
@@ -30,7 +31,6 @@ angular.module('cloudifyWidgetHpClientApp')
 
                 var timeout = 0;
                 var milliseconds = 0;
-                var leadTimeLeft = LeadService.getTimeLeft();
                 var isNewWidgetSelected = false;
                 var firstPlayTick = true;
                 var handlers = {
@@ -118,6 +118,10 @@ angular.module('cloudifyWidgetHpClientApp')
                     }
                 };
 
+                function isRequireLead(){
+                    return $scope.requireLead === 'true';
+                }
+
                 function isRequireAdvanced(){
                     return $scope.requireAdvanced === 'true';
                 }
@@ -132,7 +136,7 @@ angular.module('cloudifyWidgetHpClientApp')
                         MixpanelService.setPropertyOnce('hpSiteUserSimple','true');
                     }
 
-                    if (!$scope.credentialsChecked() || leadTimeLeft === 0) {
+                    if (!$scope.credentialsChecked() || _isLeadTimeExpired() ) {
                         return;
                     }
 
@@ -195,6 +199,9 @@ angular.module('cloudifyWidgetHpClientApp')
                     if ( $scope.selectedWidget === null ){
                         return false;
                     }
+                    else if ( _isLeadTimeExpired() ){
+                        return false;
+                    }
                     else if ( !$scope.requireAdvanced ){
                         return true;
                     }else if ( $scope.credentialsChecked() ){
@@ -248,13 +255,16 @@ angular.module('cloudifyWidgetHpClientApp')
                     log.scrollTop = log.scrollHeight;
                 }
 
-                function _checkLeadTime() {
-                    if (leadTimeLeft <= 0) {
-                        $scope.playEnabled = false;
-                        $scope.play = false;
-                        $scope.widgetLog.push('Your free trial is over. <a href="#/signup">Click here</a> to get Cloudify');
-                    }
+                function _isLeadTimeExpired(){
+                    return isRequireLead() && typeof(LeadService.getTimeLeft()) !== 'undefined' && LeadService.getTimeLeft() <= 0;
                 }
+
+                $scope.leadTimeExpired = _isLeadTimeExpired ;
+
+                $scope.isPlaying = function(){
+                    return !_isLeadTimeExpired() && $scope.play;
+                };
+
 
                 $.receiveMessage(function (e) {
                     var msg = JSON.parse(e.data);
@@ -268,7 +278,6 @@ angular.module('cloudifyWidgetHpClientApp')
                     }
                 });
 
-                _checkLeadTime();
 //                if (SessionService.hasAdvancedData() !== undefined) {
 //                    $scope.advanced = SessionService.getAdvancedData();
 //                }

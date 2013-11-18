@@ -41,6 +41,11 @@ angular.module('cloudifyWidgetHpClientApp')
             return !!currentStep.requireAdvancedCredentials;
         };
 
+        $scope.requireLead = function(){
+            debugger;
+            return !!currentStep.requiresLogin;
+        };
+
         if ( StepsService.currentStep().requiresLogin && !LeadService.isExists() ){
             $location.path('/signup');
         }
