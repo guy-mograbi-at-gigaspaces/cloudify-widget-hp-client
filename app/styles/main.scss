@@ -133,9 +133,18 @@ $FOOTER_HEIGHT:80px;
   height: 100%;
   margin: 0 auto -$FOOTER_HEIGHT; /* the bottom margin is the negative value of the footer's height */
 }
+
 #push{
   height:$FOOTER_HEIGHT;
+}
 
+#betaRibbon {
+  width: 61px;
+  height: 44px;
+  position: absolute;
+  top: -2px;
+  right: 2px;
+  background: #42bff4 url(/images/beta.png) no-repeat center center;
 }
 
 #footer{

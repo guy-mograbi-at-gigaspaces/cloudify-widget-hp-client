@@ -7,6 +7,7 @@ angular.module('cloudifyWidgetHpClientApp')
                         '<div id="content-wrapper" class="body" >' +
                             '<div id="header">' +
                                 '<div id="main-header" onclick="window.location = \'/\';"></div>' +
+                                '<div id="betaRibbon"></div>' +
                                 '<div get-navigation-bar id="main-menu" class="hp-header"></div>' +
                             '</div>' +
                             '<div id="content" ng-transclude></div>' +
