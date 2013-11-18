@@ -19,12 +19,16 @@
         </div>
     </div>
     <div id="logosBar">
-        <ul>
+        <ul ng-style="{width: iconsBarWidth}">
             <li id="logo{{widget.id}}" ng-repeat="widget in widgetsList">
                 <div id="widgetIcon">
                     <img ng-src="http://{{conf.widgetServer}}/widget/icon?apiKey={{widget.apiKey}}" />
                 </div>
             </li>
         </ul>
+    </div>
+
+    <div id="disclaimer">
+        Disclaimer: Capacity will be limited for the Beta Period of the free trial experience to ensure quality of service. As a result, you may experience a delay in receiving a free trial slot. We thank you for your patience during this process, and please feel free to share your feedback with us.
     </div>
 </div>

@@ -11,8 +11,4 @@ describe('Service: MixpanelService', function () {
     MixpanelService = _MixpanelService_;
   }));
 
-  it('should do something', function () {
-    expect(!!MixpanelService).toBe(true);
-  });
-
 });

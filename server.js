@@ -96,17 +96,9 @@ if (app.get('env') === 'development') {
     app.use(express.static('dist'));
 }
 
-app.get('/backend/widgetslist', function(request, response, next) {
-
-    var options = {
-        hostname: conf.widgetServer,
-        path: '/api/user/'+ conf.userId +'/widgets?authToken=' + conf.authToken,
-        method: 'GET'
-    };
-
-    var data = '';
-
+function createRequest(requestData) {
     var callback = function(res) {
+        var data = '';
         var result = '';
 
         console.log('STATUS: ' + res.statusCode);
@@ -122,114 +114,79 @@ app.get('/backend/widgetslist', function(request, response, next) {
 
             console.log('Request done, data: ' + data);
 
-            response.send(data);
+            requestData.response.send(data);
         });
     }
 
     var onError = function(e) {
         console.log('problem with request: ' + e.message);
-        response.send(500);
+        requestData.response.send(500);
     };
 
-    var req = ajax.request(options, callback);
+    var req = ajax.request(requestData.options, callback);
     req.on('error', onError);
 
+    if (requestData.post_data !== undefined) {
+        req.write(requestData.post_data);
+    }
+
     req.end();
+}
+
+app.get('/backend/widgetslist', function(request, response, next) {
+
+    var requestData = {};
+    requestData.request = request;
+    requestData.response = response;
+    requestData.options = {
+        hostname: conf.widgetServer,
+        path: '/api/user/'+ conf.userId +'/widgets?authToken=' + conf.authToken,
+        method: 'GET'
+    };
+
+    createRequest(requestData);
 });
 
 app.get('/backend/lead/list', function(request, response, next) {
     var url_parts = url.parse(request.url, true);
     var query = url_parts.query;
 
-    var options = {
+    var requestData = {};
+    requestData.request = request;
+    requestData.response = response;
+    requestData.options = {
         hostname: conf.widgetServer,
         path: '/api/user/'+ conf.userId +'/lead/' + query.leadMail + '?authToken=' + conf.authToken,
         method: 'GET'
     };
 
-    var data = '';
-
-    var callback = function(res) {
-        var result = '';
-
-        console.log('STATUS: ' + res.statusCode);
-
-        res.setEncoding('utf8');
-        res.on('data', function (chunk) {
-            result += chunk;
-        });
-
-        res.on('end', function () {
-            var jsonStr = JSON.stringify(result);
-            data = JSON.parse(jsonStr);
-
-            console.log('Request done, data: ' + data);
-
-            response.send(data);
-        });
-    }
-
-    var onError = function(e) {
-        console.log('problem with request: ' + e.message);
-        response.send(500);
-    };
-
-    var req = ajax.request(options, callback);
-    req.on('error', onError);
-
-    req.end();
+    createRequest(requestData);
 });
 
 app.post('/backend/lead', function(request, response) {
 
-    var post_data = JSON.stringify(request.body);
-    var options = {
+    var requestData = {};
+    requestData.request = request;
+    requestData.response = response;
+    requestData.post_data = JSON.stringify(request.body);
+    requestData.options = {
         hostname: conf.widgetServer,
         path: '/api/user/' + conf.userId + '/lead?authToken=' + conf.authToken,
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Content-Length': post_data.length
+            'Content-Length': requestData.post_data.length
         }
     };
 
-    var data = '';
-
-    var callback = function(res) {
-        var result = '';
-
-        console.log('STATUS: ' + res.statusCode);
-
-        res.setEncoding('utf8');
-        res.on('data', function (chunk) {
-            result += chunk;
-        });
-
-        res.on('end', function () {
-            var jsonStr = JSON.stringify(result);
-            data = JSON.parse(jsonStr);
-
-            console.log('Request done, data: ' + data);
-
-            response.send(data);
-        });
-    }
-
-    var onError = function(e) {
-        console.log('problem with request: ' + e.message);
-        response.send(500);
-    };
-
-    var req = ajax.request(options, callback);
-    req.on('error', onError);
-    req.write(post_data);
-
-    req.end();
+    createRequest(requestData);
 });
 
 app.post('/backend/validate', function(request, response) {
-
-    var options = {
+    var requestData = {};
+    requestData.request = request;
+    requestData.response = response;
+    requestData.options = {
         hostname: conf.widgetServer,
         path: '/api/user/' + conf.userId + '/lead/' + request.body.leadId + '/validate?authToken=' + conf.authToken + '&confirmationCode=' + request.body.code,
         method: 'POST',
@@ -238,87 +195,26 @@ app.post('/backend/validate', function(request, response) {
         }
     };
 
-    var data = '';
-
-    var callback = function(res) {
-        var result = '';
-
-        console.log('STATUS: ' + res.statusCode);
-
-        res.setEncoding('utf8');
-        res.on('data', function (chunk) {
-            result += chunk;
-        });
-
-        res.on('end', function () {
-            var jsonStr = JSON.stringify(result);
-            data = JSON.parse(jsonStr);
-
-            console.log('Request done, data: ' + data);
-
-            response.send(data);
-        });
-    }
-
-    var onError = function(e) {
-        console.log(e);
-        console.log('problem with request: ' + e.message);
-        response.send(500);
-    };
-
-    var req = ajax.request(options, callback);
-    req.on('error', onError);
-
-    req.end();
+    createRequest(requestData);
 });
 
 app.get('/backend/conf', conf.sendPublicConfiguration);
 
 app.post('/backend/prolong', function(request, response) {
-
-    var post_data = JSON.stringify(request.body);
-    var options = {
+    var requestData = {};
+    requestData.request = request;
+    requestData.response = response;
+    requestData.post_data = JSON.stringify(request.body);
+    requestData.options = {
         hostname: conf.widgetServer,
         path: '/api/user/' + conf.userId + '/lead/' + request.body.leadId + '/prolong/' + request.body.instanceId + '?authToken=' + conf.authToken,
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Content-Length': post_data.length
+            'Content-Length': requestData.post_data.length
         }
     };
-
-    var data = '';
-
-    var callback = function(res) {
-        var result = '';
-
-        console.log('STATUS: ' + res.statusCode);
-
-        res.setEncoding('utf8');
-        res.on('data', function (chunk) {
-            result += chunk;
-        });
-
-        res.on('end', function () {
-            var jsonStr = JSON.stringify(result);
-            data = JSON.parse(jsonStr);
-
-            console.log('Request done, data: ' + data);
-
-            response.send(data);
-        });
-    }
-
-    var onError = function(e) {
-        console.log('problem with request: ' + e.message);
-        response.send(500);
-    };
-
-    var req = ajax.request(options, callback);
-    req.on('error', onError);
-    req.write(post_data);
-
-    req.end();
+    createRequest(requestData);
 });
 
 app.post('/backend/feedback', function(request, response) {
