@@ -329,7 +329,7 @@ $FOOTER_HEIGHT:80px;
 
 #logosBar {
   height: 75px;
-  min-width: 1250px;
+  width: 940px;
   margin-left: auto;
   margin-right: auto;
   float: none;
@@ -337,6 +337,7 @@ $FOOTER_HEIGHT:80px;
   position: relative;
   top: -30px;
   padding: 0px 20px 0px 20px;
+  border-radius: 50px;
 
   ul {
     list-style: none;
