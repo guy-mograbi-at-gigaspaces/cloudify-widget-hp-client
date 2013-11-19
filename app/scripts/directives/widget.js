@@ -199,13 +199,12 @@ angular.module('cloudifyWidgetHpClientApp')
                 $scope.playEnabled = function(){
                     if ( $scope.selectedWidget === null ){
                         return false;
-                    }
-                    else if ( _isLeadTimeExpired() ){
+                    } else if ( _isLeadTimeExpired() ){
                         return false;
                     }
                     else if ( !$scope.requireAdvanced ){
                         return true;
-                    }else if ( $scope.credentialsChecked() ){
+                    }else if ( $scope.credentialsChecked()){
                         return true;
                     }
                     return false;

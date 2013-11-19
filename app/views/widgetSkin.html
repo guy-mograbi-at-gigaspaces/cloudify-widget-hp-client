@@ -13,7 +13,7 @@
                 <li ng-hide="leadTimeExpired()" ng-repeat="msg in widgetLog" ng-bind-html-unsafe="msg"></li>
                 <li ng-show="leadTimeExpired()">Your free trial is over. <a href="#/signup">Click here</a> to get Cloudify</li>
             </ul>
-            <ul id="links">
+            <ul id="links" ng-show="isPlaying()">
                 <li id="manageApp" ng-show="manageUrl != null"><a href="{{manageUrl}}" target="_blank">Manage your app</a></li>
                 <li ng-show="consoleUrl != null"><div class="consoleManageArrow"></div><a href="{{consoleUrl}}" target="_blank">{{selectedWidget.productName}} Console</a></li>
             </ul>
