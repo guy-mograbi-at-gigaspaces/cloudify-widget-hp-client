@@ -51,6 +51,7 @@ angular.module('cloudifyWidgetHpClientApp')
 
                             if (msg.type === 'important') {
                                 $scope.widgetLog.pop();
+                                $timeout(_scrollLog, 200);
                             }
 
                             if (msg.type === 'error') {
