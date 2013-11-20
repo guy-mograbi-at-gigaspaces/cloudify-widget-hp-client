@@ -252,7 +252,7 @@ app.post('/backend/feedback', function(request, response) {
 });
 
 app.post('/backend/reportError', function(request) {
-    logger.error("Lead ID: " + request.body.leadId + ", Lead mail: " + request.body.leadMail + ", Instance ID: " + request.body.instanceId);
+    logger.error("Lead ID: " + request.body.leadId + ", Lead mail: " + request.body.leadMail + ", Instance ID: " + request.body.instanceId + ", url: " + request.body.currentStep.url + ", json: " + JSON.stringify(request.body));
 });
 
 // Since this is the last non-error-handling
