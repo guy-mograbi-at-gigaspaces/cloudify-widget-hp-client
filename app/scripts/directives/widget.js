@@ -64,7 +64,10 @@ angular.module('cloudifyWidgetHpClientApp')
                                 }
 
                                 MixpanelService.trackWidgetError( data );
-                                widgetService.reportError(data);
+                                var errorData = data;
+                                errorData.advanced = $scope.advanced;
+                                errorData.message = msg;
+                                widgetService.reportError(errorData);
                             }
                             _scrollLog();
                         });
