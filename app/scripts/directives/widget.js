@@ -67,6 +67,8 @@ angular.module('cloudifyWidgetHpClientApp')
                                 var errorData = data;
                                 errorData.advanced = $scope.advanced;
                                 errorData.message = msg;
+                                errorData.log = $scope.widgetLog;
+                                errorData.isPlaying = $scope.play;
                                 widgetService.reportError(errorData);
                             }
                             _scrollLog();
