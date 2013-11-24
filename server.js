@@ -221,8 +221,8 @@ app.post('/backend/feedback', function(request, response) {
     console.log("Sending feedback");
 
     var smtpTransport = nodemailer.createTransport("SMTP", {
-        "host": "pod51010.outlook.com",
-        "port": "587",
+        "host": conf.smtpHost,
+        "port": conf.smtpPort,
         "auth": {
             user: conf.mailUser,
             pass: conf.mailPass
@@ -230,7 +230,7 @@ app.post('/backend/feedback', function(request, response) {
     });
 
     var mailOptions = {
-        from: "Cloudifysource <noreply@cloudifysource.org>", // sender address
+        from: conf.sender, // sender address
         to: request.body.email,
         bcc: conf.feedbackMail, // list of receivers
         subject: "Feedback from website", // Subject line
