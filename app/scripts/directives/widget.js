@@ -16,7 +16,7 @@ angular.module('cloudifyWidgetHpClientApp')
             },
             controller:function($scope, $element, $location, $timeout, widgetService, SessionService, LeadService ){
 
-                $scope.postUrl = 'http://' + window.conf.widgetServer;
+                $scope.postUrl = window.conf.widgetServerProtocol + '://' + window.conf.widgetServer;
                 $scope.pageUrl = $location.protocol() + '://' + $location.host();
                 $scope.play = false;
                 $scope.advanced = {

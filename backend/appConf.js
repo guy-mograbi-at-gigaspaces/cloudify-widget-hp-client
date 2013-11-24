@@ -42,14 +42,14 @@
 
 var publicConfiguration = {
     widgetServer: "launch.cloudifysource.org",
+    widgetServerProtocol:"http",
     mixpanelCode: null,
     googleAnalyticsCode: null,
     googleAnalyticsDomain: null
 };
 
 var privateConfiguration = {
-    port:9000,
-    widgetServerPort:80,
+    port:3000,
     authToken:undefined,
     userId:undefined,
     log4js:{
