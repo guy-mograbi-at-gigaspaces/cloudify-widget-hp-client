@@ -234,6 +234,15 @@ angular.module('cloudifyWidgetHpClientApp')
                     }
                 });
 
+                $scope.leadTimeExpired = _isLeadTimeExpired ;
+
+                $scope.isPlaying = function(){
+                    return !_isLeadTimeExpired() && $scope.play;
+                };
+
+                $scope.getVideoURL = function(videoURL) {
+                    return videoURL.substr(videoURL.indexOf('//'));
+                };
 
                 function _startTimer() {
                     _stopTimer();
@@ -263,13 +272,6 @@ angular.module('cloudifyWidgetHpClientApp')
                 function _isLeadTimeExpired(){
                     return isRequireLead() && typeof(LeadService.getTimeLeft()) !== 'undefined' && LeadService.getTimeLeft() <= 0;
                 }
-
-                $scope.leadTimeExpired = _isLeadTimeExpired ;
-
-                $scope.isPlaying = function(){
-                    return !_isLeadTimeExpired() && $scope.play;
-                };
-
 
                 $.receiveMessage(function (e) {
                     var msg = JSON.parse(e.data);

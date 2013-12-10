@@ -32,7 +32,7 @@
         </div>
 
         <div id="video_container" ng-class="hideAdvanced() && 'videoPreview' || 'videoRegistered'">
-            <iframe id="widgetVideo" ng-src="{{selectedWidget.youtubeVideoUrl}}" frameborder="0" allowfullscreen></iframe>
+            <iframe id="widgetVideo" ng-src="{{getVideoURL(selectedWidget.youtubeVideoUrl)}}" frameborder="0" allowfullscreen></iframe>
         </div>
 
         <div ng-class="hideAdvanced() && 'hidden' || 'advanced_section'" id="advanced">
