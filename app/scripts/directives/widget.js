@@ -241,7 +241,7 @@ angular.module('cloudifyWidgetHpClientApp')
                 };
 
                 $scope.getVideoURL = function(videoURL) {
-                    return videoURL.substr(videoURL.indexOf('//'));
+                    return videoURL.replace('http', 'https');
                 };
 
                 function _startTimer() {
