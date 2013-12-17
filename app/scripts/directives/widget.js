@@ -141,11 +141,11 @@ angular.module('cloudifyWidgetHpClientApp')
                         return;
                     }
 
-                    var oneHour = 1000 * 60 * 60; // our timelimit;
-                    if (SessionService.getTimeUsed() >= oneHour ) {
-                        $scope.widgetLog = ['You have used the 60 minutes preview time.'];
-                        return;
-                    }
+//                    var oneHour = 1000 * 60 * 60; // our timelimit;
+//                    if (!$scope.unlimited && SessionService.getTimeUsed() >= oneHour ) {
+//                        $scope.widgetLog = ['You have used the 60 minutes preview time.'];
+//                        return;
+//                    }
 
                     $scope.play = true;
                     var iframe = $element.find('#iframe');

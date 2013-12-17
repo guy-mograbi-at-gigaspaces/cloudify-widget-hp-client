@@ -1,12 +1,89 @@
+@font-face {
+  font-family: 'ProximaNova-Regular';
+  src: url('fonts/ProximaNova-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ProximaNova-Bold';
+  src: url('fonts/ProximaNova-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
 #learnIframeContainer {
   background-color: #fff;
   padding: 10px;
   border-radius: 10px;
-  height: 570px;
   overflow: hidden;
+  width:100px;
+  margin:0 auto;
+  .menu {
+    cursor:pointer;
+    float:left;
+    width:242px;
+    height:500px;
+    ul {
+      list-style: none;
+      padding: none;
+      li {
+        width: 243px;
+        height: 82px;
+      }
+    }
+    .section-button {
+      background-image: url('//d3a0pn6rx5g9yg.cloudfront.net/sites/all/themes/gigaspaces/images/cloudify/overview-tab-bg-off.png');
+      text-transform: capitalize;
+      color: black;
+      font-size: 16px;
+      font-family: ProximaNova-Bold;
+      font-weight: 400px;
+      span {
+        padding-top: 30px;
+        padding-left: 20px;
+        display: inline-block;
+      }
+      &.active {
+        background-image: url('//d3a0pn6rx5g9yg.cloudfront.net/sites/all/themes/gigaspaces/images/cloudify/overview-tab-bg-on.png');
+        color: white;
+        position: relative;
+        &:after {
+          content: "";
+          height: 0;
+          width: 0;
+          border: 10px solid transparent;
+          border-left-color: #4DCFF4;
+          position: absolute;
+          right: -20px;
+          top: 30px;
+        }
+      }
+    }
+  }
+  .content{
+    width:697px;
+    height:550px;
+    float:right;
+    .p1, .p2 {
+      padding-top:20px;
+      padding-bottom:20px;
+      font-size: 16px;
+      line-height: 18px;
+      font-family: ProximaNova-Regular;
+      font-weight: 400;
+
+    }
+    .p1 {
+      color: #1fb9d9;
+    }
+  }
+
 }
 
-#cloudifyDocs{
+
+
+#cloudifyDocs {
   width: 100%;
   overflow: hidden;
   height: 2000px;
@@ -23,3 +100,4 @@
     color: #0096d6;
   }
 }
+
