@@ -16,11 +16,12 @@
 var log4js = require('log4js');
 var nodemailer = require("nodemailer");
 var express = require('express');
-var ajax = require("http");
+var extend = require('extend');
 var conf = require("./backend/appConf");
 var url = require("url");
 var app = express();
-var port = conf.port || 9000;
+var port = conf.port || 3000;
+var ajax = require(conf.widgetServerProtocol);
 
 log4js.configure(conf.log4js || {});
 //log4js.replaceConsole();
@@ -116,14 +117,21 @@ function createRequest(requestData) {
 
             requestData.response.send(data);
         });
-    }
+    };
 
     var onError = function(e) {
         console.log('problem with request: ' + e.message);
         requestData.response.send(500);
     };
 
-    var req = ajax.request(requestData.options, callback);
+    var requestOptions = extend({
+        rejectUnauthorized: false,
+        requestCert: true,
+        agent: false
+    }, requestData.options);
+
+
+    var req = ajax.request(requestOptions, callback);
     req.on('error', onError);
 
     if (requestData.post_data !== undefined) {

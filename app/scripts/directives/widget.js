@@ -16,7 +16,7 @@ angular.module('cloudifyWidgetHpClientApp')
             },
             controller:function($scope, $element, $location, $timeout, widgetService, SessionService, LeadService ){
 
-                $scope.postUrl = 'http://' + window.conf.widgetServer;
+                $scope.postUrl = window.conf.widgetServerProtocol + '://' + window.conf.widgetServer;
                 $scope.pageUrl = $location.protocol() + '://' + $location.host();
                 $scope.play = false;
                 $scope.advanced = {
@@ -146,11 +146,11 @@ angular.module('cloudifyWidgetHpClientApp')
                         return;
                     }
 
-                    var oneHour = 1000 * 60 * 60; // our timelimit;
-                    if (SessionService.getTimeUsed() >= oneHour ) {
-                        $scope.widgetLog = ['You have used the 60 minutes preview time.'];
-                        return;
-                    }
+//                    var oneHour = 1000 * 60 * 60; // our timelimit;
+//                    if (!$scope.unlimited && SessionService.getTimeUsed() >= oneHour ) {
+//                        $scope.widgetLog = ['You have used the 60 minutes preview time.'];
+//                        return;
+//                    }
 
                     $scope.play = true;
                     var iframe = $element.find('#iframe');

@@ -2,7 +2,25 @@
     <div id="main-content">
         <div id="webinar"><a href="https://event.on24.com/eventRegistration/EventLobbyServlet?target=registration.jsp&eventid=671974&sessionid=1&key=F5683BEA11749350677034252C85258E&partnerref=AppCatalogWebsite&sourcepage=register" target="_blank">Click here to see a Webinar and learn more about HP Public Cloud and Cloudify</a></div>
         <div id="learnIframeContainer">
-            <iframe id="cloudifyDocs" scrolling="no" src="http://www.gigaspaces.com/cloudify-application-monitoring-auto-scaling-on-the-cloud/how-it-works"></iframe>
+              <div class="wrapper">
+                  <div class="menu">
+                      <ul>
+                          <li ng-repeat="l in learnSteps" ng-click="showLearnStep(l)" ng-class="{'active':currentStep == l}" class="section-button">
+                              <span> {{$index+1}}. {{l.title}} </span>
+                          </li>
+                      </ul>
+                  </div>
+                  <div class="content">
+                      <p class="p1">
+                          {{currentStep.p1}}
+                      </p>
+                      <img ng-src="{{currentStep.img}}"/>
+                      <p class="p2">
+                          {{currentStep.p2}}
+                      </p>
+                  </div>
+              </div>
+
         </div>
     </div>
 </div>
