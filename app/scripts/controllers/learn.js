@@ -45,7 +45,7 @@ angular.module('cloudifyWidgetHpClientApp')
 
         $scope.showLearnStep = function( step ){
             $scope.currentStep = step;
-        }
+        };
 
         $scope.showLearnStep( $scope.learnSteps[0]);
 
