@@ -11,7 +11,7 @@
         <div id="logContainer">
             <ul id="log">
                 <li ng-hide="leadTimeExpired()" ng-repeat="msg in widgetLog" ng-bind-html-unsafe="msg"></li>
-                <li ng-show="leadTimeExpired()">Your free trial is over. <a href="#/signup">Click here</a> to get Cloudify</li>
+                <li ng-show="leadTimeExpired()">Your free trial is over. <a href="http://www.cloudifysource.org/downloads/get_cloudify">Click here</a> to get Cloudify</li>
             </ul>
             <ul id="links" ng-show="isPlaying()">
                 <li id="manageApp" ng-show="manageUrl != null"><a href="{{manageUrl}}" target="_blank">Manage your app</a></li>
