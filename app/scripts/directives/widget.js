@@ -94,7 +94,7 @@ angular.module('cloudifyWidgetHpClientApp')
                             $scope.consoleUrl = null;
                         }
 
-                        if (isNewWidgetSelected) {
+                        if (isNewWidgetSelected && !!$scope.requireLead) {
                             $scope.$apply(function() {
                                 $scope.widgetLog = msg.status.output;
                                 isNewWidgetSelected = false;
